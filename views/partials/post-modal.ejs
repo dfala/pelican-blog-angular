@@ -1,0 +1,9 @@
+<section class="modal-container side-modal" ng-if="activePost" ng-cloak>
+  <div class="modal-backdrop" ng-click="closePostModal()"></div>
+
+  <div class="modal">
+    <h2>{{activePost.title}}</h2>
+    <div class="icon ion-android-close pointer" ng-click="closePostModal()"></div>
+    <a class="post-link" ng-href="{{activePost.link}}">{{activePost.link}}</a>
+
+</section>

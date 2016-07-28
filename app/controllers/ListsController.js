@@ -9,6 +9,12 @@ angular.module('Pelican')
     console.log($scope.user, $scope.lists);
   };
 
+  $scope.openPost = function (post) {
+    $scope.activePost = post;
+  };
 
+  $scope.closePostModal = function () {
+    $scope.activePost = null;
+  }
 
 }]);

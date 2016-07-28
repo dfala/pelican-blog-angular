@@ -1,19 +1,23 @@
 <header>
   <a href="/">Home</a>
-  <a href="/auth/facebook">Sign Up / Login</a>
+  <% if (user && user._id) { %>
+    <a href="/logout">Logout</a>
+  <% } else { %>
+    <a href="/auth/facebook">Sign Up / Login</a>
+  <% } %>
 </header>
 
 <section class="jumbotron" ng-controller="BannerController" ng-init="init(<%= JSON.stringify(user) %>, <%= JSON.stringify(lists) %>)">
   <div class="contain">
-    <h1 class="highlight-title">
-      <% if (user && user.givenName) { %>
+    <% if (user && user.givenName) { %>
+      <h1 class="highlight-title">
         <%= user.givenName + "'s Pelican" %>
-      <% } else { %>
-        The Pelican Blog
-      <% } %>
-    </h1>
-    <button class="cto" ng-click="isListModalOpen = true" ng-show="user">+ Post some crap</button>
-    <button class="cto" send-to="/auth/facebook" ng-if="!user">Sign Up / Login</button>
+      </h1>
+      <button class="cto" ng-click="isListModalOpen = true" ng-show="user">+ Post some crap</button>
+    <% } else { %>
+      <h1 class="highlight-title">The Pelican Blog</h1>
+      <button class="cto" send-to="/auth/facebook" ng-if="!user" ng-cloak>Sign Up / Login</button>
+    <% } %>
   </div>
 
   <% include ./list-modal.ejs %>

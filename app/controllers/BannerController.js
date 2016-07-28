@@ -4,13 +4,13 @@ angular.module('Pelican')
 
   //INIT
   $scope.init = function (user, lists) {
-    console.log(arguments);
-    if (user) $scope.user = user;
-    console.log($scope.user);
+    if (user)   $scope.user   = user;
+    if (lists)  $scope.lists  = lists;
   };
 
   $scope.closeListModal = function () {
     $scope.isListModalOpen = false;
+    $scope.activeList = null;
   };
 
   $scope.addList = function (listTitle) {
@@ -19,14 +19,16 @@ angular.module('Pelican')
     apiService.addList(listTitle)
     .then(function (response) {
       alertify.success('New list created!')
-      $scope.displayPostInput = true;
-      $scope.activeList = response.data;
-      console.info(response);
+      $scope.activateList(response.data);
     })
     .catch(function (err) {
       console.error(err);
       alertify.error('Could not save your new list :(')
     })
+  };
+
+  $scope.activateList = function (list) {
+    $scope.activeList = list;
   };
 
   $scope.addPost = function (newPost) {

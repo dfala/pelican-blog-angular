@@ -2,15 +2,22 @@
   <% include ./partials/header.ejs %>
 
   <section class="lists" ng-controller="ListsController" ng-init="init(<%= JSON.stringify(user) %>, <%= JSON.stringify(lists) %>)">
-    <div class="list" ng-repeat="list in lists">
-      <h2>{{list.title}}</h2>
 
-      <div class="post" ng-repeat="post in list.posts">
-        <p>{{post.title}}</p>
-        <a ng-href="{{post.link}}">{{post.link}}</a>
-        <p>{{post.text}}</p>
+    <% lists.forEach(function (list) { %>
+      <div class="list">
+        <h2><%= list.title %></h2>
+
+        <% list.posts.forEach(function (post) { %>
+          <section class="post" ng-click="openPost(<%= JSON.stringify(post) %>)">
+            <p><%= post.title %></p>
+            <a ng-href="<%= post.link %>"><%= post.link %></a>
+            <p class="text"><%= post.text %></p>
+          </section>
+        <% }) %>
       </div>
-    </div>
+    <% }) %>
+
+    <% include ./partials/post-modal .ejs %>
   </section>
 
 <% include ./partials/footer.ejs %>

@@ -28,7 +28,7 @@
     border-radius: @br;
     box-shadow: 0 0 6px -2px #000000;
 
-    h1 {
+    h1, h2 {
       display: initial;
     }
 
@@ -59,9 +59,36 @@
       }
     }
 
+    .list {
+      display: block;
+      cursor: pointer;
+      padding: 10px;
+      border-radius: 2px;
+
+      &:hover {
+        background-color: #eee;
+      }
+    }
+
     .body {
       display: block;
       margin: 20px 0;
+    }
+  }
+}
+
+.side-modal {
+  justify-content: flex-end;
+  .modal {
+    height: 100vh;
+
+    .post-link {
+      padding: 10px;
+      background-color: lighten(@light-gray, 3%);
+      border-radius: @br;
+      display: block;
+      width: 100%;
+      margin-top: 20px;
     }
   }
 }

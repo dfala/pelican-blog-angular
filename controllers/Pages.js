@@ -8,7 +8,8 @@ Routes.index = function (req, res) {
 };
 
 Routes.userView = function (req, res) {
-  var userId = req.params.userId || req.user && req.user._id || null;
+  var userId = req.params.userId;
+  if (!userId && req.user && req.user._id) return res.redirect('/user/' + req.user._id);
   if (!userId) return res.redirect('/');
 
   List.find({owner: userId})
