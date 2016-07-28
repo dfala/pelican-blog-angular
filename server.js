@@ -13,7 +13,7 @@ var express     = require('express'),
 var app = express();
 app.set('view engine', 'ejs');
 
-// require('./config/passport')(passport);
+require('./config/passport')(passport);
 
 // Middleware
 app.use(session({
@@ -21,15 +21,15 @@ app.use(session({
     resave: true,
     saveUninitialized: true
 }));
-// app.use(passport.initialize());
-// app.use(passport.session());
+app.use(passport.initialize());
+app.use(passport.session());
 app.use(cors());
 app.use(bodyParser.json({limit: '50mb'}));
 app.use(bodyParser.urlencoded({limit: '50mb', extended: true}));
 app.use(express.static(path.join(__dirname, 'app')));
 
 
-require('./controllers/Routes.js')(app);
+require('./controllers/Routes.js')(app, passport);
 require('./controllers/API.js')(app);
 
 // Connections
