@@ -1,0 +1,55 @@
+* {
+  box-sizing: border-box;
+}
+
+html {
+  background-color: @light-gray;
+}
+
+.highlight-title {
+  @local-height: 60px;
+  background-color: #000;
+  color: #fff;
+  font-size: @local-height;
+  line-height: @local-height;
+  padding: 15px 20px;
+  font-weight: 300;
+  display: inline-block;
+  margin: 0 0 20px 0;
+  border-radius: @br;
+}
+
+button, .btn {
+  display: block;
+  background-color: @blue;
+  border: none;
+  color: #fff;
+  border-radius: @br;
+  padding: 10px 16px;
+  font-size: 18px;
+  line-height: 1.3333333;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  text-decoration: none;
+  cursor: pointer;
+  font-weight: 200;
+
+  &:hover {
+    color: #fff;
+    background-color: @dark-blue;
+    border: none;
+  }
+
+  &:focus {
+    outline: none;
+    border: none !important;
+    -webkit-box-shadow: none !important;
+    -moz-box-shadow: none !important;
+    box-shadow: none !important;
+  }
+
+  &:active {
+    background-color: #000;
+  }
+}
