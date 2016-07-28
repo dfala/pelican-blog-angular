@@ -30,7 +30,7 @@ app.use(express.static(path.join(__dirname, 'app')));
 
 
 require('./controllers/Routes.js')(app);
-// require('./controllers/Api.js')(app, passport);
+require('./controllers/API.js')(app);
 
 // Connections
 if (keys.env == 'DEVELOPMENT') { var portNum = 3000; } else { var portNum = 80; }

@@ -1,0 +1,21 @@
+<section class="modal-container" ng-if="isListModalOpen">
+  <div class="modal-backdrop" ng-click="closeListModal()"></div>
+
+  <div class="modal">
+    <h1>Add details</h1>
+    <div class="icon ion-android-close pointer" ng-click="closeListModal()"></div>
+
+    <div class="add-list">
+      <input type="text" placeholder="List Name" ng-model="listTitle"/>
+      <button class="cto" ng-click="addList(listTitle)">Create new list</button>
+    </div>
+
+    <div class="body">
+      <input type="text" placeholder="Name"/>
+      <input type="text" placeholder="Link"/>
+      <textarea placeholder="Thoughts"></textarea>
+
+      <button class="cto">Post it!</button>
+    </div>
+  </div>
+</section>

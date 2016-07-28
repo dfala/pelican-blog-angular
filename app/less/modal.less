@@ -1,0 +1,67 @@
+.ffw {
+  width: 100%;
+  height: 100vh;
+  position: fixed;
+  left: 0;
+  top: 0;
+}
+
+.modal-container {
+  .ffw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .modal-backdrop {
+    .ffw;
+    z-index: -1;
+
+    background-color: rgba(0,0,0,.3);
+  }
+
+  .modal {
+    background-color: #fff;
+    width: 600px;
+    padding: 20px;
+    max-width: 100%;
+    min-height: 300px;
+    border-radius: @br;
+    box-shadow: 0 0 6px -2px #000000;
+
+    h1 {
+      display: initial;
+    }
+
+    .ion-android-close {
+      float: right;
+      cursor: pointer;
+      font-size: 25px;
+      color: @border-gray;
+
+      &:hover {
+        color: #000;
+      }
+    }
+
+    .add-list {
+      margin: 20px 0;
+      padding: 20px 0;
+      border-top: 1px solid @light-gray;
+      border-bottom: 1px solid @light-gray;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      input {
+        width: 70%;
+        margin: 0;
+      }
+    }
+
+    .body {
+      display: block;
+      margin: 20px 0;
+    }
+  }
+}

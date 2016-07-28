@@ -6,6 +6,20 @@ html {
   background-color: @light-gray;
 }
 
+input[type="text"], textarea {
+  padding: 9px;
+  width: 100%;
+  max-width: 100%;
+  border-radius: 2px;
+  border: 1px solid @gray;
+  margin-bottom: 10px;
+
+  &:focus {
+    outline: none;
+    border: 1px solid @blue;
+  }
+}
+
 .highlight-title {
   @local-height: 60px;
   background-color: #000;
@@ -26,8 +40,6 @@ button, .btn {
   color: #fff;
   border-radius: @br;
   padding: 10px 16px;
-  font-size: 18px;
-  line-height: 1.3333333;
   text-align: center;
   white-space: nowrap;
   vertical-align: middle;
@@ -52,4 +64,8 @@ button, .btn {
   &:active {
     background-color: #000;
   }
+}
+
+.icon {
+
 }

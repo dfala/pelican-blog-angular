@@ -1,9 +1,11 @@
 <header>
 </header>
 
-<section class="jumbotron">
+<section class="jumbotron" ng-controller="BannerController">
   <div class="contain">
     <h1 class="highlight-title">The Pelican Blog</h1>
-    <button class="cto">+ Post some crap</button>
+    <button class="cto" ng-click="isListModalOpen = true">+ Post some crap</button>
   </div>
+
+  <% include ./list-modal.ejs %>
 </section>
