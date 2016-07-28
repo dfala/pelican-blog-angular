@@ -5,7 +5,8 @@ var UserSchema = new mongoose.Schema({
   facebookToken: String,
   name: String,
   email: String,
-  created_date: { type: Date, default: Date.now }
+  created_date: { type: Date, default: Date.now },
+  lists: [{ type: mongoose.Schema.Types.ObjectId, ref: 'List' }]
 });
 
 module.exports = mongoose.model('User', UserSchema);

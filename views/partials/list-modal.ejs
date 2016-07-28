@@ -5,17 +5,17 @@
     <h1>Add details</h1>
     <div class="icon ion-android-close pointer" ng-click="closeListModal()"></div>
 
-    <div class="add-list">
+    <div class="add-list" ng-show="!displayPostInput">
       <input type="text" placeholder="List Name" ng-model="listTitle"/>
       <button class="cto" ng-click="addList(listTitle)">Create new list</button>
     </div>
 
-    <div class="body">
-      <input type="text" placeholder="Name"/>
-      <input type="text" placeholder="Link"/>
-      <textarea placeholder="Thoughts"></textarea>
+    <div class="body" ng-show="displayPostInput">
+      <input type="text" placeholder="Name" ng-model="newPost.title" />
+      <input type="text" placeholder="Link" ng-model="newPost.link" />
+      <textarea placeholder="Thoughts" ng-model="newPost.text"></textarea>
 
-      <button class="cto">Post it!</button>
+      <button class="cto" ng-click="addPost(newPost)">Post it!</button>
     </div>
   </div>
 </section>

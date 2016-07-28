@@ -6,6 +6,15 @@ html {
   background-color: @light-gray;
 }
 
+a {
+  text-decoration: none;
+  color: @blue;
+
+  &:hover {
+    color: darken(@blue, 20%);
+  }
+}
+
 input[type="text"], textarea {
   padding: 9px;
   width: 100%;

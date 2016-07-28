@@ -4,8 +4,16 @@ angular.module('Pelican')
   var service = {};
 
   service.addList = function (listTitle) {
-    console.warn(listTitle);
     return $http.post('/api/list', {title: listTitle});
+  };
+
+  service.addPost = function (post, activeList) {
+    var data = post;
+    data.parentList = activeList._id;
+
+    console.warn(data);
+
+    return $http.post('/api/post', data);
   };
 
   return service;

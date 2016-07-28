@@ -1,11 +1,13 @@
 <header>
-  <a href="/auth/facebook">Auth</a>
+  <a href="/">Home</a>
+  <a href="/auth/facebook">Sign Up / Login</a>
 </header>
 
-<section class="jumbotron" ng-controller="BannerController">
+<section class="jumbotron" ng-controller="BannerController" ng-init="init(<%= JSON.stringify(user) %>, <%= JSON.stringify(lists) %>)">
   <div class="contain">
     <h1 class="highlight-title">The Pelican Blog</h1>
-    <button class="cto" ng-click="isListModalOpen = true">+ Post some crap</button>
+    <button class="cto" ng-click="isListModalOpen = true" ng-show="user">+ Post some crap</button>
+    <button class="cto" send-to="/auth/facebook" ng-if="!user">Sign Up / Login</button>
   </div>
 
   <% include ./list-modal.ejs %>
