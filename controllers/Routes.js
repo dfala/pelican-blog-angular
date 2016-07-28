@@ -1,28 +1,26 @@
-var Pages    = require('./Pages.js');
+var Pages    = require('./Pages.js'),
+    keys     = require('../config/keys');
 
 module.exports = function (app, passport) {
   app.get('/', Pages.index);
+  app.get('/user/:userId?', Pages.userView);
 
+  // AUTH
   app.get('/auth/facebook', passport.authenticate('facebook', { scope : 'email' }));
 
-  // handle the callback after facebook has authenticated the user
   app.get('/auth/facebook/callback', passport.authenticate('facebook', {
-      successRedirect : '/',
+      successRedirect : '/user/',
       failureRedirect : '/failed'
     })
   );
 
-  // route for logging out
   app.get('/logout', function(req, res) {
-      req.logout();
-      res.redirect('/');
+    req.logout();
+    res.redirect('/');
   });
 };
 
 function isLoggedIn(req, res, next) {
-    // if user is authenticated in the session, carry on
-    if (req.isAuthenticated()) return next();
-
-    // if they aren't redirect them to the home page
-    res.redirect('/');
+  if (req.isAuthenticated()) return next();
+  res.redirect('/');
 };

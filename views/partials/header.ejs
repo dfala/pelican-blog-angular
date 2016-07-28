@@ -5,7 +5,13 @@
 
 <section class="jumbotron" ng-controller="BannerController" ng-init="init(<%= JSON.stringify(user) %>, <%= JSON.stringify(lists) %>)">
   <div class="contain">
-    <h1 class="highlight-title">The Pelican Blog</h1>
+    <h1 class="highlight-title">
+      <% if (user && user.givenName) { %>
+        <%= user.givenName + "'s Pelican" %>
+      <% } else { %>
+        The Pelican Blog
+      <% } %>
+    </h1>
     <button class="cto" ng-click="isListModalOpen = true" ng-show="user">+ Post some crap</button>
     <button class="cto" send-to="/auth/facebook" ng-if="!user">Sign Up / Login</button>
   </div>

@@ -4,16 +4,20 @@ var Routes   = module.exports = {},
     Post     = require('../models/PostModel');
 
 Routes.index = function (req, res) {
-  if (!req.user) return res.render('index', {user: req.user || null, lists: []});
+  res.render('index', {user: req.user || null, lists: []});
+};
 
-  List.find({owner: req.user._id})
+Routes.userView = function (req, res) {
+  var userId = req.params.userId || req.user && req.user._id || null;
+  if (!userId) return res.redirect('/');
+
+  List.find({owner: userId})
   .populate('posts')
   .exec(function(error, result) {
     var data = {
       user: req.user || null,
       lists: result || []
     };
-    res.render('index', data);
+    res.render('user', data);
   });
-
 }

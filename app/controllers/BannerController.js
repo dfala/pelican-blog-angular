@@ -6,6 +6,7 @@ angular.module('Pelican')
   $scope.init = function (user, lists) {
     console.log(arguments);
     if (user) $scope.user = user;
+    console.log($scope.user);
   };
 
   $scope.closeListModal = function () {
