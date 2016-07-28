@@ -1,5 +1,11 @@
 <header>
-  <a href="/">Home</a>
+  <div>
+    <a href="/">Home</a>
+    <% if (user && user._id) { %>
+      <a href="/user/<%= user._id %>">/ Your Feed</a>
+    <% } %>
+  </div>
+
   <% if (user && user._id) { %>
     <a href="/logout">Logout</a>
   <% } else { %>
@@ -7,12 +13,15 @@
   <% } %>
 </header>
 
-<section class="jumbotron" ng-controller="BannerController" ng-init="init(<%= JSON.stringify(user) %>, <%= JSON.stringify(lists) %>)">
+<section class="jumbotron" ng-controller="BannerController"
+         ng-init="init(<%= JSON.stringify(user) %>, <%= JSON.stringify(lists) %>)">
+
   <div class="contain">
     <% if (user && user.givenName) { %>
-      <h1 class="highlight-title">
+      <h1 class="highlight-title" ng-if="userPage">
         <%= user.givenName + "'s Pelican" %>
       </h1>
+      <h1 class="highlight-title" ng-if="!userPage" ng-cloak>The Pelican Blog</h1>
       <button class="cto" ng-click="isListModalOpen = true" ng-show="user">+ Post some crap</button>
     <% } else { %>
       <h1 class="highlight-title">The Pelican Blog</h1>

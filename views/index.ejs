@@ -1,5 +1,16 @@
 <% include ./partials/head.ejs %>
   <% include ./partials/header.ejs %>
 
+  <section class="lists" ng-controller="HomeController">
+    <% posts.forEach(function (post) { %>
+      <section class="post" ng-click="openPost(<%= JSON.stringify(post) %>)">
+        <p><%= post.title %></p>
+        <a ng-href="<%= post.link %>"><%= post.link %></a>
+        <p class="text"><%= post.text %></p>
+      </section>
+    <% }) %>
+
+    <% include ./partials/post-modal.ejs %>
+  </section>
 
 <% include ./partials/footer.ejs %>

@@ -4,7 +4,17 @@ var Routes   = module.exports = {},
     Post     = require('../models/PostModel');
 
 Routes.index = function (req, res) {
-  res.render('index', {user: req.user || null, lists: []});
+  // res.render('index', {user: req.user || null, lists: []});
+
+  Post.find({})
+  .populate({ path: 'owner', select: 'displayName _id lists' })
+  .exec(function (err, result) {
+    res.render('index', {
+      user: req.user || null,
+      lists: [],
+      posts: result || []
+    })
+  })
 };
 
 Routes.userView = function (req, res) {

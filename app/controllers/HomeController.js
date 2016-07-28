@@ -1,5 +1,11 @@
 angular.module('Pelican')
 
 .controller('HomeController', ['$scope', function ($scope) {
-  $scope.name = 'Daniel';
+  $scope.openPost = function (post) {
+    $scope.activePost = post;
+  };
+
+  $scope.closePostModal = function () {
+    $scope.activePost = null;
+  }
 }]);

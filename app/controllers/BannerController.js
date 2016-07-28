@@ -3,9 +3,14 @@ angular.module('Pelican')
 .controller('BannerController', ['$scope', 'apiService', 'validator', function ($scope, apiService, validator) {
 
   //INIT
-  $scope.init = function (user, lists) {
+  $scope.init = function (user, lists, posts) {
     if (user)   $scope.user   = user;
     if (lists)  $scope.lists  = lists;
+    if (window.location.pathname.indexOf('/user') > -1) {
+      $scope.userPage = true;
+    } else {
+      $scope.userPage = false;
+    }
   };
 
   $scope.closeListModal = function () {
