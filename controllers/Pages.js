@@ -7,7 +7,7 @@ Routes.index = function (req, res) {
   // res.render('index', {user: req.user || null, lists: []});
 
   Post.find({})
-  .populate({ path: 'owner', select: 'displayName _id lists' })
+  .populate({ path: 'owner', select: 'displayName _id lists image' })
   .exec(function (err, result) {
     res.render('index', {
       user: req.user || null,

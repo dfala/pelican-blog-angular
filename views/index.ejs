@@ -10,7 +10,10 @@
           <p class="text"><%= post.text %></p>
         </div>
         <div class="author">
-          <a href="/user/<%= post.owner._id %>"><%= post.owner.displayName %></a>
+          <a href="/user/<%= post.owner._id %>">
+            <img src="<%= post.owner.image %>" />
+            <%= post.owner.displayName %>
+          </a>
         </div>
       </section>
     <% }) %>

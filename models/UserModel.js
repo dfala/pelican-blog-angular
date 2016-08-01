@@ -7,7 +7,8 @@ var UserSchema = new mongoose.Schema({
   displayName: String,
   email: String,
   created_date: { type: Date, default: Date.now },
-  lists: [{ type: mongoose.Schema.Types.ObjectId, ref: 'List' }]
+  lists: [{ type: mongoose.Schema.Types.ObjectId, ref: 'List' }],
+  image: String
 });
 
 module.exports = mongoose.model('User', UserSchema);

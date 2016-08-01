@@ -15,15 +15,23 @@ section.post {
   }
 
   .author {
-    margin: 15px 15px 30px 15px;
+    margin: 10px 15px 30px;
 
     a {
       font-weight: 200;
       color: #464646;
+      display: flex;
+      align-items: center;
 
       &:hover {
         color: @blue;
       }
+    }
+
+    img {
+      border-radius: 100px;
+      max-width: 30px;
+      margin-right: 10px;
     }
   }
 
@@ -34,5 +42,7 @@ section.post {
 
   p {
     line-height: 5px;
+    font-size: 1.3em;
+    font-weight: 300;
   }
 }

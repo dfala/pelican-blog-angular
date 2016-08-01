@@ -3,7 +3,8 @@
 // load all the things we need
 var LocalStrategy    = require('passport-local').Strategy,
     FacebookStrategy = require('passport-facebook').Strategy,
-    Keys             = require('./keys.js');
+    Keys             = require('./keys.js'),
+    ImageController  = require('../controllers/ImageController');
 
 // load up the user model
 var User       = require('../models/UserModel');
@@ -55,7 +56,7 @@ module.exports = function(passport) {
                 } else {
                     // if there is no user found with that facebook id, create them
                     var newUser            = new User();
-                    console.log(profile);
+                    // console.log(profile);
 
                     // set all of the facebook information in our user model
                     newUser.facebookId    = profile.id; // set the users facebook id
@@ -65,8 +66,10 @@ module.exports = function(passport) {
                     newUser.email         = profile.emails && profile.emails[0] && profile.emails[0].value || null;
 
                     // save our user to the database
-                    newUser.save(function(err) {
+                    newUser.save(function(err, user) {
                         if (err) throw err;
+
+                        ImageController.downloadImage(profile.photos && profile.photos[0].value, user._id, 'jpg')
 
                         // if successful, return the new user
                         return done(null, newUser);
