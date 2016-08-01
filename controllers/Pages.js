@@ -11,6 +11,7 @@ Routes.index = function (req, res) {
   .exec(function (err, result) {
     res.render('index', {
       user: req.user || null,
+      owner: null,
       lists: [],
       posts: result || []
     })
@@ -25,10 +26,14 @@ Routes.userView = function (req, res) {
   List.find({owner: userId})
   .populate('posts')
   .exec(function(error, result) {
-    var data = {
-      user: req.user || null,
-      lists: result || []
-    };
-    res.render('user', data);
-  });
+    User.findById(userId, function (err, user) {
+      if (err) return res.status(400).json(err);
+      res.render('user', {
+        user: req.user || null,
+        userId: userId,
+        lists: result || [],
+        owner: user
+      });
+    })
+  })
 }

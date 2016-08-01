@@ -9,9 +9,12 @@
 
         <% list.posts.forEach(function (post) { %>
           <section class="post" ng-click="openPost(<%= JSON.stringify(post) %>)">
-            <p><%= post.title %></p>
-            <a ng-href="<%= post.link %>"><%= post.link %></a>
-            <p class="text"><%= post.text %></p>
+            <div class="body">
+              <p><%= post.title %></p>
+              <a ng-href="<%= post.link %>"><%= post.link %></a>
+              <p class="text"><%= post.text %></p>
+            </div>
+            <div class="author"></div>
           </section>
         <% }) %>
       </div>

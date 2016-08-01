@@ -3,10 +3,15 @@
 
   <section class="lists" ng-controller="HomeController">
     <% posts.forEach(function (post) { %>
-      <section class="post" ng-click="openPost(<%= JSON.stringify(post) %>)">
-        <p><%= post.title %></p>
-        <a ng-href="<%= post.link %>"><%= post.link %></a>
-        <p class="text"><%= post.text %></p>
+      <section class="post">
+        <div class="body" ng-click="openPost(<%= JSON.stringify(post) %>)">
+          <p><%= post.title %></p>
+          <a ng-href="<%= post.link %>"><%= post.link %></a>
+          <p class="text"><%= post.text %></p>
+        </div>
+        <div class="author">
+          <a href="/user/<%= post.owner._id %>"><%= post.owner.displayName %></a>
+        </div>
       </section>
     <% }) %>
 

@@ -1,15 +1,30 @@
 section.post {
   width: 500px;
   max-width: 100%;
-  border-radius: @br;
-  border: 1px solid @border-gray;
-  cursor: pointer;
-  background-color: #fff;
-  padding: 5px 15px;
-  margin-bottom: 20px;
 
-  &:hover {
-    background-color: lighten(@light-gray, 3%);
+  .body {
+    border-radius: @br;
+    border: 1px solid @border-gray;
+    cursor: pointer;
+    background-color: #fff;
+    padding: 5px 15px;
+
+    &:hover {
+      background-color: lighten(@light-gray, 3%);
+    }
+  }
+
+  .author {
+    margin: 15px 15px 30px 15px;
+
+    a {
+      font-weight: 200;
+      color: #464646;
+
+      &:hover {
+        color: @blue;
+      }
+    }
   }
 
   .text {
