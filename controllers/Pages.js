@@ -4,8 +4,6 @@ var Routes   = module.exports = {},
     Post     = require('../models/PostModel');
 
 Routes.index = function (req, res) {
-  // res.render('index', {user: req.user || null, lists: []});
-
   Post.find({})
   .populate({ path: 'owner', select: 'displayName _id lists image' })
   .exec(function (err, result) {
