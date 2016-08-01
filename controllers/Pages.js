@@ -4,16 +4,20 @@ var Routes   = module.exports = {},
     Post     = require('../models/PostModel');
 
 Routes.index = function (req, res) {
-  Post.find({})
-  .populate({ path: 'owner', select: 'displayName _id lists image' })
-  .exec(function (err, result) {
-    res.render('index', {
-      user: req.user || null,
-      owner: null,
-      lists: [],
-      posts: result || []
+  List.find({owner: req.user && req.user._id || null})
+  .then(function(lists) {
+    Post.find({})
+    .populate({ path: 'owner', select: 'displayName _id lists image' })
+    .exec(function (err, result) {
+      res.render('index', {
+        user: req.user || null,
+        owner: null,
+        lists: lists || [],
+        posts: result || []
+      })
     })
   })
+
 };
 
 Routes.userView = function (req, res) {
