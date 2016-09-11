@@ -7,7 +7,7 @@
 
     <div class="add-list" ng-show="!activeList">
       <input type="text" placeholder="List Name" ng-model="listTitle"/>
-      <button class="cto" ng-click="addList(listTitle)">Create new list</button>
+      <button class="cta" ng-click="addList(listTitle)">Create new list</button>
     </div>
 
     <div ng-repeat="list in lists" ng-show="!activeList">
@@ -21,7 +21,7 @@
       <input type="text" placeholder="Link" ng-model="newPost.link" />
       <textarea placeholder="Thoughts" ng-model="newPost.text"></textarea>
 
-      <button class="cto" ng-click="addPost(newPost)">Post it!</button>
+      <button class="cta" ng-click="addPost(newPost)">Post it!</button>
     </div>
   </div>
 </section>

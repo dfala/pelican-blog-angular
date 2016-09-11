@@ -16,5 +16,9 @@ angular.module('Pelican')
     return $http.post('/api/post', data);
   };
 
+  service.updatePost = function (post) {
+    return $http.put('/api/post/' + post._id, post);
+  };
+
   return service;
 }]);

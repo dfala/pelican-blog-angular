@@ -14,6 +14,27 @@ angular.module('Pelican')
 
   $scope.closePostModal = function () {
     $scope.activePost = null;
-  }
+  };
+
+  // EDIT POST
+  $scope.turnOffEditPost = function () {
+    $scope.editingPost = false;
+  };
+
+  $scope.turnOnEditPost = function () {
+    $scope.editablePost = angular.copy($scope.activePost);
+    $scope.editingPost = true;
+  };
+
+  $scope.updatePost = function (post) {
+    apiService.updatePost(post)
+    .then(function (response) {
+      console.warn(response);
+    })
+    .catch(function (err) {
+      console.error(err);
+      alertify.error('Were not able to update post :(');
+    })
+  };
 
 }]);

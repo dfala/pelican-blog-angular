@@ -20,16 +20,65 @@
   }
 
   .modal {
+    @p-modal: 20px;
     background-color: #fff;
     width: 600px;
-    padding: 20px;
+    padding: @p-modal;
+    padding-bottom: @p-modal + @p-modal;
     max-width: 100%;
     min-height: 300px;
     border-radius: @br;
     box-shadow: 0 0 6px -2px #000000;
+    position: relative;
+
+    .post-options {
+      position: absolute;
+      bottom: @p-modal;
+      height: @p-modal;
+      width: calc(~"100% - "@p-modal*2);
+
+      a {
+        color: @gray;
+        &:hover {
+          color: @dark-blue;
+        }
+      }
+
+      .delete { float: left; }
+      .edit { float: right; }
+    }
 
     h1, h2 {
       display: initial;
+    }
+
+    .title-edit {
+      font-size: 1.5em;
+      font-weight: 200;
+      border: none;
+      padding: 0;
+      width: 95%;
+      margin: 0;
+    }
+
+    .link-edit {
+      border: none;
+      color: @blue;
+      font-weight: 200;
+    }
+
+    .edit-options {
+      margin-top: 40px;
+      position: relative;
+
+      button {
+        float: left;
+      }
+
+      a {
+        float: right;
+        line-height: 40px;
+      }
     }
 
     .ion-android-close {

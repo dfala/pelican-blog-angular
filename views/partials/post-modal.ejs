@@ -2,10 +2,27 @@
   <div class="modal-backdrop" ng-click="closePostModal()"></div>
 
   <div class="modal">
-    <h2>{{activePost.title}}</h2>
     <div class="icon ion-android-close pointer" ng-click="closePostModal()"></div>
-    <a class="post-link" ng-href="{{activePost.link}}" ng-if="activePost.link">{{activePost.link}}</a>
 
+    <div ng-if="!editingPost">
+      <h2>{{activePost.title}}</h2>
+      <a class="post-link" ng-href="{{activePost.link}}" ng-if="activePost.link">{{activePost.link}}</a>
+    </div>
 
-    <a class="edit-post">Edit post</a>
+    <div ng-if="editingPost">
+      <input class="title-edit" type="text" ng-model="editablePost.title" />
+      <input class="post-link link-edit" type="text" ng-model="editablePost.link" placeholder="Post link" />
+
+      <div class="edit-options">
+        <button ng-click="updatePost(editablePost)" class="cta">Update post</button>
+        <a ng-click="turnOffEditPost()">Cancel edit</a>
+      </div>
+    </div>
+
+    <div class="post-options" ng-if="!editingPost">
+      <a class="delete">Delete post</a>
+      <a class="edit" ng-click="turnOnEditPost()">Edit post</a>
+    </div>
+  </div>
+
 </section>
