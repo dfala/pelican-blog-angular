@@ -7,7 +7,7 @@ var express     = require('express'),
     CronJob     = require('cron').CronJob,
     ejs         = require('ejs'),
     path        = require('path'),
-    keys        = require('./config/keys.js');
+    keys        = require('./config/keys.js').connections;
 
 // App definition
 var app = express();

@@ -1,5 +1,5 @@
 var exports = module.exports = {};
-    Keys    = require('../config/keys.js'),
+    Keys    = require('../config/keys.js').amazon,
     User    = require('../models/UserModel'),
     fs      = require('fs'),
     AWS     = require('aws-sdk'),
@@ -27,12 +27,12 @@ exports.downloadImage = function (uri, userId, extension) {
     };
 
     s3.upload(params, function (err, img) {
-      console.log(img.Location)
-      if (err) return console.error(err);
+      if (err) return console.error("S3 UPLOAD ERROR", err);
+      // console.log("IMG LOCATION: ", img.Location)
       User.update({_id: userId}, {
         image: img.Location
       }, function (err) {
-        console.log(arguments);
+        // console.log(arguments);
       })
     });
 
