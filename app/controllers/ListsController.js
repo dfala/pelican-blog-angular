@@ -30,6 +30,8 @@ angular.module('Pelican')
     apiService.updatePost(post)
     .then(function (response) {
       console.warn(response);
+      $scope.activePost = response.data;
+      $scope.editingPost = false;
     })
     .catch(function (err) {
       console.error(err);
