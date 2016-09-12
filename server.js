@@ -54,6 +54,9 @@ var server = app.listen(portNum, function () {
 // SOCKET IO
 var io = require('socket.io').listen(server);
 
-io.on('connection', function(socket){
+io.on('connection', function(socket) {
   console.log('a user connected');
+  socket.on('updated post', function(message) {
+    console.log('message: ' + message);
+  });
 });

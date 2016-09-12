@@ -32,6 +32,8 @@ angular.module('Pelican')
       console.warn(response);
       $scope.activePost = response.data;
       $scope.editingPost = false;
+
+      socket.emit('updated post', 'hello world!');
     })
     .catch(function (err) {
       console.error(err);
