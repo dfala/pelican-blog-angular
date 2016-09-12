@@ -1,0 +1,40 @@
+section.menu {
+  @local-padding: 20px;
+
+  background-color: @dim-blue;
+  color: #fff;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: @menu-width;
+  font-size: 0.9em;
+
+  .owner {
+    height: @header-height;
+    border-bottom: 1px solid lighten(@dim-blue, 5%);
+    padding: @local-padding;
+  }
+
+  .body {
+    p {
+      font-weight: 200;
+      margin: 0;
+    }
+
+    .title {
+      padding: @local-padding/2 @local-padding;
+      // padding: @local-padding;
+      width: 100%;
+      cursor: pointer;
+
+      &:hover {
+        background-color: lighten(@dim-blue, 5%);
+      }
+
+      &.active {
+        background-color: darken(@dim-blue, 10%);
+      }
+    }
+  }
+}
