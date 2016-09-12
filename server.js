@@ -7,7 +7,9 @@ var express     = require('express'),
     CronJob     = require('cron').CronJob,
     ejs         = require('ejs'),
     path        = require('path'),
-    keys        = require('./config/keys.js').connections;
+    keys        = require('./config/keys.js').connections,
+    http        = require('http');
+    socketio    = require('socket.io');
 
 // App definition
 var app = express();
@@ -45,6 +47,13 @@ db.once('open', function (callback) {
 });
 
 
-app.listen(portNum, function () {
+var server = app.listen(portNum, function () {
     console.log('Server listening on port: ' + portNum, 'in ' + keys.env + ' mode.');
+});
+
+// SOCKET IO
+var io = require('socket.io').listen(server);
+
+io.on('connection', function(socket){
+  console.log('a user connected');
 });
