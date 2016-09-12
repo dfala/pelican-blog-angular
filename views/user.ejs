@@ -1,5 +1,20 @@
-<% include ./partials/head.ejs %>
-  <% include ./partials/header.ejs %>
+<% include ./partials/head-light.ejs %>
+<% include ./partials/header.ejs %>
+
+<body class="with-menu">
+
+  <section class="menu">
+    <div class="owner">
+      <%= owner.givenName + "'s Pelican" %>
+    </div>
+    <div class="body">
+      <% lists.forEach(function (list) { %>
+        <div class="title">
+          <p><%= list.title %></p>
+        </div>
+      <% }) %>
+    </div>
+  </section>
 
   <section class="lists" ng-controller="ListsController" ng-init="init(<%= JSON.stringify(user) %>, <%= JSON.stringify(lists) %>)">
 
@@ -10,7 +25,7 @@
         <% list.posts.forEach(function (post) { %>
           <section class="post" ng-click="openPost(<%= JSON.stringify(post) %>)">
             <div class="body">
-              <p><%= post.title %></p>
+              <p class="post-title"><%= post.title %></p>
               <a ng-href="<%= post.link %>"><%= post.link %></a>
               <p class="text"><%= post.text %></p>
             </div>

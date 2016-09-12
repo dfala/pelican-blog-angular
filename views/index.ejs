@@ -1,11 +1,12 @@
 <% include ./partials/head.ejs %>
   <% include ./partials/header.ejs %>
+  <% include ./partials/banner.ejs %>
 
   <section class="lists" ng-controller="HomeController">
     <% posts.forEach(function (post) { %>
       <section class="post">
         <div class="body" ng-click="openPost(<%= JSON.stringify(post) %>)">
-          <p><%= post.title %></p>
+          <p class="post-title"><%= post.title %></p>
           <a ng-href="<%= post.link %>"><%= post.link %></a>
           <p class="text"><%= post.text %></p>
         </div>

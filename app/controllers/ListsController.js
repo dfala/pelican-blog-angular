@@ -14,6 +14,7 @@ angular.module('Pelican')
 
   $scope.closePostModal = function () {
     $scope.activePost = null;
+    window.location.reload();
   };
 
   // EDIT POST
@@ -29,9 +30,10 @@ angular.module('Pelican')
   $scope.updatePost = function (post) {
     apiService.updatePost(post)
     .then(function (response) {
-      console.warn(response);
       $scope.activePost = response.data;
       $scope.editingPost = false;
+
+      socket.emit('updated post', 'hello world!');
     })
     .catch(function (err) {
       console.error(err);
