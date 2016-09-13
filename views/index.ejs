@@ -7,7 +7,7 @@
       <section class="post">
         <div class="body" ng-click="openPost(<%= JSON.stringify(post) %>)">
           <p class="post-title"><%= post.title %></p>
-          <a ng-href="<%= post.link %>"><%= post.link %></a>
+          <a ng-href="<%= post.link %>" target="blank"><%= post.link %></a>
           <p class="text"><%= post.text %></p>
         </div>
         <div class="author">
