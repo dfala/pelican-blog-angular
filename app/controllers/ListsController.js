@@ -6,7 +6,6 @@ angular.module('Pelican')
   $scope.init = function (user, lists) {
     if (user) $scope.user = user;
     if (lists) $scope.lists = lists
-    console.warn(lists);
   };
 
   $scope.openPost = function (post) {

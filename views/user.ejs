@@ -12,7 +12,7 @@
       <div class="list menu-list"
            ng-click="makeActive(list)"
            id="menu-list-{{list._id}}"
-           ng-repeat="list in lists"
+           ng-repeat="list in lists | menuSearch:query track by list._id"
            menu-helper ng-cloak>
         <p>{{list.title}}</p>
         <hr />
