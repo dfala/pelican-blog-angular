@@ -19,9 +19,11 @@
            menu-helper ng-cloak>
         <!-- <p>{{list.title}}</p> -->
         <p ng-bind-html="sanitizeHtml(list.title)"></p>
-        <hr />
-        <div class="post" ng-repeat="post in list.posts">
-          <p ng-bind-html="sanitizeHtml(post.title)"></p>
+        <div class="posts" ng-show="query || list.displayPosts">
+          <hr />
+          <div class="post" ng-repeat="post in list.posts">
+            <p ng-bind-html="sanitizeHtml(post.title)"></p>
+          </div>
         </div>
       </div>
     </div>

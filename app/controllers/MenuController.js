@@ -6,6 +6,14 @@ angular.module('Pelican')
     $scope.lists = lists;
   };
 
+  $scope.makeActive = function (activeList) {
+    $scope.lists = $scope.lists.map(function (list) {
+      list.displayPosts = false;
+      return (list);
+    })
+    activeList.displayPosts = true;
+  };
+
   $scope.sanitizeHtml = function(text) {
     return $sce.trustAsHtml(text);
   };
