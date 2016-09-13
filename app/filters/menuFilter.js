@@ -3,7 +3,6 @@ angular.module('Pelican')
 .filter('menuSearch', [function () {
 
   // THIS IS THE HACKIEST THING I HAVE EVER DONE
-
   var args = {
     input: [],
     query: "",

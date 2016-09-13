@@ -17,7 +17,6 @@
            id="menu-list-{{list._id}}"
            ng-repeat="list in lists | menuSearch:query"
            menu-helper ng-cloak>
-        <!-- <p>{{list.title}}</p> -->
         <p ng-bind-html="sanitizeHtml(list.title)"></p>
         <div class="posts" ng-show="query || list.displayPosts">
           <hr />
