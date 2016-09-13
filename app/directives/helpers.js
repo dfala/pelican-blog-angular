@@ -28,6 +28,20 @@ angular.module('Pelican')
   }
 }])
 
+.directive('escapeSearch', [function () {
+  return {
+    restrict: 'A',
+    link: function (scope, elem, attr) {
+      $(document).keyup(function(e) {
+        if (e.keyCode == 27) {
+          scope.query = "";
+          scope.$digest();
+        }
+      });
+    }
+  }
+}])
+
 
 .filter('menuSearch', [function () {
 
