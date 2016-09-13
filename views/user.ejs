@@ -8,7 +8,7 @@
       <%= owner.givenName + "'s Pelican" %>
     </div>
     <div class="body">
-      <input type="text" ng-model="query" />
+      <input type="text" ng-model="query" placeholder="Search..." />
       <div class="list menu-list"
            ng-click="makeActive(list)"
            id="menu-list-{{list._id}}"
