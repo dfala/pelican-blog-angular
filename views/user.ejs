@@ -10,7 +10,7 @@
     <div class="body">
       <div class="relative">
         <input type="text" ng-model="query" placeholder="Search..." escape-search/>
-        <div class="icon ion-android-close" ng-click="query = ''"></div>
+        <div class="icon ion-android-close" ng-click="query = ''" ng-show="query"></div>
       </div>
       <div class="list menu-list"
            ng-click="makeActive(list)"
