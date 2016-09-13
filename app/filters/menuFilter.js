@@ -49,7 +49,17 @@ angular.module('Pelican')
       tempList.posts = [];
 
       list.posts.forEach(function (post) {
-        if (post.title && post.title.toLowerCase().indexOf(query) > -1) return tempList.posts.push(post);
+        var tempPost = Object.assign({}, post);
+        var queryTitlePostIndex = post.title.toLowerCase().indexOf(query);
+        if (post.title && queryTitlePostIndex > -1) {
+          if (queryTitlePostIndex == 0 && query.length == 1) {
+            tempPost.title = '<span style="background-color:yellow; color: #000;">' + query + '</span>' + tempPost.title.slice(1, tempPost.title.length - 1);
+          } else {
+            tempPost.title = tempPost.title.toLowerCase().split(query);
+            tempPost.title = tempPost.title[0] + '<span style="background-color:yellow; color: #000;">' + query + '</span>' + tempPost.title[tempPost.title.length - 1];
+          }
+          return tempList.posts.push(tempPost);
+        }
         if (post.link && post.link.toLowerCase().indexOf(query) > -1) return tempList.posts.push(post);
         if (post.text && post.text.toLowerCase().indexOf(query) > -1) return tempList.posts.push(post);
       });

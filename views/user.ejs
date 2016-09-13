@@ -21,7 +21,7 @@
         <p ng-bind-html="sanitizeHtml(list.title)"></p>
         <hr />
         <div class="post" ng-repeat="post in list.posts">
-          <p>{{post.title}}</p>
+          <p ng-bind-html="sanitizeHtml(post.title)"></p>
         </div>
       </div>
     </div>

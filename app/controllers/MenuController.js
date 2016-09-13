@@ -6,7 +6,7 @@ angular.module('Pelican')
     $scope.lists = lists;
   };
 
-  $scope.sanitizeHtml = function(title) {
-    return $sce.trustAsHtml(title);
+  $scope.sanitizeHtml = function(text) {
+    return $sce.trustAsHtml(text);
   };
 }]);
