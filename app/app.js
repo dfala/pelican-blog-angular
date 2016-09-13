@@ -1,1 +1,1 @@
-angular.module('Pelican', []);
+angular.module('Pelican', ['ngSanitize']);

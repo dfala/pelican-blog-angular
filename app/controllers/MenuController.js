@@ -1,8 +1,12 @@
 angular.module('Pelican')
 
-.controller('MenuController', ['$scope', function ($scope) {
+.controller('MenuController', ['$scope', '$sce', function ($scope, $sce) {
   $scope.init = function (user, lists) {
     $scope.user = user;
     $scope.lists = lists;
+  };
+
+  $scope.sanitizeHtml = function(title) {
+    return $sce.trustAsHtml(title);
   };
 }]);

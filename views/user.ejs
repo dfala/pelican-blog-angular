@@ -15,9 +15,10 @@
       <div class="list menu-list"
            ng-click="makeActive(list)"
            id="menu-list-{{list._id}}"
-           ng-repeat="list in lists | menuSearch:query track by list._id"
+           ng-repeat="list in lists | menuSearch:query"
            menu-helper ng-cloak>
-        <p>{{list.title}}</p>
+        <!-- <p>{{list.title}}</p> -->
+        <p ng-bind-html="sanitizeHtml(list.title)"></p>
         <hr />
         <div class="post" ng-repeat="post in list.posts">
           <p>{{post.title}}</p>
