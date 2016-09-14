@@ -4,7 +4,6 @@ angular.module('Pelican')
   $scope.init = function (user, posts) {
     $scope.user = user || null;
     $scope.posts = posts || [];
-    console.warn(arguments);
   };
 
   $rootScope.$on('new post created', function (e, post) {

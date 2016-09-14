@@ -41,6 +41,7 @@ angular.module('Pelican')
     apiService.addPost(newPost, $scope.activeList)
     .then(function (response) {
       $scope.closeListModal();
+      response.data.owner = $scope.user;
       $rootScope.$emit('new post created', response.data);
       alertify.success('New post created!')
     })

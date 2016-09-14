@@ -11,8 +11,6 @@ angular.module('Pelican')
     var data = post;
     data.parentList = activeList._id;
 
-    console.warn(data);
-
     return $http.post('/api/post', data);
   };
 
