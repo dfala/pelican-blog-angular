@@ -2,22 +2,22 @@
   <% include ./partials/header.ejs %>
   <% include ./partials/banner.ejs %>
 
-  <section class="lists" ng-controller="HomeController">
-    <% posts.forEach(function (post) { %>
-      <section class="post">
-        <div class="body" ng-click="openPost(<%= JSON.stringify(post) %>)">
-          <p class="post-title"><%= post.title %></p>
-          <a ng-href="<%= post.link %>" target="blank"><%= post.link %></a>
-          <p class="text"><%= post.text %></p>
+  <section class="lists" ng-controller="HomeController" ng-init="init(<%= JSON.stringify(user) %>, <%= JSON.stringify(posts) %>)">
+
+      <section class="post" ng-repeat="post in posts" ng-cloak>
+        <div class="body" ng-click="openPost(post)">
+          <p class="post-title">{{post.title}}</p>
+          <a ng-href="{{post.link}}" target="blank">{{post.link}}</a>
+          <p class="text">{{post.text}}</p>
         </div>
         <div class="author">
-          <a href="/user/<%= post.owner._id %>">
-            <img src="<%= post.owner.image %>" />
-            <%= post.owner.displayName %>
+          <a href="/user/{{post.owner._id}}">
+            <img src="{{post.owner.image}}" />
+            {{post.owner.displayName}}
           </a>
         </div>
       </section>
-    <% }) %>
+
 
     <% include ./partials/post-modal.ejs %>
   </section>

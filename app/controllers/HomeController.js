@@ -1,6 +1,16 @@
 angular.module('Pelican')
 
-.controller('HomeController', ['$scope', function ($scope) {
+.controller('HomeController', ['$scope', '$rootScope', function ($scope, $rootScope) {
+  $scope.init = function (user, posts) {
+    $scope.user = user || null;
+    $scope.posts = posts || [];
+    console.warn(arguments);
+  };
+
+  $rootScope.$on('new post created', function (e, post) {
+    $scope.posts.unshift(post);
+  })
+
   $scope.openPost = function (post) {
     $scope.activePost = post;
   };

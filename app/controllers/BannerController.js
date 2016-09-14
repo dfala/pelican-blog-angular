@@ -1,6 +1,7 @@
 angular.module('Pelican')
 
-.controller('BannerController', ['$scope', 'apiService', 'validator', function ($scope, apiService, validator) {
+.controller('BannerController', ['$scope', 'apiService', 'validator', '$rootScope',
+  function ($scope, apiService, validator, $rootScope) {
 
   //INIT
   $scope.init = function (user, lists) {
@@ -11,6 +12,8 @@ angular.module('Pelican')
   $scope.closeListModal = function () {
     $scope.isListModalOpen = false;
     $scope.activeList = null;
+    $scope.listTitle = "";
+    $scope.newPost = {};
   };
 
   $scope.addList = function (listTitle) {
@@ -20,6 +23,7 @@ angular.module('Pelican')
     .then(function (response) {
       alertify.success('New list created!')
       $scope.activateList(response.data);
+      $scope.lists.push(response.data);
     })
     .catch(function (err) {
       console.error(err);
@@ -36,7 +40,8 @@ angular.module('Pelican')
 
     apiService.addPost(newPost, $scope.activeList)
     .then(function (response) {
-      console.info(response);
+      $scope.closeListModal();
+      $rootScope.$emit('new post created', response.data);
       alertify.success('New post created!')
     })
     .catch(function (err) {

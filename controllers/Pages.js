@@ -7,6 +7,7 @@ Routes.index = function (req, res) {
   List.find({owner: req.user && req.user._id || null})
   .then(function(lists) {
     Post.find({})
+    .sort('-created_date')
     .populate({ path: 'owner', select: 'displayName _id lists image' })
     .exec(function (err, result) {
       res.render('index', {
@@ -26,7 +27,7 @@ Routes.userView = function (req, res) {
   if (!userId) return res.redirect('/');
 
   List.find({owner: userId})
-  .populate('posts')
+  .populate({path: 'posts', options: { sort: { 'created_date': -1 } }})
   .exec(function(error, result) {
     User.findById(userId, function (err, user) {
       if (err) return res.status(400).json(err);

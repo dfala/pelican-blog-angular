@@ -34,7 +34,7 @@ angular.module('Pelican')
       $scope.activePost = response.data;
       $scope.editingPost = false;
 
-      $rootScope.$broadcast('post edited', $scope.activePost);
+      $rootScope.$emit('post edited', $scope.activePost);
       $scope.lists[$scope.activePost.listIndex].posts[$scope.activePost.postIndex] = response.data;
 
       socket.emit('updated post', 'hello world!');
