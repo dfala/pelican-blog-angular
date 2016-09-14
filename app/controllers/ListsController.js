@@ -45,4 +45,18 @@ angular.module('Pelican')
     })
   };
 
+  $scope.openComposeModal = function () {
+    $rootScope.$emit('open compose modal', {
+      user: $scope.user,
+      lists: $scope.lists
+    })
+  };
+
+  $rootScope.$on('new post created', function (e, newPost) {
+    $scope.lists = $scope.lists.map(function (list) {
+      if (list._id === newPost.parentList) list.posts.unshift(newPost);
+      return list;
+    });
+  });
+
 }]);

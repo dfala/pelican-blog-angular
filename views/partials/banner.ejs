@@ -11,7 +11,7 @@
     <% } %>
 
     <% if (user && user._id) { %>
-      <button class="cta" ng-click="isListModalOpen = true">+ Post some crap</button>
+      <button class="cta" ng-click="openComposeModal()">+ Post some crap</button>
     <% } else { %>
       <button class="cta" send-to="/auth/facebook">Sign Up / Login</button>
     <% } %>

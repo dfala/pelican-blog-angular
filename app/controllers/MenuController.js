@@ -21,4 +21,11 @@ angular.module('Pelican')
   $scope.sanitizeHtml = function(text) {
     return $sce.trustAsHtml(text);
   };
+
+  $rootScope.$on('new post created', function (e, newPost) {
+    $scope.lists = $scope.lists.map(function (list) {
+      if (list._id === newPost.parentList) list.posts.unshift(newPost);
+      return list;
+    });
+  });
 }]);
