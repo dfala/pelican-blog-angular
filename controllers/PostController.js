@@ -1,6 +1,7 @@
 var Exports  = module.exports = {},
     List     = require('../models/ListModel'),
-    Post     = require('../models/PostModel');
+    Post     = require('../models/PostModel'),
+    ListCtrl = require('./ListController');
 
 Exports.create = function (req, res) {
   var newPost = new Post(req.body);
@@ -29,7 +30,7 @@ Exports.update = function (req, res) {
     {$set: req.body},
     function (err, result) {
       if (err) return res.status(500).send(err);
-      return res.json(req.body)
+      return res.json(req.body);
     }
   );
 };

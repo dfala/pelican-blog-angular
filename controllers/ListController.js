@@ -1,6 +1,7 @@
 var Exports  = module.exports = {},
     User     = require('../models/UserModel'),
-    List     = require('../models/ListModel');
+    List     = require('../models/ListModel'),
+    Post     = require('../models/PostModel');
 
 Exports.create = function (req, res) {
   var newList = new List(req.body);
@@ -22,4 +23,4 @@ Exports.create = function (req, res) {
   .catch(function(err) {
     res.status(500).send(err);
   })
-}
+};
