@@ -37,7 +37,7 @@
         <div class="body">
           <p class="post-title">{{post.title}}</p>
           <a ng-href="{{post.link}}" target="blank">{{post.link}}</a>
-          <p class="text">{{post.text}}</p>
+          <p class="text" ng-if="post.text">{{post.text}}</p>
         </div>
         <div class="author"></div>
       </section>

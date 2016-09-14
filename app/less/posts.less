@@ -9,6 +9,11 @@ section.post {
     background-color: #fff;
     padding: 5px 15px;
 
+    a {
+      margin-bottom: 10px;
+      display: inherit;
+    }
+
     &:hover {
       background-color: lighten(@light-gray, 3%);
     }
@@ -41,11 +46,13 @@ section.post {
   }
 
   p {
-    line-height: 5px;
     font-weight: 300;
   }
 
   .post-title {
-    font-size: 1.3em;
+    @local-height: 1.3em;
+    font-size: @local-height;
+    line-height: @local-height;
+    margin: 15px 0;
   }
 }
