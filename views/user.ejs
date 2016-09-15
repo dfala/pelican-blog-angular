@@ -31,7 +31,13 @@
   <section class="lists" ng-controller="ListsController" ng-init="init(<%= JSON.stringify(user) %>, <%= JSON.stringify(lists) %>)" ng-cloak>
 
     <div class="list" id="list-{{list._id}}" ng-repeat="list in lists">
-      <h2>{{list.title}}</h2>
+      <h2>
+        {{list.title}}
+        <span class="icon"
+              ng-class="list.isPrivate ? 'ion-ios-locked' : 'ion-ios-unlocked-outline'"
+              ng-if="user && user._id"
+              ng-click="toggleListLock(list)"></span>
+      </h2>
 
       <section class="post" ng-click="openPost(post, $index, $parent.$index)" ng-repeat="post in list.posts">
         <div class="body">

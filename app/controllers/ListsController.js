@@ -18,6 +18,18 @@ angular.module('Pelican')
     $scope.activePost = null;
   };
 
+  $scope.toggleListLock = function (list) {
+    apiService.toggleListPrivate(list)
+    .then(function (response) {
+      console.warn(response);
+      list.isPrivate = !list.isPrivate;
+    })
+    .catch(function (err) {
+      console.error(err);
+      alertify.error("There was a problem with changing your list settings.")
+    })
+  };
+
   // EDIT POST
   $scope.turnOffEditPost = function () {
     $scope.editingPost = false;

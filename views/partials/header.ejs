@@ -9,7 +9,9 @@
   <% if (user && user._id) { %>
     <div class="align">
       <a href="/logout">Logout</a>
-      <img src="<%= user.image %>" alt="<%= user.displayName %>" />
+      <% if (user.image) { %>
+        <img src="<%= user.image %>" alt="<%= user.displayName %>" />
+      <% } %>
     </div>
   <% } else { %>
     <a href="/auth/facebook">Sign Up / Login</a>

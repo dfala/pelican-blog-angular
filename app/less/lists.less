@@ -4,6 +4,20 @@ section.lists {
   max-width: 100%;
   margin: 40px auto;
 
+  h2 {
+    max-width: @post-width;
+
+    .icon {
+      float: right;
+      padding-top: 1px;
+      cursor: pointer;
+
+      &:hover {
+        font-weight: 800;
+      }
+    }
+  }
+
   .compose {
     @local-dimensions: 60px;
     width: @local-dimensions;

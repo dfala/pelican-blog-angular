@@ -5,6 +5,7 @@ var PostSchema = new mongoose.Schema({
   link          : { type: String, required: false },
   text          : { type: String, required: false },
   owner         : { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
+  isPrivate     : { type: Boolean, default: false },
   created_date  : { type: Date, default: Date.now },
   parentList    : { type: mongoose.Schema.Types.ObjectId, ref: 'List' }
 });

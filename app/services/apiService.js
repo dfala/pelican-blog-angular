@@ -18,5 +18,11 @@ angular.module('Pelican')
     return $http.put('/api/post/' + post._id, post);
   };
 
+  service.toggleListPrivate = function (list) {
+    return $http.put('/api/list/privacy/' + list._id, {
+      newStatus: !list.isPrivate
+    });
+  };
+
   return service;
 }]);
