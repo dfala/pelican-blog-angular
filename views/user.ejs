@@ -30,7 +30,8 @@
 
   <section class="lists" ng-controller="ListsController" ng-init="init(<%= JSON.stringify(user) %>, <%= JSON.stringify(lists) %>)" ng-cloak>
 
-    <div class="list" id="list-{{list._id}}" ng-repeat="list in lists">
+    <div class="list" id="list-{{list._id}}"
+         ng-repeat="list in lists">
       <h2>
         {{list.title}}
         <span class="icon"
