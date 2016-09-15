@@ -1,8 +1,19 @@
 section.lists {
   width: 1200px;
-  padding: 0 20px;
   max-width: 100%;
   margin: 40px auto;
+
+  &.user {
+    width: inherit;
+    margin: 40px 0;
+  }
+
+  .list {
+    padding: 10px 20px;
+    &.private-list {
+      background-color: @almost-white;
+    }
+  }
 
   h2 {
     max-width: @post-width;

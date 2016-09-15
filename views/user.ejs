@@ -28,10 +28,11 @@
     </div>
   </section>
 
-  <section class="lists" ng-controller="ListsController" ng-init="init(<%= JSON.stringify(user) %>, <%= JSON.stringify(lists) %>)" ng-cloak>
+  <section class="lists user" ng-controller="ListsController" ng-init="init(<%= JSON.stringify(user) %>, <%= JSON.stringify(lists) %>)" ng-cloak>
 
     <div class="list" id="list-{{list._id}}"
-         ng-repeat="list in lists">
+         ng-repeat="list in lists"
+         ng-class="{ 'private-list': list.isPrivate }">
       <h2>
         {{list.title}}
         <span class="icon"
