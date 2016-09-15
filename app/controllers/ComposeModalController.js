@@ -2,7 +2,7 @@ angular.module('Pelican')
 
 .controller('ComposeModalController', ['$scope', '$rootScope', 'apiService', 'validator',
   function ($scope, $rootScope, apiService, validator) {
-    
+
   $scope.isListModalOpen = false;
 
   $rootScope.$on('open compose modal', function (e, data) {
@@ -27,6 +27,7 @@ angular.module('Pelican')
       alertify.success('New list created!')
       $scope.activateList(response.data);
       $scope.lists.push(response.data);
+      $rootScope.$emit('new list created', response.data);
     })
     .catch(function (err) {
       console.error(err);

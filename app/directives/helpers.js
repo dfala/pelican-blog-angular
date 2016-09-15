@@ -20,6 +20,9 @@ angular.module('Pelican')
         $('.menu-list').removeClass('active');
         elem.addClass('active');
 
+        $('.list').removeClass('active-list');
+        $(listId).addClass('active-list');
+
         $('html, body').animate({
           scrollTop: $(listId).offset().top - 20
         }, 500);

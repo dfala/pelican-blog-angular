@@ -21,8 +21,8 @@ angular.module('Pelican')
   $scope.toggleListLock = function (list) {
     apiService.toggleListPrivate(list)
     .then(function (response) {
-      console.warn(response);
       list.isPrivate = !list.isPrivate;
+      $rootScope.$emit('list privacy toggled', list)
     })
     .catch(function (err) {
       console.error(err);

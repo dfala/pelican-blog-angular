@@ -2,32 +2,7 @@
 <% include ./partials/header.ejs %>
 
 <body class="with-menu">
-
-  <section class="menu" ng-controller="MenuController" ng-init="init(<%= JSON.stringify(user) %>, <%= JSON.stringify(lists) %>)">
-    <div class="owner">
-      <%= owner.givenName + "'s Pelican" %>
-    </div>
-    <div class="body">
-      <div class="relative">
-        <input type="text" ng-model="query" placeholder="Search..." escape-search/>
-        <div class="icon ion-android-close" ng-click="query = ''" ng-show="query"></div>
-      </div>
-      <div class="list menu-list"
-           ng-click="makeActive(list)"
-           id="menu-list-{{list._id}}"
-           ng-repeat="list in lists | menuSearch:query"
-           menu-helper ng-cloak>
-        <p ng-bind-html="sanitizeHtml(list.title)"></p>
-        <div class="posts" ng-show="query || list.displayPosts">
-          <hr />
-          <div class="post" ng-repeat="post in list.posts">
-            <p ng-bind-html="sanitizeHtml(post.title)"></p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
+  <% include ./partials/menu.ejs %>
   <section class="lists user" ng-controller="ListsController" ng-init="init(<%= JSON.stringify(user) %>, <%= JSON.stringify(lists) %>)" ng-cloak>
 
     <div class="list" id="list-{{list._id}}"
