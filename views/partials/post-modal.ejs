@@ -22,7 +22,7 @@
     </div>
 
     <div class="post-options" ng-if="!editingPost && user && (user._id === lists[0].owner)">
-      <a class="delete">Delete post</a>
+      <a class="delete" ng-click="deletePost(activePost)">Delete post</a>
       <a class="edit" ng-click="turnOnEditPost()">Edit post</a>
     </div>
   </div>

@@ -34,3 +34,35 @@ Exports.update = function (req, res) {
     }
   );
 };
+
+Exports.delete = function (req, res) {
+  var p1 = new Promise(function (resolve, reject) {
+    Post.findById(req.params.postId)
+    .remove(function (err, result) {
+      console.log('post result', result);
+      if (err) return reject(err);
+      return resolve(result);
+    })
+  });
+
+  var p2 = new Promise(function (resolve, reject) {
+    List.update(
+      { _id:req.params.listId },
+      { $pull: { posts: req.params.postId } },
+      { safe: true },
+      function (err, result) {
+        console.log('list result', result);
+        if (err) return reject(err);
+        return resolve(result);
+      }
+    );
+  });
+
+  Promise.all([p1, p2])
+  .then(function (values) {
+    res.json({postStatus: 'deleted'})
+  })
+  .catch(function (err) {
+    res.status(500).json(err);
+  });
+};

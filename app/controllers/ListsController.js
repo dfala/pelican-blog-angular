@@ -40,6 +40,20 @@ angular.module('Pelican')
     $scope.editingPost = true;
   };
 
+  $scope.deletePost = function (post) {
+    alertify.confirm("Are you sure you want to delete this post? This action cannot be undone.", function () {
+      apiService.deletePost(post)
+      .then(function (response) {
+        alertify.success('The post has been deleted.');
+        console.warn(response);
+      })
+      .catch(function (err) {
+        console.error(err);
+        alertify.error('There was a problem with deleting your post.');
+      })
+    });
+  };
+
   $scope.updatePost = function (post) {
     apiService.updatePost(post)
     .then(function (response) {

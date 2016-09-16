@@ -27,9 +27,8 @@
 
     </div>
 
-    <% include ./partials/post-modal.ejs %>
-
     <button class="compose" ng-click="openComposeModal()" ng-if="user && user._id"><span class="icon ion-android-add"></span></button>
+    <% include ./partials/post-modal.ejs %>
     <% include ./partials/list-modal.ejs %>
   </section>
 
