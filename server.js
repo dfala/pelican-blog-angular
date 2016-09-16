@@ -9,7 +9,6 @@ var express     = require('express'),
     path        = require('path'),
     keys        = require('./config/keys.js').connections,
     http        = require('http');
-    socketio    = require('socket.io');
 
 // App definition
 var app = express();
@@ -49,14 +48,4 @@ db.once('open', function (callback) {
 
 var server = app.listen(portNum, function () {
     console.log('Server listening on port: ' + portNum, 'in ' + keys.env + ' mode.');
-});
-
-// SOCKET IO
-var io = require('socket.io').listen(server);
-
-io.on('connection', function(socket) {
-  console.log('User is now connected');
-  socket.on('updated post', function(message) {
-    console.log('message: ' + message);
-  });
 });

@@ -19,15 +19,22 @@ angular.module('Pelican')
   };
 
   $scope.toggleListLock = function (list) {
-    apiService.toggleListPrivate(list)
-    .then(function (response) {
-      list.isPrivate = !list.isPrivate;
-      $rootScope.$emit('list privacy toggled', list)
-    })
-    .catch(function (err) {
-      console.error(err);
-      alertify.error("There was a problem with changing your list settings.")
-    })
+    var confirmMessage = 'You are about to make this lists private. Are you sure you want to proceed?';
+    if (list.isPrivate) confirmMessage = 'You are about to make this list public. Are you sure you want to proceed?';
+
+    alertify.confirm(confirmMessage, function () {
+      apiService.toggleListPrivate(list)
+      .then(function (response) {
+        list.isPrivate = !list.isPrivate;
+        $rootScope.$emit('list privacy toggled', list)
+      })
+      .catch(function (err) {
+        console.error(err);
+        alertify.error("There was a problem with changing your list settings.")
+      })
+    }, function() {
+        // user clicked "cancel"
+    });
   };
 
   // EDIT POST

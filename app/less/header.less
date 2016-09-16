@@ -17,11 +17,20 @@ header {
   .align {
     display: flex;
     align-items: center;
-    
+
     img {
       height: 32px;
       margin-left: 20px;
     }
+  }
+}
+
+body.with-menu {
+  header {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: calc(~"100% - "@menu-width);
   }
 }
 
