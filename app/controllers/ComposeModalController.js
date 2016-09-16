@@ -39,10 +39,12 @@ angular.module('Pelican')
 
   $scope.addPost = function (newPost) {
     try { validator.validateNewPost($scope.activeList, newPost) } catch (err) { return alertify.error(err); }
-    try {
-      newPost.link = validator.verifyLink(newPost.link)
-    } catch (err) {
-      return alertify.error(err);
+    if (newPost.link) {
+      try {
+        newPost.link = validator.verifyLink(newPost.link)
+      } catch (err) {
+        return alertify.error(err);
+      }  
     }
 
     apiService.addPost(newPost, $scope.activeList)

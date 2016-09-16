@@ -16,6 +16,7 @@ angular.module('Pelican')
 
   $scope.closePostModal = function () {
     $scope.activePost = null;
+    $scope.editingPost = false;
   };
 
   $scope.toggleListLock = function (list) {
@@ -72,6 +73,15 @@ angular.module('Pelican')
   };
 
   $scope.updatePost = function (post) {
+    try { validator.validateNewPost(true, post) } catch (err) { return alertify.error(err); }
+    if (post.link) {
+      try {
+        post.link = validator.verifyLink(post.link)
+      } catch (err) {
+        return alertify.error(err);
+      }
+    }
+
     apiService.updatePost(post)
     .then(function (response) {
       $scope.activePost = response.data;
@@ -79,8 +89,7 @@ angular.module('Pelican')
 
       $rootScope.$emit('post edited', $scope.activePost);
       $scope.lists[$scope.activePost.listIndex].posts[$scope.activePost.postIndex] = response.data;
-
-      socket.emit('updated post', 'hello world!');
+      alertify.success('Your changes were successfully saved.');
     })
     .catch(function (err) {
       console.error(err);
