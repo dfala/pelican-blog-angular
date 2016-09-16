@@ -34,6 +34,18 @@ angular.module('Pelican')
     })
   })
 
+  $rootScope.$on('post deleted', function (e, postDeleted) {
+    $scope.lists = $scope.lists.map(function (list) {
+      if (list._id === postDeleted.parentList) {
+        list.posts = list.posts.filter(function (post) {
+          if (post._id === postDeleted._id) return false;
+          return true;
+        });
+      }
+      return list;
+    })
+  });
+
   $rootScope.$on('new post created', function (e, newPost) {
     // $scope.lists = $scope.lists.map(function (list) {
     //   if (list._id === newPost.parentList) list.posts.unshift(newPost);
