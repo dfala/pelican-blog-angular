@@ -9,9 +9,10 @@ angular.module('Pelican')
   };
 
   service.verifyLink = function (link) {
-    var isUrl = /^(?:(ftp|http|https)?:\/\/)?(?:[\w-]+\.)+([a-z]|[A-Z]|[0-9]){2,6}$/gi.test(link);
+    if (link.indexOf('http') < 0) link = 'http://' + link;
+    var re = new RegExp(/[-a-zA-Z0-9@:%_\+.~#?&//=]{2,256}\.[a-z]{2,4}\b(\/[-a-zA-Z0-9@:%_\+.~#?&//=]*)?/gi);
+    var isUrl = link.match(re);
     if (!isUrl) throw 'Please enter a valid URL.';
-    if (link.indexOf('http') < 1) link = 'http://' + link;
     return link;
   };
 
