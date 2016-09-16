@@ -39,7 +39,6 @@ Exports.delete = function (req, res) {
   var p1 = new Promise(function (resolve, reject) {
     Post.findById(req.params.postId)
     .remove(function (err, result) {
-      console.log('post result', result);
       if (err) return reject(err);
       return resolve(result);
     })
@@ -51,7 +50,6 @@ Exports.delete = function (req, res) {
       { $pull: { posts: req.params.postId } },
       { safe: true },
       function (err, result) {
-        console.log('list result', result);
         if (err) return reject(err);
         return resolve(result);
       }
