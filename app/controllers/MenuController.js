@@ -47,9 +47,10 @@ angular.module('Pelican')
   });
 
   $rootScope.$on('new post created', function (e, newPost) {
-    // $scope.lists = $scope.lists.map(function (list) {
-    //   if (list._id === newPost.parentList) list.posts.unshift(newPost);
-    //   return list;
-    // });
+    // TODO: The following causes a problem when the list has just been created (NG-DUPES??!?!);
+    $scope.lists = $scope.lists.map(function (list) {
+      if (list._id === newPost.parentList) list.posts.unshift(newPost);
+      return list;
+    });
   });
 }]);
