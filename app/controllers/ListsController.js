@@ -45,7 +45,6 @@ angular.module('Pelican')
       apiService.deletePost(post)
       .then(function (response) {
         alertify.success('The post has been deleted.');
-        console.warn(response);
       })
       .catch(function (err) {
         console.error(err);

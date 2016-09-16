@@ -38,7 +38,7 @@ Routes.userView = function (req, res) {
 
       if (!userIsListOwner) {
         result = result.filter(function (list) {
-          if (list.isPrivate) return false;
+          if (list.isPrivate || (!list.posts || list.posts.length < 1)) return false;
           return true;
         })
       };
