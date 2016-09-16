@@ -89,10 +89,15 @@ angular.module('Pelican')
   };
 
   $rootScope.$on('new post created', function (e, newPost) {
+    if (newPost.fromNewList) return;
     $scope.lists = $scope.lists.map(function (list) {
       if (list._id === newPost.parentList) list.posts.unshift(newPost);
       return list;
     });
+  });
+
+  $rootScope.$on('new list created', function (e, list) {
+    $scope.lists.push(list);
   });
 
 }]);

@@ -6,9 +6,6 @@ angular.module('Pelican')
   $scope.isListModalOpen = false;
 
   $rootScope.$on('open compose modal', function (e, data) {
-    $scope.user = data.user;
-    $scope.lists = data.lists;
-
     $scope.isListModalOpen = true;
   });
 
@@ -25,8 +22,9 @@ angular.module('Pelican')
     apiService.addList(listTitle)
     .then(function (response) {
       alertify.success('New list created!')
+      // $scope.activateList(response.data);
+      response.data.fromNewList = true;
       $scope.activateList(response.data);
-      $scope.lists.push(response.data);
       $rootScope.$emit('new list created', response.data);
     })
     .catch(function (err) {
@@ -44,9 +42,11 @@ angular.module('Pelican')
 
     apiService.addPost(newPost, $scope.activeList)
     .then(function (response) {
-      $scope.closeListModal();
       response.data.owner = $scope.user;
+      if ($scope.activeList.fromNewList) response.data.fromNewList = true;
       $rootScope.$emit('new post created', response.data);
+
+      $scope.closeListModal();
       alertify.success('New post created!')
     })
     .catch(function (err) {

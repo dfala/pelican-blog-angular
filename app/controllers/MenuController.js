@@ -27,7 +27,6 @@ angular.module('Pelican')
   });
 
   $rootScope.$on('list privacy toggled', function (e, udpatedList) {
-    console.log(udpatedList);
     $scope.lists = $scope.lists.map(function (list) {
       if (list._id === udpatedList._id) return udpatedList;
       return list;
