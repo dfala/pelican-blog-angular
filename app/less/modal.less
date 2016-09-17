@@ -33,6 +33,17 @@
     max-height: 100%;
     overflow-y: auto;
 
+    &.list-modal {
+      overflow-y: inherit;
+      // max-height: 400px;
+      min-height: 500px;
+
+      .lists {
+        overflow-y: auto;
+        max-height: 275px;
+      }
+    }
+
     .post-options {
       position: absolute;
       bottom: @p-modal;
@@ -83,19 +94,31 @@
       }
     }
 
-    .ion-android-close {
+    .navigation-icons {
       float: right;
       cursor: pointer;
-      font-size: 25px;
       color: @border-gray;
+      line-height: 25px;
 
       &:hover {
         color: #000;
       }
     }
 
-    .add-list {
-      margin: 20px 0;
+    .go-back {
+      .navigation-icons;
+      font-size: 23px;
+      margin-right: 25px;
+      padding-top: 1px;
+    }
+
+    .ion-android-close {
+      .navigation-icons;
+      font-size: 25px;
+    }
+
+    .shared-subsection {
+      margin: 0;
       padding: 20px 0;
       border-top: 1px solid @light-gray;
       border-bottom: 1px solid @light-gray;
@@ -105,8 +128,37 @@
       align-items: center;
 
       input {
-        width: 70%;
         margin: 0;
+      }
+    }
+
+    .list-search {
+      .shared-subsection;
+      margin-top: 20px;
+
+      input {
+        width: 100%;
+      }
+
+      .ion-android-close {
+        .cancel-input;
+        right: 10px;
+        font-size: 18px;
+        color: @border-gray;
+        &:hover {
+          color: @dark-gray;
+        }
+      }
+    }
+
+    .add-list {
+      .shared-subsection;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      padding: 20px;
+      input {
+        width: 70%;
       }
     }
 

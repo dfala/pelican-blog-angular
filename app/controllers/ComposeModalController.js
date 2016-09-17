@@ -14,6 +14,11 @@ angular.module('Pelican')
     $scope.activeList = null;
     $scope.listTitle = "";
     $scope.newPost = {};
+    $scope.query = "";
+  };
+
+  $scope.backToList = function () {
+    $scope.activeList = null;
   };
 
   $scope.addList = function (listTitle) {
@@ -44,7 +49,7 @@ angular.module('Pelican')
         newPost.link = validator.verifyLink(newPost.link)
       } catch (err) {
         return alertify.error(err);
-      }  
+      }
     }
 
     apiService.addPost(newPost, $scope.activeList)
