@@ -18,6 +18,14 @@ angular.module('Pelican')
     return $sce.trustAsHtml(text);
   };
 
+  $scope.openPostMenu = function (post, postIndex, listIndex) {
+      $rootScope.$emit('open post modal', {
+        post: post,
+        postIndex: postIndex,
+        listIndex: listIndex
+      })
+  };
+
   $rootScope.$on('post edited', function (e, editedPost) {
     $scope.lists[editedPost.listIndex].posts[editedPost.postIndex] = editedPost;
   });

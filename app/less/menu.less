@@ -95,10 +95,19 @@ section.menu {
     }
 
     .post {
+
+      &:hover {
+        background-color: darken(@dim-blue, 5%);//#434854;
+      }
+
       p {
         font-size: 0.85em;
         // margin-left: 10px;
         margin: 5px 0 5px 10px;
+
+        &.active {
+          color: @bright-blue;
+        }
       }
     }
   }

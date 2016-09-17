@@ -17,6 +17,8 @@ angular.module('Pelican')
       var listId = '#' + attr.id.split('menu-')[1];
 
       elem.bind('click', function (e) {
+        if (e.target.nodeName.toLowerCase() == "p" || e.target.className.indexOf('post') > -1) return;
+
         $('.menu-list').removeClass('active');
         elem.addClass('active');
 
@@ -24,7 +26,7 @@ angular.module('Pelican')
         $(listId).addClass('active-list');
 
         $('html, body').animate({
-          scrollTop: $(listId).offset().top - 20
+          scrollTop: $(listId).offset().top - 60
         }, 500);
       });
     }

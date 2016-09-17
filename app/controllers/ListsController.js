@@ -116,4 +116,8 @@ angular.module('Pelican')
     $scope.lists.push(list);
   });
 
+  $rootScope.$on('open post modal', function (e, data) {
+    $scope.openPost(data.post, data.postIndex, data.listIndex);
+  });
+
 }]);
