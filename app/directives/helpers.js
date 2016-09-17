@@ -17,7 +17,7 @@ angular.module('Pelican')
       var listId = '#' + attr.id.split('menu-')[1];
 
       elem.bind('click', function (e) {
-        if (e.target.nodeName.toLowerCase() == "p" || e.target.className.indexOf('post') > -1) return;
+        if (e.target.className.indexOf('post-title') > -1 || e.target.className.indexOf('post') > -1) return;
 
         $('.menu-list').removeClass('active');
         elem.addClass('active');

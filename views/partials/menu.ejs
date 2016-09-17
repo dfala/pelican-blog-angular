@@ -19,7 +19,7 @@
       <div class="posts" ng-show="query || list.displayPosts">
         <hr />
         <div class="post" ng-repeat="post in list.posts" ng-click="openPostMenu(post, $index, $parent.$index)">
-          <p ng-bind-html="sanitizeHtml(post.title)"></p>
+          <p class="post-title" ng-bind-html="sanitizeHtml(post.title)"></p>
         </div>
       </div>
     </div>
