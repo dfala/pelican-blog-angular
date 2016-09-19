@@ -19,11 +19,13 @@ angular.module('Pelican')
   };
 
   $scope.openPostMenu = function (post, postIndex, listIndex) {
-      $rootScope.$emit('open post modal', {
-        post: post,
-        postIndex: postIndex,
-        listIndex: listIndex
-      })
+    post.title = post.title.replace(/<\/?span[^>]*>/g,"");
+
+    $rootScope.$emit('open post modal', {
+      post: post,
+      postIndex: postIndex,
+      listIndex: listIndex
+    })
   };
 
   $rootScope.$on('post edited', function (e, editedPost) {
