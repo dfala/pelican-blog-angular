@@ -1,4 +1,5 @@
 section.post {
+  @post-space: 10px;
   width: @post-width;
   max-width: 100%;
 
@@ -7,11 +8,16 @@ section.post {
     border: 1px solid @border-gray;
     cursor: pointer;
     background-color: #fff;
-    padding: 5px 15px;
+    padding: 5px;
 
     a {
-      margin-bottom: 10px;
+      // margin-bottom: @post-space;
       display: inherit;
+      padding: @post-space;
+
+      &:hover {
+        background-color: @light-gray;
+      }
     }
 
     &:hover {
@@ -46,6 +52,7 @@ section.post {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    padding: 0 @post-space;
   }
 
   p {
@@ -57,5 +64,6 @@ section.post {
     font-size: @local-height;
     line-height: @local-height;
     margin: 15px 0;
+    padding: 0 @post-space;
   }
 }

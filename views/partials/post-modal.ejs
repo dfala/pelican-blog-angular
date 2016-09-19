@@ -14,6 +14,7 @@
     <div ng-if="editingPost">
       <input class="title-edit" type="text" ng-model="editablePost.title" />
       <input class="post-link link-edit" type="text" ng-model="editablePost.link" placeholder="Post link" />
+      <textarea class="post-text" ng-model="editablePost.text"></textarea>
 
       <div class="edit-options">
         <button ng-click="updatePost(editablePost)" class="cta">Update post</button>
