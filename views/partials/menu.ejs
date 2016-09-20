@@ -1,5 +1,8 @@
 <section class="menu" ng-controller="MenuController" ng-init="init(<%= JSON.stringify(user) %>, <%= JSON.stringify(lists) %>)">
   <div class="owner">
+    <% if (owner.image) { %>
+      <img src="<%= owner.image %>" alt="<%= owner.displayName %>" />
+    <% } %>
     <%= owner.givenName + "'s Pelican" %>
   </div>
   <div class="body">
