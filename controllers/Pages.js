@@ -4,6 +4,11 @@ var Routes   = module.exports = {},
     Post     = require('../models/PostModel');
 
 Routes.index = function (req, res) {
+  if (req.user && req.user._id) return res.redirect('/user/' + req.user._id);
+  return res.redirect('/home');
+};
+
+Routes.home = function (req, res) {
   List.find({owner: req.user && req.user._id || null})
   .then(function(lists) {
     Post.find({isPrivate: false})
@@ -18,7 +23,6 @@ Routes.index = function (req, res) {
       })
     })
   })
-
 };
 
 Routes.userView = function (req, res) {
