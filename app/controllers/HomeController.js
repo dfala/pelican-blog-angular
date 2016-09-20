@@ -12,9 +12,11 @@ angular.module('Pelican')
 
   $scope.openPost = function (post) {
     $scope.activePost = post;
+    $('body').css('overflow', 'hidden');
   };
 
   $scope.closePostModal = function () {
     $scope.activePost = null;
+    $('body').css('overflow', 'inherit');
   }
 }]);
