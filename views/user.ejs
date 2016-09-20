@@ -20,7 +20,7 @@
               ng-if="user && user._id && (list.owner == user._id)"
               ng-click="openListSettings(list)" loose-focus>
 
-          <div class="list-settings" ng-show="list.isOpenSettings">
+          <div class="list-settings" ng-show="list.isOpenSettings" ng-click="$event.stopPropagation();">
             <div class="arrow-up"></div>
 
             <div class="setting privacy" ng-show="list.isPrivate" ng-click="toggleListLock(list)">

@@ -1,6 +1,7 @@
 angular.module('Pelican')
 
-.controller('ListsController', ['$scope', 'apiService', 'validator', '$rootScope', function ($scope, apiService, validator, $rootScope) {
+.controller('ListsController', ['$scope', 'apiService', 'validator', '$rootScope', '$timeout',
+  function ($scope, apiService, validator, $rootScope, $timeout) {
 
   //INIT
   $scope.init = function (user, lists) {
@@ -61,13 +62,20 @@ angular.module('Pelican')
     list.isOpenSettings = true;
   };
 
-  $scope.closeListSettings = function (list) {
-    list.isOpenSettings = false;
+  $scope.closeListSettings = function (list, all) {
+    if (list) return (list.isOpenSettings = false);
+    $rootScope.$emit('close list settings');
   };
 
   $scope.openRenameListModal = function (list) {
     $scope.activeList = angular.copy(list);
     $scope.isEditListModalOpen = true;
+
+    $timeout(function () {
+      $('#edit-list-name-input').focus();
+    });
+
+    $scope.closeListSettings(null, true);
   };
 
   $rootScope.$on('close editListModal', function () {
@@ -145,7 +153,8 @@ angular.module('Pelican')
   $scope.openComposeModal = function () {
     $rootScope.$emit('open compose modal', {
       user: $scope.user,
-      lists: $scope.lists
+      lists: $scope.lists,
+      focusId: '#search-list'
     })
   };
 

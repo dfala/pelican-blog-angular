@@ -33,12 +33,28 @@ angular.module('Pelican')
   }
 }])
 
-.directive('looseFocus', [function () {
+.directive('focusId', ['$rootScope', '$timeout', function ($rootScope, $timeout) {
+  return {
+    restrict: 'A',
+    link: function (scope, element, attr) {
+      $rootScope.$on('open compose modal', function (e, data) {
+        $timeout(function () {
+          $(data.focusId).focus();
+        });
+      })
+    }
+  };
+}])
+
+.directive('looseFocus', ['$rootScope', function ($rootScope) {
   return {
     restrict: 'A',
     link: function (scope, element, attr) {
 
       $(document).mouseup(function(e) {
+        // scope.closeListSettings(scope.list)
+        // scope.$digest();
+
         var container = $(element);
 
         if (scope.list.isOpenSettings && !container.is(e.target)) {
@@ -46,7 +62,6 @@ angular.module('Pelican')
           scope.$digest();
         };
       });
-
     }
   }
 }])
