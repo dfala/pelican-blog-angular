@@ -25,12 +25,12 @@
 
             <div class="setting privacy" ng-show="list.isPrivate" ng-click="toggleListLock(list)">
               Make list public
-              <span class="icon ion-ios-locked"></span>
+              <span class="icon ion-ios-unlocked-outline"></span>
             </div>
 
             <div class="setting privacy" ng-show="!list.isPrivate" ng-click="toggleListLock(list)">
               Make list private
-              <span class="icon ion-ios-unlocked-outline"></span>
+              <span class="icon ion-ios-locked"></span>
             </div>
 
             <div class="setting edit-list" ng-click="openRenameListModal(list)">
