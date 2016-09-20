@@ -12,7 +12,8 @@ angular.module('Pelican')
   $scope.openComposeModal = function () {
     $rootScope.$emit('open compose modal', {
       user: $scope.user,
-      lists: $scope.lists
+      lists: $scope.lists,
+      focusId: '#search-list'
     })
   };
 
