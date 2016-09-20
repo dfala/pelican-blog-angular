@@ -10,6 +10,7 @@
     </div>
 
     <div class="list-search relative" ng-show="!activeList">
+      <span class="search-icon ion-ios-search-strong" ng-if="!query"></span>
       <input type="text" placeholder="Search list..." ng-model="query" escape-search/>
       <div class="clear-search ion-android-close" ng-if="query" ng-click="$parent.query = ''"></div>
     </div>
@@ -23,8 +24,8 @@
     </div>
 
     <div class="add-list" ng-show="!activeList">
-      <input type="text" placeholder="List Name" ng-model="listTitle"/>
-      <button class="cta" ng-click="addList(listTitle)">Create new list</button>
+      <input type="text" placeholder="Type list name..." ng-model="listTitle"/>
+      <button class="cta" ng-click="addList(listTitle)">+ Create new list</button>
     </div>
 
     <div class="body" ng-show="activeList">
