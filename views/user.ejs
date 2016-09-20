@@ -12,7 +12,7 @@
         {{list.title}}
         <span class="icon"
               ng-class="list.isPrivate ? 'ion-ios-locked' : 'ion-ios-unlocked-outline'"
-              ng-if="user && user._id"
+              ng-if="user && user._id && (list.owner == user._id)"
               ng-click="toggleListLock(list)"></span>
       </h2>
 
