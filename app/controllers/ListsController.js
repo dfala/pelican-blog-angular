@@ -22,13 +22,19 @@ angular.module('Pelican')
     $scope.activePost = post;
     $scope.activePost.postIndex = postIndex;
     $scope.activePost.listIndex = listIndex;
-    $('body').css('overflow', 'hidden');
+    $('body').css({
+      'overflow': 'hidden',
+      'marginRight': '15px'
+    });
   };
 
   $scope.closePostModal = function () {
     $scope.activePost = null;
     $scope.editingPost = false;
-    $('body').css('overflow', 'inherit');
+    $('body').css({
+      'overflow': 'inherit',
+      'marginRight': '0'
+    });
   };
 
   $scope.toggleListLock = function (list) {
