@@ -65,6 +65,19 @@ angular.module('Pelican')
       console.error(err);
       alertify.error('Could not save your post :(')
     })
-  }
+  };
+
+  $scope.$watch('newPost.link', function(newVal, oldVal) {
+    if (!newVal || $scope.newPost.title) return;
+    try { var uri = validator.verifyLink(newVal) } catch (err) { return; }
+
+    apiService.getHeader(uri)
+    .then(function (response) {
+      if (response.data) $scope.newPost.title = response.data;
+    })
+    .catch(function (err) {
+      console.warn(err);
+    });
+  });
 
 }]);

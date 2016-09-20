@@ -1,5 +1,6 @@
-var List = require('./ListController'),
-    Post = require('./PostController');
+var List    = require('./ListController'),
+    Post    = require('./PostController'),
+    Request = require('./RequestController');
 
 module.exports = function (app) {
   //LIST
@@ -12,4 +13,7 @@ module.exports = function (app) {
   app.post('/api/post', Post.create);
   app.put('/api/post/:postId', Post.update);
   app.delete('/api/post/:listId/:postId', Post.delete);
+
+  // OTHER
+  app.post('/api/site-header', Request.getHeader);
 };

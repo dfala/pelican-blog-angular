@@ -36,5 +36,11 @@ angular.module('Pelican')
     });
   };
 
+  service.getHeader = function (link) {
+    return $http.post('/api/site-header', {
+      uri: link
+    });
+  };
+
   return service;
 }]);
