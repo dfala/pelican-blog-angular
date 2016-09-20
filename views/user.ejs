@@ -3,7 +3,7 @@
 
 <body class="with-menu">
   <% include ./partials/menu.ejs %>
-  <section class="lists user" ng-controller="ListsController" ng-init="init(<%= JSON.stringify(user) %>, <%= JSON.stringify(lists) %>)" ng-cloak>
+  <section class="lists user" ng-controller="ListsController" ng-init="init(<%= JSON.stringify(user) %>, <%= JSON.stringify(lists) %>, <%= JSON.stringify(owner) %>)" ng-cloak>
 
     <div class="list" id="list-{{list._id}}"
          ng-repeat="list in lists"
@@ -57,7 +57,7 @@
 
     </div>
 
-    <button class="compose" ng-click="openComposeModal()" ng-if="user && user._id">
+    <button class="compose" ng-click="openComposeModal()" ng-if="user && user._id && owner._id === user._id">
       <img src="/css/arrow.png" ng-if="!deactivateWelcome" />
       <span class="icon ion-android-add"></span>
     </button>
