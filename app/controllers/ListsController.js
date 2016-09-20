@@ -7,6 +7,14 @@ angular.module('Pelican')
   $scope.init = function (user, lists) {
     if (user) $scope.user = user;
     if (lists) $scope.lists = lists
+
+    // ENABLE WELCOME UI
+    if (!lists || lists.length < 1) return $scope.deactivateWelcome = false;
+
+    for (var i = 0; i < lists.length; i++) {
+      if (lists[i].posts && lists[i].posts.length)
+        return $scope.deactivateWelcome = true;
+    };
   };
 
   $scope.openPost = function (post, postIndex, listIndex) {
@@ -164,6 +172,7 @@ angular.module('Pelican')
       if (list._id === newPost.parentList) list.posts.unshift(newPost);
       return list;
     });
+    if (!$scope.deactivateWelcome) $scope.deactivateWelcome = true;
   });
 
   $rootScope.$on('new list created', function (e, list) {

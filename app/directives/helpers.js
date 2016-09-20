@@ -40,8 +40,7 @@ angular.module('Pelican')
       $rootScope.$on('open compose modal', function (e, data) {
         $timeout(function () {
           $(data.focusId).focus();
-          console.log(data.focusId);
-        }, 100);
+        });
       })
     }
   };

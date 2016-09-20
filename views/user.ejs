@@ -44,11 +44,6 @@
             </div>
           </div>
         </div>
-
-        <!-- <span class="icon"
-              ng-class="list.isPrivate ? 'ion-ios-locked' : 'ion-ios-unlocked-outline'"
-              ng-if="user && user._id && (list.owner == user._id)"
-              ng-click="toggleListLock(list)"></span> -->
       </h2>
 
       <section class="post" ng-click="openPost(post, $index, $parent.$index)" ng-repeat="post in list.posts">
@@ -62,7 +57,10 @@
 
     </div>
 
-    <button class="compose" ng-click="openComposeModal()" ng-if="user && user._id"><span class="icon ion-android-add"></span></button>
+    <button class="compose" ng-click="openComposeModal()" ng-if="user && user._id">
+      <img src="/css/arrow.png" ng-if="!deactivateWelcome" />
+      <span class="icon ion-android-add"></span>
+    </button>
     <% include ./partials/post-modal.ejs %>
     <% include ./partials/list-modal.ejs %>
     <% include ./partials/edit-list-modal.ejs %>
