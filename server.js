@@ -1,4 +1,5 @@
 var express     = require('express'),
+    favicon     = require('serve-favicon'),
     bodyParser  = require('body-parser'),
     cors        = require('cors'),
     mongoose    = require('mongoose'),
@@ -28,6 +29,7 @@ app.use(cors());
 app.use(bodyParser.json({limit: '50mb'}));
 app.use(bodyParser.urlencoded({limit: '50mb', extended: true}));
 app.use(express.static(path.join(__dirname, 'app')));
+app.use(favicon(path.join(__dirname,'app','css','favicon.ico')));
 
 
 require('./controllers/Routes.js')(app, passport);
