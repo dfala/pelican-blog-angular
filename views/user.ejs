@@ -9,11 +9,46 @@
          ng-repeat="list in lists"
          ng-class="{ 'private-list': list.isPrivate }">
       <h2>
+        <span class="locked-info ion-ios-locked"
+              ng-if="user && user._id && (list.owner == user._id) && list.isPrivate"
+              ng-click="toggleListLock(list)"></span>
+
         {{list.title}}
-        <span class="icon"
+
+        <div class="settings-icon icon"
+              ng-class="list.isOpenSettings ? 'ion-ios-settings-strong' : 'ion-ios-settings'"
+              ng-if="user && user._id && (list.owner == user._id)"
+              ng-click="openListSettings(list)" loose-focus>
+
+          <div class="list-settings" ng-show="list.isOpenSettings">
+            <div class="arrow-up"></div>
+
+            <div class="setting privacy" ng-show="list.isPrivate" ng-click="toggleListLock(list)">
+              Make list public
+              <span class="icon ion-ios-locked"></span>
+            </div>
+
+            <div class="setting privacy" ng-show="!list.isPrivate" ng-click="toggleListLock(list)">
+              Make list private
+              <span class="icon ion-ios-unlocked-outline"></span>
+            </div>
+
+            <div class="setting edit-list">
+              Edit list's name
+              <span class="icon ion-ios-compose-outline"></span>
+            </div>
+
+            <div class="setting delete-list">
+              Delete this list
+              <span class="icon ion-ios-trash-outline"></span>
+            </div>
+          </div>
+        </div>
+
+        <!-- <span class="icon"
               ng-class="list.isPrivate ? 'ion-ios-locked' : 'ion-ios-unlocked-outline'"
               ng-if="user && user._id && (list.owner == user._id)"
-              ng-click="toggleListLock(list)"></span>
+              ng-click="toggleListLock(list)"></span> -->
       </h2>
 
       <section class="post" ng-click="openPost(post, $index, $parent.$index)" ng-repeat="post in list.posts">

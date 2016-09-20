@@ -38,6 +38,15 @@ angular.module('Pelican')
     });
   };
 
+  // LIST SETTINGS
+  $scope.openListSettings = function (list) {
+    list.isOpenSettings = true;
+  };
+
+  $scope.closeListSettings = function (list) {
+    list.isOpenSettings = false;
+  };
+
   // EDIT POST
   $scope.turnOffEditPost = function () {
     $scope.editingPost = false;

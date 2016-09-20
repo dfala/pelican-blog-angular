@@ -33,6 +33,25 @@ angular.module('Pelican')
   }
 }])
 
+.directive('looseFocus', [function () {
+  return {
+    restrict: 'A',
+    link: function (scope, element, attr) {
+
+      $(document).mouseup(function(e) {
+        var container = $(element);
+
+        if (scope.list.isOpenSettings && !container.is(e.target)) {
+          scope.closeListSettings(scope.list)
+          scope.$digest();
+        };
+      });
+
+    }
+  }
+}])
+
+
 .directive('createList', [function () {
   return {
     restrict: 'A',

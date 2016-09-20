@@ -3,7 +3,6 @@ angular.module('Pelican')
 .controller('MenuController', ['$scope', '$sce', '$rootScope', function ($scope, $sce, $rootScope) {
   $scope.init = function (user, lists) {
     $scope.user = user;
-    console.log(user);
     $scope.lists = lists;
   };
 
