@@ -6,6 +6,7 @@ module.exports = function (app) {
   app.post('/api/list', List.create);
   app.put('/api/list/privacy/:listId', List.updatePrivacy);
   app.delete('/api/list/:listId', List.deleteList);
+  app.put('/api/list/rename/:listId', List.renameList);
 
   //POST
   app.post('/api/post', Post.create);

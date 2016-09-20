@@ -40,6 +40,13 @@ angular.module('Pelican')
     $scope.lists.push(newList);
   });
 
+  $rootScope.$on('list name updated', function (e, editedList) {
+    $scope.lists = $scope.lists.map(function (list) {
+      if (list._id == editedList._id) list.title = editedList.title;
+      return list;
+    });
+  });
+
   $rootScope.$on('list privacy toggled', function (e, udpatedList) {
     $scope.lists = $scope.lists.map(function (list) {
       if (list._id === udpatedList._id) return udpatedList;

@@ -79,3 +79,15 @@ Exports.deleteList = function (req, res) {
     return res.status(500).json(err);
   })
 };
+
+Exports.renameList = function (req, res) {
+  var listId = req.params.listId;
+
+  List.update({_id: listId}, {title: req.body.title})
+  .then(function (result) {
+    return res.json(result);
+  })
+  .catch(function (err) {
+    return res.status(500).json(err);
+  })
+};

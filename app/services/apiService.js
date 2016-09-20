@@ -26,6 +26,10 @@ angular.module('Pelican')
     return $http.delete('/api/list/' + list._id);
   };
 
+  service.renameList = function (list) {
+    return $http.put('/api/list/rename/' + list._id, list);
+  };
+
   service.toggleListPrivate = function (list) {
     return $http.put('/api/list/privacy/' + list._id, {
       newStatus: !list.isPrivate

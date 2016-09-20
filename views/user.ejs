@@ -33,7 +33,7 @@
               <span class="icon ion-ios-unlocked-outline"></span>
             </div>
 
-            <div class="setting edit-list">
+            <div class="setting edit-list" ng-click="openRenameListModal(list)">
               Edit list's name
               <span class="icon ion-ios-compose-outline"></span>
             </div>
@@ -65,6 +65,7 @@
     <button class="compose" ng-click="openComposeModal()" ng-if="user && user._id"><span class="icon ion-android-add"></span></button>
     <% include ./partials/post-modal.ejs %>
     <% include ./partials/list-modal.ejs %>
+    <% include ./partials/edit-list-modal.ejs %>
   </section>
 
 <% include ./partials/footer.ejs %>

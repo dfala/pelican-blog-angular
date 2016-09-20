@@ -65,13 +65,31 @@ angular.module('Pelican')
     list.isOpenSettings = false;
   };
 
+  $scope.openRenameListModal = function (list) {
+    $scope.activeList = angular.copy(list);
+    $scope.isEditListModalOpen = true;
+  };
+
+  $rootScope.$on('close editListModal', function () {
+    $scope.isEditListModalOpen = false;
+    $scope.activeList = null;
+  })
+
+  $rootScope.$on('list name updated', function (e, editedList) {
+    $scope.lists = $scope.lists.map(function (list) {
+      if (list._id == editedList._id) list.title = editedList.title;
+      return list;
+    });
+  });
+
   // EDIT POST
   $scope.turnOffEditPost = function () {
     $scope.editingPost = false;
   };
 
-  $scope.turnOnEditPost = function () {
+  $scope.turnOnEditPost = function (index) {
     $scope.editablePost = angular.copy($scope.activePost);
+    $scope.editablePostIndex = index;
     $scope.editingPost = true;
   };
 
