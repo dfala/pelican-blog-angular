@@ -22,6 +22,10 @@ angular.module('Pelican')
     return $http.delete('/api/post/' + post.parentList + '/' + post._id);
   };
 
+  service.deleteList = function (list) {
+    return $http.delete('/api/list/' + list._id);
+  };
+
   service.toggleListPrivate = function (list) {
     return $http.put('/api/list/privacy/' + list._id, {
       newStatus: !list.isPrivate

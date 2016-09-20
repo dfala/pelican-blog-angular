@@ -32,6 +32,10 @@ angular.module('Pelican')
     $scope.lists[editedPost.listIndex].posts[editedPost.postIndex] = editedPost;
   });
 
+  $rootScope.$on('list deleted', function (e, data) {
+    $scope.lists.splice(data.listIndex, 1);
+  });
+
   $rootScope.$on('new list created', function (e, newList) {
     $scope.lists.push(newList);
   });

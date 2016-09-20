@@ -38,6 +38,24 @@ angular.module('Pelican')
     });
   };
 
+  $scope.deleteList = function (list, listIndex) {
+    alertify.confirm("Are you sure you want to delete this list? This action cannot be undone.", function () {
+      apiService.deleteList(list)
+      .then(function (response) {
+        alertify.success('Your list was successfully deleted.');
+        $rootScope.$emit('list deleted', {
+          list: list,
+          listIndex: listIndex
+        });
+        $scope.lists.splice(listIndex, 1);
+      })
+      .catch(function (err) {
+        console.error(err);
+        alertify.error('There was an error deleting your list.');
+      })
+    });
+  };
+
   // LIST SETTINGS
   $scope.openListSettings = function (list) {
     list.isOpenSettings = true;

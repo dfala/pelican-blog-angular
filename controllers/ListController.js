@@ -64,3 +64,18 @@ Exports.updatePrivacy = function (req, res) {
     res.status(500).json(err);
   })
 };
+
+Exports.deleteList = function (req, res) {
+  var listId = req.params.listId;
+
+  var p1 = List.find({ _id: listId }).remove();
+  var p2 = Post.find({ parentList: listId}).remove();
+
+  Promise.all([p1, p2])
+  .then(function () {
+    res.json('List and posts deleted');
+  })
+  .catch(function (err) {
+    return res.status(500).json(err);
+  })
+};
