@@ -14,6 +14,7 @@ section.post {
       // margin-bottom: @post-space;
       display: inherit;
       padding: @post-space;
+      .truncate;
 
       &:hover {
         background-color: @light-gray;
@@ -49,6 +50,7 @@ section.post {
   .text {
     color: darken(@gray, 20%);
     font-weight: 200;
+    margin: 10px 0;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
