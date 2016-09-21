@@ -15,7 +15,8 @@
 
         {{list.title}}
 
-        <div class="settings-icon icon"
+
+        <div class="icon"
               ng-class="list.isOpenSettings ? 'ion-ios-settings-strong' : 'ion-ios-settings'"
               ng-if="user && user._id && (list.owner == user._id)"
               ng-click="openListSettings(list)" loose-focus>
@@ -44,6 +45,8 @@
             </div>
           </div>
         </div>
+
+        <div class="icon ion-ios-plus-empty" ng-click="openComposeModal(list)"></div>
       </h2>
 
       <section class="post" ng-click="openPost(post, $index, $parent.$index)" ng-repeat="post in list.posts">

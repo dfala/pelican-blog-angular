@@ -172,12 +172,16 @@ angular.module('Pelican')
     })
   };
 
-  $scope.openComposeModal = function () {
-    $rootScope.$emit('open compose modal', {
+  $scope.openComposeModal = function (list) {
+    var data = {
       user: $scope.user,
       lists: $scope.lists,
       focusId: '#search-list'
-    })
+    };
+
+    if (list) data.activeList = list;
+
+    $rootScope.$emit('open compose modal', data)
   };
 
   $rootScope.$on('new post created', function (e, newPost) {

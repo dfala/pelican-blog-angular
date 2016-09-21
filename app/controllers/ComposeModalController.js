@@ -7,6 +7,7 @@ angular.module('Pelican')
 
   $rootScope.$on('open compose modal', function (e, data) {
     $scope.isListModalOpen = true;
+    if (data.activeList) $scope.activeList = data.activeList;
   });
 
   $scope.closeListModal = function () {
