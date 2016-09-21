@@ -66,28 +66,6 @@
       }
     }
 
-    .post-options {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      padding: 20px;
-      width: 100%;
-      overflow: auto;
-      border-top: 1px solid @light-gray;
-      background-color: @almost-white;
-
-      a {
-        color: darken(@gray, 10%);
-
-        &:hover {
-          color: @dark-blue;
-        }
-      }
-
-      .delete { float: left; }
-      .edit { float: right; }
-    }
-
     h1, h2 {
       display: initial;
     }
@@ -139,9 +117,19 @@
       padding-top: 1px;
     }
 
-    .close-modal {
+    .modal-icon {
       .navigation-icons;
       font-size: 25px;
+    }
+
+    .icon-wrapper {
+      margin-right: 25px;
+      .modal-icon {
+        margin-right: 20px;
+      }
+      .active-edit {
+        color: @blue;
+      }
     }
 
     .shared-subsection {

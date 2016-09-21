@@ -2,7 +2,13 @@
   <div class="modal-backdrop" ng-click="closePostModal()"></div>
 
   <div class="modal">
-    <div class="close-modal ion-android-close pointer" ng-click="closePostModal()"></div>
+    <div class="modal-icon ion-android-close" ng-click="closePostModal()"></div>
+    <div class="icon-wrapper" ng-if="user && (user._id === lists[0].owner)">
+      <div class="modal-icon icon ion-ios-compose-outline"
+           ng-class="{'active-edit': editingPost}"
+           ng-click="turnOnEditPost($index)"></div>
+      <div class="modal-icon ion-ios-trash-outline" ng-click="deletePost(activePost)"></div>
+    </div>
 
     <div ng-if="!editingPost">
       <h2>{{activePost.title}}</h2>
@@ -13,7 +19,7 @@
     </div>
 
     <div ng-if="editingPost">
-      <input class="title-edit" type="text" ng-model="editablePost.title" />
+      <input id="post-title-edit" class="title-edit" type="text" ng-model="editablePost.title" />
       <input class="post-link link-edit" type="text" ng-model="editablePost.link" placeholder="Post link" />
       <textarea class="post-text" ng-model="editablePost.text"></textarea>
 
@@ -21,11 +27,6 @@
         <button ng-click="updatePost(editablePost)" class="cta">Update post</button>
         <a ng-click="turnOffEditPost()">Cancel edit</a>
       </div>
-    </div>
-
-    <div class="post-options" ng-if="!editingPost && user && (user._id === lists[0].owner)">
-      <a class="delete" ng-click="deletePost(activePost)">Delete post</a>
-      <a class="edit" ng-click="turnOnEditPost($index)">Edit post</a>
     </div>
   </div>
 

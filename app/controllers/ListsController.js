@@ -113,9 +113,14 @@ angular.module('Pelican')
   };
 
   $scope.turnOnEditPost = function (index) {
+    if ($scope.editingPost) return $scope.turnOffEditPost();
+
     $scope.editablePost = angular.copy($scope.activePost);
     $scope.editablePostIndex = index;
     $scope.editingPost = true;
+    $timeout(function () {
+      $('#post-title-edit').focus();
+    })
   };
 
   $scope.deletePost = function (postToDelete) {
