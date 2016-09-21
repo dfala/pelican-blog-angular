@@ -46,7 +46,9 @@
           </div>
         </div>
 
-        <div class="icon ion-ios-plus-empty" ng-click="openComposeModal(list)"></div>
+        <div class="icon ion-ios-plus-empty"
+             ng-click="openComposeModal(list)"
+             ng-if="user && user._id && owner._id === user._id"></div>
       </h2>
 
       <section class="post" ng-click="openPost(post, $index, $parent.$index)" ng-repeat="post in list.posts">
