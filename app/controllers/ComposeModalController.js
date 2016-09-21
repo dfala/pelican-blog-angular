@@ -22,11 +22,6 @@ angular.module('Pelican')
     $scope.activeList = null;
   };
 
-  $scope.newList = {
-    title: 'test title',
-    isPrivate: true
-  }
-
   $scope.addList = function (list) {
     if (!list.title) return alertify.error('Please add a list title to create one.');
     if (!list.isPrivate) list.isPrivate = false;
