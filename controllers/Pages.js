@@ -13,6 +13,7 @@ Routes.home = function (req, res) {
   .then(function(lists) {
     Post.find({isPrivate: false})
     .sort('-created_date')
+    .limit(20)    
     .populate({ path: 'owner', select: 'displayName _id lists image' })
     .exec(function (err, result) {
       res.render('index', {
