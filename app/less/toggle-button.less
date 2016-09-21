@@ -1,0 +1,30 @@
+.toggle-button {
+  @local-dimensions: 20px;
+  background-color: @almost-white;
+  border: 1px solid @border-gray;
+  border-radius: @local-dimensions + 2px;
+  height: @local-dimensions + 2px;
+  width: 40px;
+  position: relative;
+  cursor: pointer;
+
+  &.active {
+    background-color: @green;
+
+    .round {
+      right: 0;
+      left: inherit;
+    }
+  }
+
+  .round {
+    background-color: #fff;
+    border-radius: 100%;
+    height: @local-dimensions;
+    width: @local-dimensions;
+    position: absolute;
+    top: 0;
+    left: 0;
+    box-shadow: @strong-shadow;
+  }
+}

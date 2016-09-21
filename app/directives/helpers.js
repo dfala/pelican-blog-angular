@@ -73,7 +73,7 @@ angular.module('Pelican')
     link: function (scope, elem, attr) {
       $(elem).keyup(function(e) {
         if (e.keyCode == 13) {
-          scope.addList(scope.listTitle);
+          scope.addList(scope.newList);
         }
       });
     }

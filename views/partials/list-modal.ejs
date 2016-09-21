@@ -24,8 +24,18 @@
     </div>
 
     <div class="add-list" ng-show="!activeList">
-      <input type="text" placeholder="Type list name..." ng-model="listTitle" create-list/>
-      <button class="cta" ng-click="addList(listTitle)">+ Create new list</button>
+      <div class="flexy">
+        <input type="text" placeholder="Type list name..." ng-model="newList.title" create-list/>
+        <button class="cta" ng-click="addList(newList)">+ Create new list</button>
+      </div>
+      <div class="align">
+        <p> Make list private </p>
+        <div class="toggle-button"
+             ng-class="{'active': newList.isPrivate}"
+             ng-click="newList.isPrivate = !newList.isPrivate">
+          <div class="round"></div>
+        </div>
+      </div>
     </div>
 
     <div class="body" ng-show="activeList">

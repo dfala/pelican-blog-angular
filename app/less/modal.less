@@ -49,7 +49,7 @@
 
       .lists {
         overflow-y: auto;
-        max-height: 275px;
+        max-height: 243px;
         padding: 10px @p-modal;
       }
 
@@ -72,7 +72,6 @@
 
     .title-edit {
       font-size: 1.5em;
-      font-weight: 200;
       border: none;
       padding: 0;
       width: 95%;
@@ -82,7 +81,6 @@
     .link-edit {
       border: none;
       color: @blue;
-      font-weight: 200;
     }
 
     .edit-options {
@@ -138,9 +136,6 @@
       border-top: 1px solid @light-gray;
       border-bottom: 1px solid @light-gray;
       width: 100%;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
 
       input {
         margin: 0;
@@ -149,6 +144,9 @@
 
     .list-search {
       .shared-subsection;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
       padding: @p-modal;
       position: relative;
 
@@ -184,6 +182,26 @@
       padding: @p-modal;
       border-bottom: 0;
 
+      .flexy {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .align {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+
+        .toggle-button {
+          margin: 10px 0 0 10px;
+        }
+
+        p {
+          margin: 10px 0 0;
+        }
+      }
+
       input {
         width: 70%;
       }
@@ -194,7 +212,6 @@
       cursor: pointer;
       padding: 10px;
       border-radius: 2px;
-      font-weight: 300;
 
       &:hover {
         background-color: #eee;
@@ -237,7 +254,6 @@
     }
 
     .text {
-      font-weight: 200;
       color: @dark-gray;
       margin: 0;
     }

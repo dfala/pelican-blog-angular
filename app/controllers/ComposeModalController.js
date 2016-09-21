@@ -13,7 +13,7 @@ angular.module('Pelican')
   $scope.closeListModal = function () {
     $scope.isListModalOpen = false;
     $scope.activeList = null;
-    $scope.listTitle = "";
+    $scope.newList = null;
     $scope.newPost = {};
     $scope.query = "";
   };
@@ -22,16 +22,23 @@ angular.module('Pelican')
     $scope.activeList = null;
   };
 
-  $scope.addList = function (listTitle) {
-    if (!listTitle) return alertify.error('Please add a list title to create one.');
+  $scope.newList = {
+    title: 'test title',
+    isPrivate: true
+  }
 
-    apiService.addList(listTitle)
+  $scope.addList = function (list) {
+    if (!list.title) return alertify.error('Please add a list title to create one.');
+    if (!list.isPrivate) list.isPrivate = false;
+
+    apiService.addList(list.title, list.isPrivate)
     .then(function (response) {
       alertify.success('New list created!')
       // $scope.activateList(response.data);
       response.data.fromNewList = true;
       $scope.activateList(response.data);
       $rootScope.$emit('new list created', response.data);
+      $scope.newList = null;
     })
     .catch(function (err) {
       console.error(err);
