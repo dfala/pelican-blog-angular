@@ -1,49 +1,5 @@
 <section class="modal-container" ng-show="isListModalOpen" ng-controller="ComposeModalController" ng-cloak>
   <div class="modal-backdrop" ng-click="closeListModal()"></div>
 
-  <div class="modal list-modal">
-    <div class="top">
-      <h1>Add details</h1>
-
-      <div class="modal-icon ion-android-close pointer" ng-click="closeListModal()"></div>
-      <div class="go-back ion-android-arrow-back" ng-if="activeList" ng-click="backToList()"></div>
-    </div>
-
-    <div class="list-search relative" ng-show="!activeList">
-      <span class="search-icon ion-ios-search-strong" ng-if="!query"></span>
-      <input type="text" id="search-list" placeholder="Search list..." ng-model="query" escape-search focus-id/>
-      <div class="clear-search ion-android-close" ng-if="query" ng-click="$parent.query = ''"></div>
-    </div>
-
-    <div class="lists" ng-show="!activeList">
-      <div ng-repeat="list in lists | filter:query">
-        <div class="list" ng-click="activateList(list)">
-          {{list.title}}
-        </div>
-      </div>
-    </div>
-
-    <div class="add-list" ng-show="!activeList">
-      <div class="flexy">
-        <input type="text" placeholder="Type list name..." ng-model="newList.title" create-list/>
-        <button class="cta" ng-click="addList(newList)">+ Create new list</button>
-      </div>
-      <div class="align">
-        <p> Make list private </p>
-        <div class="toggle-button"
-             ng-class="{'active': newList.isPrivate}"
-             ng-click="newList.isPrivate = !newList.isPrivate">
-          <div class="round"></div>
-        </div>
-      </div>
-    </div>
-
-    <div class="body" ng-show="activeList">
-      <input type="text" placeholder="Name" ng-model="newPost.title" />
-      <input type="text" placeholder="Link" ng-model="newPost.link" />
-      <textarea placeholder="Thoughts" ng-model="newPost.text"></textarea>
-
-      <button class="cta" ng-click="addPost(newPost)">Post it!</button>
-    </div>
-  </div>
+  <% include ./compose.ejs %>
 </section>

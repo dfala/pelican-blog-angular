@@ -13,7 +13,7 @@ Routes.home = function (req, res) {
   .then(function(lists) {
     Post.find({isPrivate: false})
     .sort('-created_date')
-    .limit(20)    
+    .limit(20)
     .populate({ path: 'owner', select: 'displayName _id lists image' })
     .exec(function (err, result) {
       res.render('index', {
@@ -56,4 +56,27 @@ Routes.userView = function (req, res) {
       });
     })
   })
-}
+};
+
+Routes.bookmark = function (req, res) {
+  if (!req.user || !req.user._id)
+    return res.render('extension', {
+      user  : null,
+      lists : null
+    });
+
+  List.find({owner: req.user._id})
+  .populate({path: 'posts', options: { sort: { 'created_date': -1 } }})
+  .exec(function(error, result) {
+    if (error) return res.status(400).json(err);
+
+    var passedUser = {
+      _id: req.user._id,
+    };
+
+    res.render('extension', {
+      user  : passedUser || null,
+      lists : result || []
+    });
+  })
+};

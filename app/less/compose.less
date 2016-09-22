@@ -1,0 +1,183 @@
+.shared-compose {
+  overflow-y: inherit;
+  padding: 0;
+  min-height: 500px;
+}
+
+.compose-post {
+  .shared-compose;
+
+  h1 {
+    margin: 0;
+  }
+
+  textarea {
+    min-height: 246px;
+  }
+
+  .top {
+    padding: @modal-space;
+  }
+
+  .lists {
+    overflow-y: auto;
+    max-height: 243px;
+    padding: 10px @modal-space;
+
+    .locked-info {
+      margin-right: 8px;
+    }
+  }
+
+  .body {
+    padding: 0 @modal-space;
+  }
+
+  .shared-subsection {
+    margin: 0;
+    padding: 20px 0;
+    border-top: 1px solid @light-gray;
+    border-bottom: 1px solid @light-gray;
+    width: 100%;
+
+    input {
+      margin: 0;
+    }
+  }
+
+  .list-search {
+    .shared-subsection;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: @modal-space;
+    position: relative;
+
+    input {
+      width: 100%;
+      margin: 0;
+    }
+
+    .search-icon {
+      position: absolute;
+      right: @modal-space + 10px;
+      color: @border-gray;
+      font-size: 18px;
+      margin-top: 1px;
+    }
+
+    .clear-search {
+      .icon-input;
+      right: @modal-space + 10px;
+      font-size: 18px;
+      color: @border-gray;
+      &:hover {
+        color: @dark-gray;
+      }
+    }
+  }
+
+  .add-list {
+    .shared-subsection;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    padding: @modal-space;
+    border-bottom: 0;
+
+    .flexy {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .align {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+
+      .toggle-button {
+        margin: 10px 0 0 10px;
+      }
+    }
+
+    input {
+      width: 70%;
+    }
+
+    p {
+      margin: 10px 0 0;
+      color: @dark-gray;
+    }
+  }
+
+  .list {
+    display: block;
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 2px;
+
+    &:hover {
+      background-color: #eee;
+    }
+  }
+}
+
+.modal-container .modal.compose-post {
+  .shared-compose;
+}
+
+section.lists.extension {
+  .compact-setting;
+  padding: 0;
+  width: 516px;
+  height: 516px;
+
+  h1 {
+    display: initial;
+  }
+
+  .add-list {
+    input {
+      width: 62%;
+    }
+  }
+
+  // TODO: NEED REFACTORING (duplicate in modal.less)
+  .go-back {
+    float: right;
+    cursor: pointer;
+    color: @border-gray;
+    line-height: 25px;
+    font-size: 23px;
+    // margin-right: 25px;
+    padding-top: 1px;
+
+    &:hover {
+      color: #000;
+    }
+  }
+
+  .extension-message {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+    background-color: @light-blue;
+    color: #000;
+
+    h2 {
+      text-align: center;
+    }
+
+    a {
+      display: block;
+      margin-top: 20px;
+    }
+  }
+}

@@ -21,42 +21,7 @@
   }
 
   .modal {
-    @p-modal: 20px;
-    background-color: #fff;
-    width: 600px;
-    padding: @p-modal;
-    padding-bottom: @p-modal + @p-modal;
-    max-width: 100%;
-    min-height: 300px;
-    border-radius: @br;
-    box-shadow: @strong-shadow;
-    position: relative;
-    max-height: 100%;
-    overflow-y: auto;
-
-    textarea {
-      min-height: 246px;
-    }
-
-    &.list-modal {
-      overflow-y: inherit;
-      padding: 0;
-      min-height: 500px;
-
-      .top {
-        padding: @p-modal;
-      }
-
-      .lists {
-        overflow-y: auto;
-        max-height: 243px;
-        padding: 10px @p-modal;
-      }
-
-      .body {
-        padding: 0 @p-modal;
-      }
-    }
+    .compact-setting;
 
     &.edit-list-modal {
       min-height: 0;
@@ -68,33 +33,6 @@
 
     h1, h2 {
       display: initial;
-    }
-
-    .title-edit {
-      font-size: 1.5em;
-      border: none;
-      padding: 0;
-      width: 95%;
-      margin: 0;
-    }
-
-    .link-edit {
-      border: none;
-      color: @blue;
-    }
-
-    .edit-options {
-      margin-top: 40px;
-      position: relative;
-
-      button {
-        float: left;
-      }
-
-      a {
-        float: right;
-        line-height: 40px;
-      }
     }
 
     .navigation-icons {
@@ -127,94 +65,6 @@
       }
       .active-edit {
         color: @blue;
-      }
-    }
-
-    .shared-subsection {
-      margin: 0;
-      padding: 20px 0;
-      border-top: 1px solid @light-gray;
-      border-bottom: 1px solid @light-gray;
-      width: 100%;
-
-      input {
-        margin: 0;
-      }
-    }
-
-    .list-search {
-      .shared-subsection;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: @p-modal;
-      position: relative;
-
-      input {
-        width: 100%;
-        margin: 0;
-      }
-
-      .search-icon {
-        position: absolute;
-        right: @p-modal + 10px;
-        color: @border-gray;
-        font-size: 18px;
-        margin-top: 1px;
-      }
-
-      .clear-search {
-        .icon-input;
-        right: @p-modal + 10px;
-        font-size: 18px;
-        color: @border-gray;
-        &:hover {
-          color: @dark-gray;
-        }
-      }
-    }
-
-    .add-list {
-      .shared-subsection;
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      padding: @p-modal;
-      border-bottom: 0;
-
-      .flexy {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-      }
-
-      .align {
-        display: flex;
-        align-items: center;
-        justify-content: flex-start;
-
-        .toggle-button {
-          margin: 10px 0 0 10px;
-        }
-
-        p {
-          margin: 10px 0 0;
-        }
-      }
-
-      input {
-        width: 70%;
-      }
-    }
-
-    .list {
-      display: block;
-      cursor: pointer;
-      padding: 10px;
-      border-radius: 2px;
-
-      &:hover {
-        background-color: #eee;
       }
     }
 
@@ -256,6 +106,34 @@
     .text {
       color: @dark-gray;
       margin: 0;
+    }
+
+    // EDIT POST
+    .edit-options {
+      margin-top: 40px;
+      position: relative;
+
+      button {
+        float: left;
+      }
+
+      a {
+        float: right;
+        line-height: 40px;
+      }
+    }
+
+    .title-edit {
+      font-size: 1.5em;
+      border: none;
+      padding: 0;
+      width: 95%;
+      margin: 0;
+    }
+
+    .link-edit {
+      border: none;
+      color: @blue;
     }
   }
 }

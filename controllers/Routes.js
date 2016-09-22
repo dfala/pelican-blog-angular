@@ -5,6 +5,7 @@ module.exports = function (app, passport) {
   app.get('/', Pages.index);
   app.get('/home', Pages.home);
   app.get('/user/:userId?', Pages.userView);
+  app.get('/bookmark', Pages.bookmark);
 
   // AUTH
   app.get('/auth/facebook', passport.authenticate('facebook', { scope : 'email' }));

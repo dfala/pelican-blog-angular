@@ -1,0 +1,22 @@
+<% include ./partials/head.ejs %>
+
+  <section class="lists extension" ng-cloak
+      ng-controller="ExtensionController"
+      ng-init="init(<%= JSON.stringify(user) %>, <%= JSON.stringify(lists) %>)">
+    <% include ./partials/compose.ejs %>
+
+    <div class="extension-message" ng-if="loginMessage">
+      <h2>
+        Please log in:
+        <br><br>
+        <button class="cta" send-to="/auth/facebook">Sign Up / Login</button>
+        <!-- <a id="link" href='http://thepelicanblog.com'>The Pelican Blog</a> -->
+      </h2>
+    </div>
+
+    <div class="extension-message" ng-if="successMessage">
+      <h2>Awesome success sauce!</h2>
+    </div>
+  </section>
+
+<% include ./partials/footer.ejs %>
