@@ -1,10 +1,8 @@
-<header>
-  <div>
-    <a href="/home">Home</a>
-    <% if (user && user._id) { %>
-      <a href="/user/<%= user._id %>">/ Your Feed</a>
-    <% } %>
-  </div>
+<header ng-controller="HeaderController">
+  <form class="search" ng-submit="search(query)">
+    <input ng-model="query" placeholder="Search users, lists, or posts..." />
+    <button><span class="icon ion-ios-search-strong"></span></button>
+  </form>
 
   <% if (user && user._id) { %>
     <div class="align">
