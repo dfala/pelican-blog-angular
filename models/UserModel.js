@@ -11,4 +11,6 @@ var UserSchema = new mongoose.Schema({
   image: String
 });
 
+
+UserSchema.index({ displayName: "text", email: "text"});
 module.exports = mongoose.model('User', UserSchema);

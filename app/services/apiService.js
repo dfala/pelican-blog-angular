@@ -51,5 +51,10 @@ angular.module('Pelican')
     });
   };
 
+  service.globalSearch = function (query) {
+    query = encodeURIComponent(query);
+    return $http.get('/api/global-search/' + query);
+  };
+
   return service;
 }]);

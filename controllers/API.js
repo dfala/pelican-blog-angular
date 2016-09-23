@@ -16,4 +16,5 @@ module.exports = function (app) {
 
   // OTHER
   app.post('/api/site-header', Request.getHeader);
+  app.get('/api/global-search/:query', Request.globalSearch);
 };

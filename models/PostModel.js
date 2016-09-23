@@ -10,4 +10,12 @@ var PostSchema = new mongoose.Schema({
   parentList    : { type: mongoose.Schema.Types.ObjectId, ref: 'List' }
 });
 
+// ADDING SEARCH WEIGHTS
+PostSchema.index(
+  { title: "text", link: "text", text: "text" },
+  { weights:
+    { title: 5, link: 2, text: 1 }
+  }
+);
+
 module.exports = mongoose.model('Post', PostSchema);

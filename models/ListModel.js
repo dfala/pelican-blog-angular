@@ -8,4 +8,8 @@ var ListSchema = new mongoose.Schema({
   posts         : [{ type: mongoose.Schema.Types.ObjectId, ref: 'Post' }]
 });
 
+ListSchema.index(
+  { title: "text" },
+  { weights: { title: 5 } }
+);
 module.exports = mongoose.model('List', ListSchema);

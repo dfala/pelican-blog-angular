@@ -1,4 +1,5 @@
 @header-height: 60px;
+@header-shadow: 0 1px 1px rgba(0,0,0,.14);
 header {
   width: 100%;
   height: @header-height;
@@ -8,7 +9,7 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  box-shadow: 0 1px 1px rgba(0,0,0,.14);
+  box-shadow: @header-shadow;
 
   a {
     line-height: @header-height;
@@ -18,11 +19,13 @@ header {
     @item-heights: 40px;
     display: flex;
     align-items: center;
+    position: relative;
+    @input-width: 1000px;
 
     input {
       height: @item-heights;
       max-width: 50%;
-      width: 1000px;
+      width: @input-width;
       border: 1px solid @border-gray;
       border-right: none;
       border-top-left-radius: @br;
@@ -41,6 +44,23 @@ header {
       height: @item-heights;
       border-top-left-radius: 0;
       border-bottom-left-radius: 0;
+    }
+
+    .suggestions {
+      position: absolute;
+      top: @item-heights;
+      background-color: #fff;
+      width: 566px;
+      padding: 5px;
+      box-shadow: @header-shadow;
+
+      .suggestion {
+        padding: 15px;
+        cursor: pointer;
+        &:hover {
+          background-color: @almost-white;
+        }
+      }
     }
   }
 
