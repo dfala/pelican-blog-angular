@@ -5,6 +5,7 @@ module.exports = function (app, passport) {
   app.get('/', Pages.index);
   app.get('/home', Pages.home);
   app.get('/user/:userId?', Pages.userView);
+  // app.get('/user/:userId/:listView', Pages.listView);
   app.get('/bookmark', Pages.bookmark);
 
   // AUTH

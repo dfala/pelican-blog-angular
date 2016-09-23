@@ -77,12 +77,23 @@ section.menu {
         margin: 10px 0;
       }
 
-      p {
+      .p-wrapper {
         width: 100%;
-        max-width: 100%;
+        overflow: hidden;
+      }
+
+      p {
+        width: calc(~"100% - 25px");
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
+        display: inline-block;
+      }
+
+      .hashtag {
+        color: darken(@gray, 15%);
+        margin-right: 5px;
+        width: initial;
       }
 
       &:hover {

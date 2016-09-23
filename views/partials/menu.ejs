@@ -16,7 +16,8 @@
          id="menu-list-{{list._id}}"
          ng-repeat="list in lists | menuSearch:query"
          menu-helper ng-cloak>
-      <div>
+      <div class="p-wrapper">
+        <p class="hashtag">#</p>
         <p ng-bind-html="sanitizeHtml(list.title)"></p>
         <span class="icon ion-ios-locked-outline" ng-if="list.isPrivate"></span>
       </div>
