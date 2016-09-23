@@ -185,12 +185,12 @@ angular.module('Pelican')
   };
 
   $rootScope.$on('new post created', function (e, newPost) {
+    if (!$scope.deactivateWelcome) $scope.deactivateWelcome = true;
     if (newPost.fromNewList) return;
     $scope.lists = $scope.lists.map(function (list) {
       if (list._id === newPost.parentList) list.posts.unshift(newPost);
       return list;
     });
-    if (!$scope.deactivateWelcome) $scope.deactivateWelcome = true;
   });
 
   $rootScope.$on('new list created', function (e, list) {

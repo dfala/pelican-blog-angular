@@ -27,4 +27,8 @@ angular.module('Pelican')
       console.warn(err);
     });
   });
+
+  // $scope.activateSuggestion = function (item) {
+  //   item.
+  // };
 }]);

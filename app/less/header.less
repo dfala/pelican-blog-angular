@@ -57,8 +57,17 @@ header {
       .suggestion {
         padding: 15px;
         cursor: pointer;
+        display: flex;
+        align-items: center;
+
         &:hover {
           background-color: @almost-white;
+        }
+
+        img {
+          border-radius: 100%;
+          height: @img-width;
+          margin-right: 10px;
         }
       }
     }
