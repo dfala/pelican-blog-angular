@@ -1,7 +1,7 @@
 <section class="modal-container side-modal" ng-if="activePost" ng-cloak>
   <div class="modal-backdrop" ng-click="closePostModal()"></div>
 
-  <div class="modal">
+  <div class="modal animated-fast fadeInRight">
     <div class="modal-icon ion-android-close" ng-click="closePostModal()"></div>
     <div class="icon-wrapper" ng-if="user && (user._id === lists[0].owner)">
       <div class="modal-icon icon ion-ios-compose-outline"
