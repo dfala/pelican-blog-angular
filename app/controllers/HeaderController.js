@@ -28,7 +28,9 @@ angular.module('Pelican')
     });
   });
 
-  // $scope.activateSuggestion = function (item) {
-  //   item.
-  // };
+  $scope.activateSuggestion = function (item) {
+    if (item.type === 'users') {
+      window.location.href = '/user/' + item._id;
+    }
+  };
 }]);

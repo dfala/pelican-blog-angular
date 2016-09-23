@@ -37,7 +37,7 @@ angular.module('Pelican')
       return {};
     }
 
-    var data = { type: type, id: item._id };
+    var data = { type: type, _id: item._id };
 
     // text, subInfo, image, link
     if (type === 'users') {
