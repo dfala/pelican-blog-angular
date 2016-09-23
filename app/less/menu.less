@@ -77,6 +77,14 @@ section.menu {
         margin: 10px 0;
       }
 
+      p {
+        width: 100%;
+        max-width: 100%;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
       &:hover {
         background-color: lighten(@dim-blue, 5%);
 
@@ -108,8 +116,8 @@ section.menu {
 
       p {
         font-size: 0.85em;
-        // margin-left: 10px;
         margin: 5px 0 5px 10px;
+        width: calc(~"100% - 10px");
 
         &.active {
           color: @bright-blue;
