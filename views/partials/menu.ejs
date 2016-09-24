@@ -26,7 +26,7 @@
          menu-helper ng-cloak>
       <div class="p-wrapper">
         <p class="hashtag">#</p>
-        <p ng-bind-html="sanitizeHtml(list.title)"></p>
+        <p class="p-title" ng-bind-html="sanitizeHtml(list.title)"></p>
         <span class="icon ion-ios-locked-outline" ng-if="list.isPrivate"></span>
       </div>
       <hr ng-show="query || list.displayPosts" identify-location="/list/{{list._id}}"/>
