@@ -3,12 +3,15 @@
     <h3>Pelican</h3>
   </div>
   <div class="body">
-    <div class="user" send-to="/user/{{user._id}}" ng-if="user && user._id">
+    <% if (user) { %>
+    <div class="user" send-to="/user/<%= user._id %>">
       <% if (user.image) { %>
         <img src="<%= user.image %>" alt="<%= user.displayName %>" />
       <% } %>
       <%= user.givenName + "'s Pelican" %>
     </div>
+    <% } %>
+
     <div class="relative">
       <input type="text" ng-model="query" placeholder="Search your pelican..." escape-search/>
       <div class="icon ion-ios-search-strong" ng-show="!query"></div>
