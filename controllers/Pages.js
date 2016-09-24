@@ -80,3 +80,35 @@ Routes.bookmark = function (req, res) {
     });
   })
 };
+
+Routes.listView = function (req, res) {
+  var userId = req.params.userId,
+      listId = req.params.listId,
+      userIsListOwner = false;
+
+  if (req.user && req.user._id && (req.params.userId == req.user._id)) userIsListOwner = true;
+
+  List.find({_id: listId})
+  .populate({path: 'posts', options: { sort: { 'created_date': -1 } }})
+  .exec(function(error, result) {
+    if (result.isPrivate && userIsListOwner) res.redirect('/user/' + userId);
+
+    User.findById(userId, function (err, user) {
+      if (err) return res.status(400).json(err);
+
+      if (!userIsListOwner) {
+        result = result.filter(function (list) {
+          if (list.isPrivate || (!list.posts || list.posts.length < 1)) return false;
+          return true;
+        })
+      };
+
+      res.render('user', {
+        user: req.user || null,
+        userId: userId,
+        lists: result,
+        owner: user
+      });
+    })
+  })
+};

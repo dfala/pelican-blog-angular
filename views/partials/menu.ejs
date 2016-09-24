@@ -11,12 +11,19 @@
       <div class="icon ion-ios-search-strong" ng-show="!query"></div>
       <div class="icon ion-android-close" ng-click="query = ''" ng-show="query" ng-cloak></div>
     </div>
+
+    <div class="list" send-to="/user/{{user._id}}"
+        identify-location="/user/{{user._id}}"
+        ng-if="user && user._id" ng-cloak>
+      {{user.displayName}}
+    </div>
+
     <div class="list menu-list"
          ng-click="makeActive(list)"
          id="menu-list-{{list._id}}"
          ng-repeat="list in lists | menuSearch:query"
          menu-helper ng-cloak>
-      <div class="p-wrapper">
+      <div class="p-wrapper" identify-location="/list/{{list._id}}">
         <p class="hashtag">#</p>
         <p ng-bind-html="sanitizeHtml(list.title)"></p>
         <span class="icon ion-ios-locked-outline" ng-if="list.isPrivate"></span>
