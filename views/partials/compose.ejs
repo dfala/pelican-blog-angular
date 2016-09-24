@@ -8,7 +8,7 @@
 
   <div class="list-search relative" ng-show="!activeList">
     <span class="search-icon ion-ios-search-strong" ng-if="!query"></span>
-    <input type="text" id="search-list" placeholder="Search list..." ng-model="query" escape-search focus-id/>
+    <input type="text" id="search-list" placeholder="Search list..." ng-model="query" escape-search focus-id create-list/>
     <div class="clear-search ion-android-close" ng-if="query" ng-click="$parent.query = ''"></div>
   </div>
 
@@ -25,7 +25,7 @@
 
   <div class="add-list" ng-show="!activeList">
     <div class="flexy">
-      <input type="text" placeholder="Type list name..." ng-model="newList.title" create-list/>
+      <input type="text" id="create-list-name" placeholder="Type list name..." ng-model="newList.title" create-list/>
       <button class="cta" ng-click="addList(newList)">+ Create new list</button>
     </div>
     <div class="align">

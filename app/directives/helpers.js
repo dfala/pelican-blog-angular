@@ -66,8 +66,10 @@ angular.module('Pelican')
   return {
     restrict: 'A',
     link: function (scope, element, attr) {
+
       $rootScope.$on('open compose modal', function (e, data) {
         $timeout(function () {
+          if (!scope.lists || scope.lists.length < 1) return $('#create-list-name').focus();
           $(data.focusId).focus();
         });
       })
@@ -95,14 +97,19 @@ angular.module('Pelican')
   }
 }])
 
-
 .directive('createList', [function () {
   return {
     restrict: 'A',
     link: function (scope, elem, attr) {
       $(elem).keyup(function(e) {
         if (e.keyCode == 13) {
-          scope.addList(scope.newList);
+          if (elem[0].id === 'search-list') {
+            alertify.confirm(scope.query + ' list does not exist yet, do you want to create it now? It would be a public list.', function () {
+              scope.addList({title: scope.query});
+            });
+          } else {
+            scope.addList(scope.newList);
+          }
         }
       });
     }
