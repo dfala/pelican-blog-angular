@@ -29,7 +29,12 @@ angular.module('Pelican')
     restrict: 'A',
     link: function (scope, elem, attr) {
       if (!attr.identifyLocation) return;
-      if (window.location.href.indexOf(attr.identifyLocation) > -1) elem.addClass('active-location');
+      if (window.location.href.indexOf(attr.identifyLocation) > -1) {
+        if (scope.list) {
+          elem.addClass('active');
+          scope.list.displayPosts = true;
+        }
+      }
     }
   }
 }])

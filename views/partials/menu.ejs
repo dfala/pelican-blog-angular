@@ -1,35 +1,33 @@
 <section class="menu" ng-controller="MenuController" ng-init="init(<%= JSON.stringify(user) %>, <%= JSON.stringify(lists) %>)">
-  <div class="owner">
-    <% if (owner.image) { %>
-      <img src="<%= owner.image %>" alt="<%= owner.displayName %>" />
-    <% } %>
-    <%= owner.givenName + "'s Pelican" %>
+  <div class="top-header">
+    <h3>Pelican</h3>
   </div>
   <div class="body">
+    <div class="user" send-to="/user/{{user._id}}" ng-if="user && user._id">
+      <% if (user.image) { %>
+        <img src="<%= user.image %>" alt="<%= user.displayName %>" />
+      <% } %>
+      <%= user.givenName + "'s Pelican" %>
+    </div>
     <div class="relative">
       <input type="text" ng-model="query" placeholder="Search your pelican..." escape-search/>
       <div class="icon ion-ios-search-strong" ng-show="!query"></div>
       <div class="icon ion-android-close" ng-click="query = ''" ng-show="query" ng-cloak></div>
     </div>
 
-    <div class="list" send-to="/user/{{user._id}}"
-        identify-location="/user/{{user._id}}"
-        ng-if="user && user._id" ng-cloak>
-      {{user.displayName}}
-    </div>
-
     <div class="list menu-list"
          ng-click="makeActive(list)"
          id="menu-list-{{list._id}}"
+         identify-location="/list/{{list._id}}"
          ng-repeat="list in lists | menuSearch:query"
          menu-helper ng-cloak>
-      <div class="p-wrapper" identify-location="/list/{{list._id}}">
+      <div class="p-wrapper">
         <p class="hashtag">#</p>
         <p ng-bind-html="sanitizeHtml(list.title)"></p>
         <span class="icon ion-ios-locked-outline" ng-if="list.isPrivate"></span>
       </div>
+      <hr ng-show="query || list.displayPosts" identify-location="/list/{{list._id}}"/>
       <div class="posts" ng-show="query || list.displayPosts">
-        <hr />
         <div class="post animated-fast fadeInLeft" ng-repeat="post in list.posts" ng-click="openPostMenu(post, $index, $parent.$index)">
           <p class="post-title" ng-bind-html="sanitizeHtml(post.title)"></p>
         </div>

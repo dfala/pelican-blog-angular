@@ -20,12 +20,10 @@ header {
     display: flex;
     align-items: center;
     position: relative;
-    @input-width: 1000px;
 
     input {
       height: @item-heights;
-      max-width: 50%;
-      width: @input-width;
+      width: 500px;
       border: 1px solid @border-gray;
       border-right: none;
       border-top-left-radius: @br;
@@ -71,18 +69,6 @@ header {
           margin-right: 10px;
         }
       }
-    }
-  }
-
-  .align {
-    display: flex;
-    align-items: center;
-    min-width: 400px;
-
-    img {
-      height: @img-width;
-      margin-left: 20px;
-      cursor: pointer;
     }
   }
 }

@@ -12,15 +12,8 @@
   </form>
 
   <% if (user && user._id) { %>
-    <div class="align">
-      <a href="/logout">Logout</a>
-      <% if (user.image) { %>
-        <img src="<%= user.image %>" alt="<%= user.displayName %>" send-to="/user/<%= user._id %>"/>
-      <% } %>
-    </div>
+    <a href="/logout">Logout</a>
   <% } else { %>
-    <div class="align">
-      <a href="/auth/facebook">Sign Up / Login</a>
-    </div>
+    <a href="/auth/facebook">Sign Up / Login</a>
   <% } %>
 </header>
