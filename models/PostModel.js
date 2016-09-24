@@ -1,13 +1,15 @@
-var mongoose = require('mongoose');
+var mongoose = require('mongoose'),
+    shortid  = require('shortid');
 
 var PostSchema = new mongoose.Schema({
+  _id           : { type: String, 'default': shortid.generate },
   title         : { type: String, required: true },
   link          : { type: String, required: false },
   text          : { type: String, required: false },
-  owner         : { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
+  owner         : { type: String, ref: 'User' },
   isPrivate     : { type: Boolean, default: false },
   created_date  : { type: Date, default: Date.now },
-  parentList    : { type: mongoose.Schema.Types.ObjectId, ref: 'List' }
+  parentList    : { type: String, ref: 'List' }
 });
 
 // ADDING SEARCH WEIGHTS

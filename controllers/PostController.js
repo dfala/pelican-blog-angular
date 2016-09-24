@@ -20,7 +20,7 @@ Exports.create = function (req, res) {
     res.json(post);
   })
   .catch(function (err) {
-    req.status(500).send(err);
+    red.status(500).send(err);
   });
 };
 

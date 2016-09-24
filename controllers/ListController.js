@@ -4,6 +4,8 @@ var Exports  = module.exports = {},
     Post     = require('../models/PostModel');
 
 Exports.create = function (req, res) {
+  console.log(req.user._id);
+
   var newList = new List(req.body);
   newList.owner = req.user._id;
 

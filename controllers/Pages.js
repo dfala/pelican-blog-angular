@@ -41,7 +41,7 @@ Routes.userView = function (req, res) {
     User.findById(userId, function (err, user) {
       if (err) return res.status(400).json(err);
 
-      if (!userIsListOwner) {
+      if (result && !userIsListOwner) {
         result = result.filter(function (list) {
           if (list.isPrivate || (!list.posts || list.posts.length < 1)) return false;
           return true;
