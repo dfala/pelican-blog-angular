@@ -26,6 +26,28 @@ Routes.home = function (req, res) {
   })
 };
 
+Routes.discover = function (req, res) {
+  if (!req.user || !req.user._id) return res.redirect('/home');
+
+  List.find({isPrivate: false})
+  .limit(20)
+  .exec(function (err, lists) {
+    Post.find({})
+    .sort('-created_date')
+    .limit(20)
+    .populate({ path: 'owner', select: 'displayName _id lists image' })
+    .populate({ path: 'parentList', select: 'title _id' })
+    .exec(function (err, posts) {
+      res.render('discover', {
+        user: req.user || null,
+        owner: null,
+        lists: lists || [],
+        posts: posts || []
+      })
+    })
+  });
+};
+
 Routes.userView = function (req, res) {
   var userId = req.params.userId;
   if (!userId && req.user && req.user._id) return res.redirect('/user/' + req.user._id);

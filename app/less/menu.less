@@ -93,6 +93,10 @@ section.menu {
         width: 100%;
         overflow: hidden;
         display: flex;
+
+        .icon {
+          margin-top: 2px;
+        }
       }
 
       p {
@@ -105,7 +109,7 @@ section.menu {
 
       .hashtag {
         color: darken(@gray, 15%);
-        margin-right: 5px;
+        margin-right: 8px;
         width: initial;
       }
 
@@ -128,6 +132,25 @@ section.menu {
         &:hover {
           hr {
             border-bottom: 1px solid lighten(@dim-blue, 5%);
+          }
+        }
+      }
+
+      &.discover {
+
+        &.active {
+          &:hover {
+            border-bottom: 0;
+          }
+          hr {
+            display: none;
+          }
+        }
+
+        &:hover {
+          border-bottom: 1px solid transparent;
+          hr {
+            display: none;
           }
         }
       }

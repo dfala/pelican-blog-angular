@@ -18,6 +18,16 @@
       <div class="icon ion-android-close" ng-click="query = ''" ng-show="query" ng-cloak></div>
     </div>
 
+    <% if (user && user._id) { %>
+    <div class="list menu-list discover" identify-location="/discover">
+      <div class="p-wrapper" send-to="/discover">
+        <span class="icon ion-ios-navigate-outline hashtag"></span>
+        <p class="p-title">discover</p>
+      </div>
+      <hr />
+    </div>
+    <% } %>
+
     <div class="list menu-list"
          ng-click="makeActive(list)"
          id="menu-list-{{list._id}}"

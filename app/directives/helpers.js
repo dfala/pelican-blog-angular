@@ -30,8 +30,8 @@ angular.module('Pelican')
     link: function (scope, elem, attr) {
       if (!attr.identifyLocation) return;
       if (window.location.href.indexOf(attr.identifyLocation) > -1) {
+        elem.addClass('active');
         if (scope.list) {
-          elem.addClass('active');
           scope.list.displayPosts = true;
         }
       }
@@ -44,7 +44,8 @@ angular.module('Pelican')
     restrict: 'A',
     link: function (scope, elem, attr) {
       var listId = '#' + attr.id.split('menu-')[1];
-
+      if (window.location.href.indexOf('/discover') > -1) return;
+      
       elem.bind('click', function (e) {
         if (e.target.className.indexOf('post-title') > -1 || e.target.className.indexOf('post') > -1) return;
 

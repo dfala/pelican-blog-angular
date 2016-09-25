@@ -1,6 +1,6 @@
 angular.module('Pelican')
 
-.controller('HomeController', ['$scope', '$rootScope', function ($scope, $rootScope) {
+.controller('DiscoverController', ['$scope', '$rootScope', function ($scope, $rootScope) {
   $scope.init = function (user, posts) {
     $scope.user = user || null;
     $scope.posts = posts || [];

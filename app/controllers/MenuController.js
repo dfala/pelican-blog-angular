@@ -7,6 +7,9 @@ angular.module('Pelican')
   };
 
   $scope.makeActive = function (activeList) {
+    if (window.location.href.indexOf('/discover') > -1) {
+      return (window.location = '/list/' + activeList._id + '/' + $scope.user._id);
+    }
     $scope.lists = $scope.lists.map(function (list) {
       list.displayPosts = false;
       return (list);

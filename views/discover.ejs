@@ -1,0 +1,29 @@
+<% include ./partials/head-light.ejs %>
+<% include ./partials/header.ejs %>
+
+<body class="with-menu">
+  <% include ./partials/menu.ejs %>
+
+  <section class="lists discover" ng-controller="DiscoverController" ng-init="init(<%= JSON.stringify(user) %>, <%= JSON.stringify(posts) %>)">
+
+    <section class="post" ng-repeat="post in posts" ng-cloak>
+      <div class="body" ng-click="openPost(post)">
+        <p class="post-title">{{post.title}}</p>
+        <a ng-href="{{post.link}}" target="blank" ng-if="post.link" ng-click="$event.stopPropagation();">{{post.link}}</a>
+        <p class="text" ng-if="post.text">{{post.text}}</p>
+      </div>
+      <div class="author">
+        <a href="/user/{{post.owner._id}}">
+          <img ng-src="{{post.owner.image}}" />
+          {{post.owner.displayName}}
+        </a>
+
+
+        <a class="list-name" href='/list/{{post.parentList._id}}/{{post.owner._id}}'># {{post.parentList.title}}</a>
+      </div>
+    </section>
+
+    <% include ./partials/post-modal.ejs %>
+  </section>
+
+<% include ./partials/footer.ejs %>

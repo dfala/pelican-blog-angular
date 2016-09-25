@@ -4,6 +4,7 @@ var Pages    = require('./Pages.js'),
 module.exports = function (app, passport) {
   app.get('/', Pages.index);
   app.get('/home', Pages.home);
+  app.get('/discover', Pages.discover);
   app.get('/user/:userId?', Pages.userView);
   app.get('/list/:listId/:userId', Pages.listView);
   app.get('/bookmark', Pages.bookmark);
