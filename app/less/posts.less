@@ -30,6 +30,7 @@ section.post {
     margin: 10px 15px 30px;
     display: flex;
     justify-content: space-between;
+    align-items: center;
 
     a {
       color: #464646;
@@ -48,7 +49,12 @@ section.post {
     }
 
     .list-name {
+      max-width: 150px;
       color: lighten(@dark-gray, 40%);
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: inline-block;
+      white-space: nowrap;
     }
   }
 
