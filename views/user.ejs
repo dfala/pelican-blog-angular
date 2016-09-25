@@ -17,10 +17,9 @@
           <span class="pointer" send-to="/list/{{list._id}}/{{owner._id}}">{{list.title}}</span>
         </span>
 
-        <span class="right-icons">
+        <span class="right-icons" ng-if="user && user._id && (list.owner == user._id)">
           <div class="icon"
                 ng-class="list.isOpenSettings ? 'ion-ios-settings-strong' : 'ion-ios-settings'"
-                ng-if="user && user._id && (list.owner == user._id)"
                 ng-click="openListSettings(list)" loose-focus>
 
             <div class="list-settings" ng-show="list.isOpenSettings" ng-click="$event.stopPropagation();">
@@ -49,8 +48,7 @@
           </div>
 
           <div class="icon ion-ios-plus-empty"
-               ng-click="openComposeModal(list)"
-               ng-if="user && user._id && owner._id === user._id"></div>
+               ng-click="openComposeModal(list)"></div>
           <div>
         </span>
 
