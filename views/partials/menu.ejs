@@ -1,4 +1,4 @@
-<section class="menu" ng-controller="MenuController" ng-init="init(<%= JSON.stringify(user) %>, <%= JSON.stringify(lists) %>)">
+<section class="menu" ng-controller="MenuController" ng-init="init(<%= JSON.stringify(user) %>, <%= JSON.stringify(lists) %>, <%= JSON.stringify(owner) %>, <%= JSON.stringify(ownerLists) %>)">
   <div class="top-header">
     <h2>The Pelican Blog</h2>
   </div>
@@ -10,13 +10,17 @@
       <% } %>
       <%= user.givenName + "'s Pelican" %>
     </div>
-    <% } %>
 
     <div class="relative">
       <input type="text" ng-model="query" placeholder="Search your pelican..." escape-search/>
       <div class="icon ion-ios-search-strong" ng-show="!query"></div>
       <div class="icon ion-android-close" ng-click="query = ''" ng-show="query" ng-cloak></div>
     </div>
+    <% } else { %>
+      <div class="auth">
+        <button type="button" send-to="/auth/facebook">Sign Up / Login</button>
+      </div>
+    <% } %>
 
     <% if (user && user._id) { %>
     <div class="list menu-list discover" identify-location="/discover">
@@ -48,5 +52,7 @@
     </div>
   </div>
 
-  <% include ./menu-small.ejs %>
+  <% if (owner) { %>
+    <% include ./menu-small.ejs %>
+  <% } %>
 </section>

@@ -1,19 +1,30 @@
 angular.module('Pelican')
 
 .controller('MenuController', ['$scope', '$sce', '$rootScope', function ($scope, $sce, $rootScope) {
-  $scope.init = function (user, lists) {
+  $scope.init = function (user, lists, owner, ownerLists) {
     $scope.user = user;
     $scope.lists = lists;
+    if (owner) $scope.owner = owner;
+    if (ownerLists) $scope.ownerLists = ownerLists;
   };
 
-  $scope.makeActive = function (activeList) {
+  $scope.makeActive = function (activeList, isFromOwner) {
     if (window.location.href.indexOf('/discover') > -1) {
       return (window.location = '/list/' + activeList._id + '/' + $scope.user._id);
     }
-    $scope.lists = $scope.lists.map(function (list) {
-      list.displayPosts = false;
-      return (list);
-    })
+
+    if (isFromOwner) {
+      $scope.ownerLists = $scope.ownerLists.map(function (list) {
+        list.displayPosts = false;
+        return (list);
+      })
+    } else {
+      $scope.lists = $scope.lists.map(function (list) {
+        list.displayPosts = false;
+        return (list);
+      })
+    }
+
     activeList.displayPosts = true;
   };
 

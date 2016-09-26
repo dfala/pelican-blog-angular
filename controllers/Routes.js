@@ -1,11 +1,12 @@
 var Pages    = require('./Pages.js'),
+    UserCtrl = require('./UserController'),
     keys     = require('../config/keys');
 
 module.exports = function (app, passport) {
   app.get('/', Pages.index);
   app.get('/home', Pages.home);
   app.get('/discover', Pages.discover);
-  app.get('/user/:userId?', Pages.userView);
+  app.get('/user/:userId?', UserCtrl.userView);
   app.get('/list/:listId/:userId', Pages.listView);
   app.get('/bookmark', Pages.bookmark);
 

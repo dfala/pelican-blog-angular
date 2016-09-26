@@ -47,16 +47,19 @@ angular.module('Pelican')
       if (window.location.href.indexOf('/discover') > -1) return;
 
       elem.bind('click', function (e) {
+        var listElem = $(listId);
+        if (!listElem.length) return (window.location.href = "/user/" + scope.user._id);
+
         if (e.target.className.indexOf('post-title') > -1 || e.target.className.indexOf('post') > -1) return;
 
         $('.menu-list').removeClass('active');
         elem.addClass('active');
 
         $('.list').removeClass('active-list');
-        $(listId).addClass('active-list');
+        listElem.addClass('active-list');
 
         $('html, body').animate({
-          scrollTop: $(listId).offset().top - 60
+          scrollTop: listElem.offset().top - 60
         }, 500);
       });
     }
@@ -139,7 +142,7 @@ angular.module('Pelican')
       $('#small-menu').resizable({
         handles: 'n',
         maxHeight: maxHeight,
-        minHeight: 150
+        minHeight: 250
       });
     }
   }

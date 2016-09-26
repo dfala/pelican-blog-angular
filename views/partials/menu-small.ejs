@@ -1,7 +1,7 @@
 <section class="small-menu" id="small-menu" resizable>
   <div class="body">
     <% if (owner) { %>
-    <div class="user" send-to="/user/<%= owner._id %>">
+    <div class="user">
       <% if (owner.image) { %>
         <img src="<%= owner.image %>" alt="<%= owner.displayName %>" />
       <% } %>
@@ -10,10 +10,10 @@
     <% } %>
 
     <div class="list menu-list"
-         ng-click="makeActive(list)"
+         ng-click="makeActive(list, true)"
          id="menu-list-{{list._id}}"
          identify-location="/list/{{list._id}}"
-         ng-repeat="list in lists"
+         ng-repeat="list in ownerLists"
          menu-helper ng-cloak>
       <div class="p-wrapper">
         <p class="hashtag">#</p>

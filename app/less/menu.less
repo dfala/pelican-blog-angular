@@ -48,6 +48,13 @@ section.menu {
       display: inline-block;
     }
 
+    .auth {
+      button {
+        width: calc(~"100% - "@local-padding * 2);
+        margin: @local-padding;
+      }
+    }
+
     .user {
       display: flex;
       align-items: center;
@@ -189,20 +196,17 @@ section.small-menu {
   top: auto !important;
   background-color: @sm-color;
   overflow-y: auto;
-  // max-height: 50%;
-  min-height: 150px;
+  min-height: 250px;
   width: 100%;
   box-shadow: 0 0 10px 0 rgba(0,0,0,.44), inset -10px 0px 2px -8px rgba(0, 0, 0, 0.2);
-  // padding-bottom: 60px;
 
   .body {
     .user {
-      padding: 20px;
-      margin: 0;
+      cursor: default;
       border-bottom: 1px solid rgba(238, 238, 238, 0.2);
 
       &:hover {
-        background-color: darken(@sm-color, 10%);
+        background-color: inherit;
       }
     }
 

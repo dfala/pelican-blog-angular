@@ -4,10 +4,17 @@ angular.module('Pelican')
   function ($scope, apiService, validator, $rootScope, $timeout) {
 
   //INIT
-  $scope.init = function (user, lists, owner) {
+  $scope.init = function (user, lists, owner, ownerList) {
     if (user) $scope.user = user;
-    if (lists) $scope.lists = lists;
     if (owner) $scope.owner = owner;
+
+    if (owner && ownerList) {
+      $scope.lists = ownerList;
+    } else if (lists) {
+      $scope.lists = lists
+    }
+
+    console.warn(arguments);
 
     // ENABLE WELCOME UI
     if (!lists || lists.length < 1) return $scope.deactivateWelcome = false;

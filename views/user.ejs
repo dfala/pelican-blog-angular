@@ -3,7 +3,7 @@
 
 <body class="with-menu">
   <% include ./partials/menu.ejs %>
-  <section class="lists user" ng-controller="ListsController" ng-init="init(<%= JSON.stringify(user) %>, <%= JSON.stringify(lists) %>, <%= JSON.stringify(owner) %>)" ng-cloak>
+  <section class="lists user" ng-controller="ListsController" ng-init="init(<%= JSON.stringify(user) %>, <%= JSON.stringify(lists) %>, <%= JSON.stringify(owner) %>, <%= JSON.stringify(ownerLists) %>)" ng-cloak>
 
     <div class="list" id="list-{{list._id}}"
          ng-repeat="list in lists"
@@ -14,7 +14,8 @@
                 ng-if="user && user._id && (list.owner == user._id) && list.isPrivate"
                 ng-click="toggleListLock(list)"></span>
 
-          <span class="pointer" send-to="/list/{{list._id}}/{{owner._id}}">{{list.title}}</span>
+          <span class="pointer" ng-if="!owner._id" send-to="/list/{{list._id}}/{{user._id}}">{{list.title}}</span>
+          <span class="pointer" ng-if="owner._id" send-to="/list/{{list._id}}/{{owner._id}}">{{list.title}}</span>
         </span>
 
         <span class="right-icons" ng-if="user && user._id && (list.owner == user._id)">
