@@ -45,7 +45,7 @@ angular.module('Pelican')
     link: function (scope, elem, attr) {
       var listId = '#' + attr.id.split('menu-')[1];
       if (window.location.href.indexOf('/discover') > -1) return;
-      
+
       elem.bind('click', function (e) {
         if (e.target.className.indexOf('post-title') > -1 || e.target.className.indexOf('post') > -1) return;
 
@@ -126,6 +126,20 @@ angular.module('Pelican')
           scope.query = "";
           scope.$digest();
         }
+      });
+    }
+  }
+}])
+
+.directive('resizable', [function () {
+  return {
+    restrict: 'A',
+    link: function (scope, elem, attr) {
+      var maxHeight = $('.menu').height() * 0.8;
+      $('#small-menu').resizable({
+        handles: 'n',
+        maxHeight: maxHeight,
+        minHeight: 150
       });
     }
   }

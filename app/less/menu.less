@@ -15,6 +15,7 @@ section.menu {
 
   input {
     margin: @local-padding;
+    margin-top: 0;
     width: calc(~"100% - "@local-padding * 2);
     background-color: lighten(@dim-blue, 5%);
     border: 1px solid #464a52;
@@ -50,9 +51,14 @@ section.menu {
     .user {
       display: flex;
       align-items: center;
-      padding: @local-padding;
-      padding-bottom: 0;
+      padding: @local-padding / 2;
+      margin: @local-padding / 2;
       cursor: pointer;
+
+      &:hover {
+        // background-color: darken(@dim-blue, 10%);
+        background-color: lighten(@dim-blue, 5%);
+      }
 
       img {
         height: @img-width;
@@ -170,6 +176,43 @@ section.menu {
         &.active {
           color: @bright-blue;
         }
+      }
+    }
+  }
+}
+
+section.small-menu {
+  @sm-color: #1B998B; //@dim-blue; //#9E7B9B; //#9A8C98;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  top: auto !important;
+  background-color: @sm-color;
+  overflow-y: auto;
+  // max-height: 50%;
+  min-height: 150px;
+  width: 100%;
+  box-shadow: 0 0 10px 0 rgba(0,0,0,.44), inset -10px 0px 2px -8px rgba(0, 0, 0, 0.2);
+  // padding-bottom: 60px;
+
+  .body {
+    .user {
+      padding: 20px;
+      margin: 0;
+      border-bottom: 1px solid rgba(238, 238, 238, 0.2);
+
+      &:hover {
+        background-color: darken(@sm-color, 10%);
+      }
+    }
+
+    .list {
+      &:hover {
+        background-color: darken(@sm-color, 10%);
+      }
+
+      &.active {
+        background-color: #4a7570;
       }
     }
   }
