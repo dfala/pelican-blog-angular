@@ -9,9 +9,9 @@ angular.module('Pelican')
   };
 
   $scope.makeActive = function (activeList, isFromOwner) {
-    if (window.location.href.indexOf('/discover') > -1) {
-      return (window.location = '/list/' + activeList._id + '/' + $scope.user._id);
-    }
+    // if (window.location.href.indexOf('/discover') > -1) {
+    //   return (window.location = '/list/' + activeList._id + '/' + $scope.user._id);
+    // }
 
     if (isFromOwner) {
       $scope.ownerLists = $scope.ownerLists.map(function (list) {
@@ -27,7 +27,7 @@ angular.module('Pelican')
 
     activeList.displayPosts = true;
   };
-
+  
   $scope.sanitizeHtml = function(text) {
     return $sce.trustAsHtml(text);
   };

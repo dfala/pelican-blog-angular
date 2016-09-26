@@ -55,16 +55,20 @@ angular.module('Pelican')
   }
 }])
 
-.directive('menuHelper', [function () {
+.directive('menuHelper', ['$rootScope', function ($rootScope) {
   return {
     restrict: 'A',
     link: function (scope, elem, attr) {
       var listId = '#' + attr.id.split('menu-')[1];
-      if (window.location.href.indexOf('/discover') > -1) return;
 
       elem.bind('click', function (e) {
         var listElem = $(listId);
         if (!listElem.length) return (window.location.href = "/list/" + scope.list._id + '/' + scope.user._id);
+
+        // TODO: when on discover page, need to prevent expanding
+        // $rootScope.$emit('focus on list', {
+        //   list: scope.list
+        // });
 
         if (e.target.className.indexOf('post-title') > -1 || e.target.className.indexOf('post') > -1) return;
 

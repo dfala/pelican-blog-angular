@@ -80,6 +80,7 @@ Routes.listView = function (req, res) {
 
   if (req.user && req.user._id && (req.params.userId == req.user._id)) userIsListOwner = true;
 
+  // TODO LIST PROMISE IS NO LONGER NECESSARY -- REMOVE
   var listsPromise = new Promise(function (resolve, reject) {
     List.find({_id: listId})
     .populate({path: 'posts', options: { sort: { 'created_date': -1 } }})
