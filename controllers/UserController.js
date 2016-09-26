@@ -59,18 +59,11 @@ Export.getOwnerInfo = function (req, userId, userIsListOwner) {
   return new Promise(function (resolve, reject) {
     if (userIsListOwner) return resolve();
 
-    List.find({owner: userId})
+    List.find({owner: userId, isPrivate: false})
     .populate({path: 'posts', options: { sort: { 'created_date': -1 } }})
     .exec(function(error, result) {
       User.findById(userId, function (err, user) {
         if (err) return reject(err);
-
-        if (result && !userIsListOwner) {
-          result = result.filter(function (list) {
-            if (list.isPrivate || (!list.posts || list.posts.length < 1)) return false;
-            return true;
-          })
-        };
 
         resolve({
           lists: result,
