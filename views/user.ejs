@@ -69,7 +69,7 @@
     </div>
 
     <button class="compose" ng-click="openComposeModal()"
-            ng-if="user && user._id && owner._id === user._id">
+            ng-if="user && user._id && (owner? owner._id == user._id : true)">
       <img src="/css/arrow.png" ng-if="!deactivateWelcome" />
       <span class="icon ion-android-add"></span>
     </button>
