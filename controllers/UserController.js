@@ -31,7 +31,7 @@ Export.userView = function (req, res) {
     });
   })
   .catch(function (err) {
-    console.log(err);
+    if (err) console.log(err);
     return res.redirect('/home');
   });
 };

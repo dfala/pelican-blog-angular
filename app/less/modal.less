@@ -65,10 +65,33 @@
     }
 
     .icon-wrapper {
-      margin-right: 25px;
-      .modal-icon {
-        margin-right: 20px;
+      @local-space: 10px;
+      position: absolute;
+      left: -40px;
+      top: 0;//45vh;
+      background-color: rgba(238, 238, 238, 0.66);//@light-gray;
+      display: flex;
+      flex-direction: column;
+      padding: @local-space;
+      border-top-left-radius: @br;
+      border-bottom-left-radius: @br;
+      box-shadow: @inset-shadow;
+
+      &:hover {
+        background-color: @light-gray;
       }
+
+      .icon {
+        margin-bottom: @local-space;
+      }
+
+      .modal-icon {
+        color: @dark-gray;
+        &:hover {
+          color: @blue;
+        }
+      }
+
       .active-edit {
         color: @blue;
       }
@@ -88,6 +111,7 @@
     height: 100vh;
     padding-bottom: 80px;
     overflow-y: inherit;
+    border-top-left-radius: 0;
 
     .post-link {
       .truncate;
@@ -117,7 +141,9 @@
 
     // EDIT POST
     .edit-options {
-      margin-top: 40px;
+      margin-top: 10px;
+      padding-top: 20px;
+      border-top: 1px solid @light-gray;
       position: relative;
 
       button {

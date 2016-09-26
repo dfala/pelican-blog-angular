@@ -108,6 +108,7 @@ Routes.listView = function (req, res) {
       return resolve(result);
     })
     .catch(function (err) {
+      if (err) console.log(err);
       return reject(err);
     })
   })
@@ -124,7 +125,7 @@ Routes.listView = function (req, res) {
     });
   })
   .catch(function (err) {
-    console.log(err);
+    if (err) console.log(err);
     return res.redirect('/home');
   })
 };

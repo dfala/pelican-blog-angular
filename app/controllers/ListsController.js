@@ -14,8 +14,6 @@ angular.module('Pelican')
       $scope.lists = lists
     }
 
-    console.warn(arguments);
-
     // ENABLE WELCOME UI
     if (!lists || lists.length < 1) return $scope.deactivateWelcome = false;
 

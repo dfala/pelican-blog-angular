@@ -14,7 +14,7 @@ Exports.create = function (req, res) {
       {$push: {"posts": post._id}},
       {safe: true, upsert: true},
       function(err, model) {
-        console.log(err);
+        if (err) console.log(err);
       }
     );
     res.json(post);

@@ -28,11 +28,10 @@ exports.downloadImage = function (uri, userId, extension) {
 
     s3.upload(params, function (err, img) {
       if (err) return console.error("S3 UPLOAD ERROR", err);
-      // console.log("IMG LOCATION: ", img.Location)
       User.update({_id: userId}, {
         image: img.Location
       }, function (err) {
-        // console.log(arguments);
+        if (err) console.log(err);
       })
     });
 
