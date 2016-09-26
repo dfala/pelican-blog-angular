@@ -116,7 +116,7 @@ Routes.listView = function (req, res) {
   .then(function (results) {
     res.render('user', {
       user: req.user || null,
-      lists: results[1].lists,
+      lists: results[1] && results[1].lists || null,
       list: results[0],
       owner: results[2] && results[2].user || null,
       ownerLists: results[2] && results[2].lists || null

@@ -24,7 +24,7 @@ angular.module('Pelican')
   }
 }])
 
-.directive('identifyLocation', [function () {
+.directive('identifyLocation', ['$timeout', function ($timeout) {
   return {
     restrict: 'A',
     link: function (scope, elem, attr) {
@@ -34,6 +34,22 @@ angular.module('Pelican')
         if (scope.list) {
           scope.list.displayPosts = true;
         }
+
+        $timeout(function () {
+          if (!attr.id) return;
+
+          var listId    = '#' + attr.id.split('menu-')[1],
+              listElem  = $(listId);
+
+          if (!listElem.length) return;
+
+          $('.list').removeClass('active-list');
+          listElem.addClass('active-list');
+
+          $('html, body').animate({
+            scrollTop: listElem.offset().top - 60
+          }, 500);
+        })
       }
     }
   }
@@ -48,7 +64,7 @@ angular.module('Pelican')
 
       elem.bind('click', function (e) {
         var listElem = $(listId);
-        if (!listElem.length) return (window.location.href = "/user/" + scope.user._id);
+        if (!listElem.length) return (window.location.href = "/list/" + scope.list._id + '/' + scope.user._id);
 
         if (e.target.className.indexOf('post-title') > -1 || e.target.className.indexOf('post') > -1) return;
 
