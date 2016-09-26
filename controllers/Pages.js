@@ -33,7 +33,7 @@ Routes.discover = function (req, res) {
   List.find({isPrivate: false})
   .limit(20)
   .exec(function (err, lists) {
-    Post.find({})
+    Post.find({isPrivate: false})
     .sort('-created_date')
     .limit(20)
     .populate({ path: 'owner', select: 'displayName _id lists image' })
