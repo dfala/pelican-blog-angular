@@ -186,6 +186,7 @@ angular.module('Pelican')
       if (window.location.search && window.location.search.indexOf('?=post')) {
         var postId = window.location.search.slice(6, window.location.search.length);
         $timeout(function () {
+          console.log(postId);
           $rootScope.$emit('search for post', { postId: postId });
         })
       }

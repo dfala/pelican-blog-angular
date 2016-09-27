@@ -25,4 +25,12 @@ angular.module('Pelican')
       'marginRight': '0'
     });
   };
+
+  $rootScope.$on('search for post', function (e, data) {
+    if (!$scope.posts || $scope.posts.length < 1) return;
+
+    for (var i = 0; i < $scope.posts.length; i++) {
+      if ($scope.posts[i]._id === data.postId) return $scope.openPost($scope.posts[i]);
+    };
+  })
 }]);

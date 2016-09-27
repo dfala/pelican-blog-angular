@@ -221,6 +221,6 @@ angular.module('Pelican')
 
     if (!info.post) return;
     $scope.openPost(info.post, info.postIndex, info.listIndex);
-  })
+  });
 
 }]);
