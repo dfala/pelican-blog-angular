@@ -30,24 +30,34 @@ Routes.home = function (req, res) {
 Routes.discover = function (req, res) {
   if (!req.user || !req.user._id) return res.redirect('/home');
 
-  List.find({isPrivate: false})
-  .limit(20)
-  .exec(function (err, lists) {
+  var userInfoPromise = UserCtrl.getUserInfo(req);
+  var feedPromise = new Promise(function (resolve, reject) {
     Post.find({isPrivate: false})
     .sort('-created_date')
     .limit(20)
     .populate({ path: 'owner', select: 'displayName _id lists image' })
     .populate({ path: 'parentList', select: 'title _id' })
     .exec(function (err, posts) {
-      res.render('discover', {
-        user: req.user || null,
-        owner: null,
-        ownerLists: null,
-        lists: lists || [],
-        posts: posts || []
-      })
+      if (err) return reject(err);
+      return resolve(posts);
     })
-  });
+  })
+
+  Promise.all([userInfoPromise, feedPromise])
+  .then(function (results) {
+    res.render('discover', {
+      user:       req.user || null,
+      owner:      null,
+      ownerLists: null,
+      lists:      results[0].lists  || [],
+      posts:      results[1] || []
+    })
+  })
+  .catch(function (err) {
+    console.log('Error loading discover feed: ', err);
+    res.redirect('/user/' + req.user._id);
+  })
+
 };
 
 Routes.bookmark = function (req, res) {

@@ -2,23 +2,22 @@ angular.module('Pelican')
 
 .controller('MenuController', ['$scope', '$sce', '$rootScope', function ($scope, $sce, $rootScope) {
   $scope.init = function (user, lists, owner, ownerLists) {
-    $scope.user = user;
-    $scope.lists = lists;
+    if (user) $scope.user = user;
+    if (lists) $scope.lists = lists;
     if (owner) $scope.owner = owner;
     if (ownerLists) $scope.ownerLists = ownerLists;
   };
 
   $scope.makeActive = function (activeList, isFromOwner) {
-    // if (window.location.href.indexOf('/discover') > -1) {
-    //   return (window.location = '/list/' + activeList._id + '/' + $scope.user._id);
-    // }
-
     if (isFromOwner) {
       $scope.ownerLists = $scope.ownerLists.map(function (list) {
         list.displayPosts = false;
         return (list);
       })
     } else {
+      if ($scope.owner && ($scope.owner.id !== $scoe.user._id)) return;
+      if (window.location.href.indexOf('/discover') > -1) return;
+
       $scope.lists = $scope.lists.map(function (list) {
         list.displayPosts = false;
         return (list);
@@ -27,7 +26,7 @@ angular.module('Pelican')
 
     activeList.displayPosts = true;
   };
-  
+
   $scope.sanitizeHtml = function(text) {
     return $sce.trustAsHtml(text);
   };
