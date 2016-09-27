@@ -13,15 +13,17 @@ angular.module('Pelican')
 
     service.globalSearch(query)
     .then(function (response) {
+
       var suggestions = [];
       for (var key in response.data) {
         response.data[key].forEach(function (item) {
           if (item) {
             var data = service.parseSearchData(item, key);
-            suggestions.unshift(data);
+            suggestions.push(data);
           }
         })
       };
+
       deferred.resolve(suggestions);
     })
     .catch(function (err) {

@@ -61,12 +61,26 @@ header {
 
         &:hover {
           background-color: @almost-white;
+
+          .icon {
+            background-color: @light-gray;
+          }
         }
 
+        @local-mr: 10px;
         img {
           border-radius: 100%;
           height: @img-width;
-          margin-right: 10px;
+          margin-right: @local-mr;
+        }
+
+        .icon {
+          height: @img-width;
+          width: @img-width;
+          background-color: @almost-white;
+          border-radius: 100%;
+          padding: 8px 0 0 10px;
+          margin-right: @local-mr;
         }
       }
     }

@@ -52,8 +52,8 @@ Exports.globalSearch = function (req, res) {
   .then(function (values) {
     return res.json({
       users: values[0],
-      lists: values[1],
-      posts: values[2]
+      posts: values[2],
+      lists: values[1]
     });
   })
   .catch(function (err) {
