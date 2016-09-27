@@ -1,4 +1,4 @@
-<header ng-controller="HeaderController">
+<header ng-controller="HeaderController" should-open-post>
   <form class="search" ng-submit="search(query)">
     <input ng-model="query" placeholder="Search users, lists, or posts..." escape-search/>
     <div class="icon-close ion-android-close" ng-click="query = ''" ng-show="query"></div>

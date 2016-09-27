@@ -31,8 +31,6 @@ angular.module('Pelican')
       'overflow': 'hidden',
       'marginRight': '15px'
     });
-
-    console.warn(post);
   };
 
   $scope.closePostModal = function () {
@@ -207,5 +205,22 @@ angular.module('Pelican')
   $rootScope.$on('open post modal', function (e, data) {
     $scope.openPost(data.post, data.postIndex, data.listIndex);
   });
+
+  $rootScope.$on('search for post', function (e, data) {
+
+    var info = {};
+    $scope.lists.forEach(function (list, listIndex) {
+      list.posts.forEach(function(post, postIndex) {
+        if (post._id === data.postId) {
+          info.post = post;
+          info.postIndex = postIndex;
+          info.listIndex = listIndex;
+        }
+      })
+    })
+
+    if (!info.post) return;
+    $scope.openPost(info.post, info.postIndex, info.listIndex);
+  })
 
 }]);

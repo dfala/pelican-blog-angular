@@ -7,7 +7,7 @@
   <section class="lists discover" ng-controller="DiscoverController" ng-init="init(<%= JSON.stringify(user) %>, <%= JSON.stringify(posts) %>)">
 
     <section class="post" ng-repeat="post in posts" ng-cloak>
-      <div class="body" ng-click="openPost(post)">
+      <div class="body" ng-click="openPost(post)" search-post>
         <p class="post-title">{{post.title}}</p>
         <a ng-href="{{post.link}}" target="blank" ng-if="post.link" ng-click="$event.stopPropagation();">{{post.link}}</a>
         <p class="text" ng-if="post.text">{{post.text}}</p>

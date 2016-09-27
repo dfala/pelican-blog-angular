@@ -154,6 +154,45 @@ angular.module('Pelican')
   }
 }])
 
+.directive('searchPost', [function () {
+  return {
+    restrict: 'A',
+    link: function (scope, elem, attr) {
+      elem.bind('click', function (e) {
+        if (!scope.post || !scope.post._id) return;
+        var url = window.location.origin + window.location.pathname + '?post=' + scope.post._id;
+        window.history.pushState({ path: url} , '', url);
+      });
+    }
+  }
+}])
+
+.directive('resetLocation', [function () {
+  return {
+    restrict: 'A',
+    link: function (scope, elem, attr) {
+      elem.bind('click', function (e) {
+        var url = window.location.origin + window.location.pathname;
+        window.history.pushState({ path: url }, '', url);
+      });
+    }
+  }
+}])
+
+.directive('shouldOpenPost', ['$rootScope', '$timeout', function ($rootScope, $timeout) {
+  return {
+    restrict: 'A',
+    link: function (scope, elem, attr) {
+      if (window.location.search && window.location.search.indexOf('?=post')) {
+        var postId = window.location.search.slice(6, window.location.search.length);
+        $timeout(function () {
+          $rootScope.$emit('search for post', { postId: postId });
+        })
+      }
+    }
+  }
+}])
+
 .directive('resizable', [function () {
   return {
     restrict: 'A',

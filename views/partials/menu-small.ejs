@@ -22,7 +22,9 @@
       </div>
       <hr ng-show="list.displayPosts" identify-location="/list/{{list._id}}"/>
       <div class="posts" ng-show="list.displayPosts">
-        <div class="post animated-fast fadeInLeft" ng-repeat="post in list.posts" ng-click="openPostMenu(post, $index, $parent.$index)">
+        <div class="post animated-fast fadeInLeft"
+            ng-repeat="post in list.posts" search-post
+            ng-click="openPostMenu(post, $index, $parent.$index)">
           <p class="post-title" ng-bind-html="sanitizeHtml(post.title)"></p>
         </div>
       </div>
