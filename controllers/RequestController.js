@@ -31,7 +31,7 @@ Exports.globalSearch = function (req, res) {
   });
 
   var listPromise = new Promise(function (resolve, reject) {
-    List.find({ $text: { $search: query }, 'isPrivate': false }, 'title',
+    List.find({ $text: { $search: query }, 'isPrivate': false }, 'title owner',
         function (err, lists) {
 
       if (err) return reject(err);
@@ -40,7 +40,7 @@ Exports.globalSearch = function (req, res) {
   });
 
   var postPromise = new Promise(function (resolve, reject) {
-    Post.find({ $text: { $search: query }, 'isPrivate': false }, 'title link text',
+    Post.find({ $text: { $search: query }, 'isPrivate': false }, 'title link text owner',
         function (err, posts) {
 
       if (err) return reject(err);

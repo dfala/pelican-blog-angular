@@ -48,10 +48,12 @@ angular.module('Pelican')
       data.email    = item.email;
     } else if (type === 'lists') {
       data.text     = item.title;
+      data.owner    = item.owner;
     } else {
       data.text     = item.title;
       data.link     = item.link;
       data.subInfo  = item.text;
+      data.owner    = item.owner;
     }
 
     return data;

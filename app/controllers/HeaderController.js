@@ -17,7 +17,7 @@ angular.module('Pelican')
 
   $scope.$watch('query', function(newVal, oldVal) {
     if (!newVal && $scope.suggestions) return $scope.suggestions = [];
-    if (!newVal || newVal.length < 4) return;
+    if (!newVal || newVal.length < 3) return;
 
     searchService.autoSuggestor(newVal)
     .then(function (response) {
@@ -31,6 +31,10 @@ angular.module('Pelican')
   $scope.activateSuggestion = function (item) {
     if (item.type === 'users') {
       window.location.href = '/user/' + item._id;
+    } else if (item.type === 'lists') {
+      window.location.href = '/list/' + item._id + '/' + item.owner;
+    } else {
+      window.location.href = '/user/' + item.owner + '?post=' + item._id;
     }
   };
 }]);
