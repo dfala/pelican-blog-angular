@@ -123,15 +123,23 @@
       margin-top: 20px;
     }
 
+    .post-text {
+      min-height: 200px;
+    }
+
     .text-container {
       overflow: auto;
-      max-height: calc(~"100vh - 185px");
+      max-height: calc(~"100vh - 105px");
       overflow: auto;
-      margin: 10px 0;
+      padding: 10px 50px 10px 10px;
       border-radius: 2px;
       // border: 1px solid @almost-white;
       // padding: 10px;
-      max-width: 90%;
+      width: 100%;
+
+      pre {
+        white-space: pre-wrap;
+      }
     }
 
     .text {

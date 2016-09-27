@@ -31,6 +31,8 @@ angular.module('Pelican')
       'overflow': 'hidden',
       'marginRight': '15px'
     });
+
+    console.warn(post);
   };
 
   $scope.closePostModal = function () {
