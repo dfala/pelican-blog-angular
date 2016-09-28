@@ -1,11 +1,11 @@
 angular.module('Pelican')
 
 .controller('MenuController', ['$scope', '$sce', '$rootScope', function ($scope, $sce, $rootScope) {
-  $scope.init = function (user, lists, owner, ownerLists) {
-    if (user) $scope.user = user;
-    if (lists) $scope.lists = lists;
-    if (owner) $scope.owner = owner;
-    if (ownerLists) $scope.ownerLists = ownerLists;
+  $scope.init = function () {
+    if (p.user) $scope.user = p.user;
+    if (p.lists) $scope.lists = p.lists;
+    if (p.owner) $scope.owner = p.owner;
+    if (p.ownerLists) $scope.ownerLists = p.ownerLists;
   };
 
   $scope.makeActive = function (activeList, isFromOwner) {

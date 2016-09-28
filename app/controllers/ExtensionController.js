@@ -9,7 +9,7 @@ angular.module('Pelican')
   $scope.init = function (user, lists) {
     if (!user) return ($scope.loginMessage = true);
     if (user)   $scope.user   = user;
-    if (lists)  $scope.lists  = lists;
+    if (lists)  $scope.modalLists  = lists;
     loadPostData();
   };
 
@@ -64,7 +64,7 @@ angular.module('Pelican')
   function closeWindow () {
     setTimeout(function () {
       top.window.close();
-    }, 600)
+    }, 400)
   };
 
   function cleanUrl () {

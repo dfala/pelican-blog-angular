@@ -4,7 +4,7 @@ angular.module('Pelican')
   function ($scope, $rootScope, apiService, validator) {
 
   $scope.isListModalOpen = false;
-  $scope.modalLists = e.lists || [];
+  $scope.modalLists = p.lists || [];
 
   $rootScope.$on('open compose modal', function (e, data) {
     $scope.isListModalOpen = true;

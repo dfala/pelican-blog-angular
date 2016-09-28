@@ -4,9 +4,9 @@ angular.module('Pelican')
   function ($scope, $rootScope, apiService, validator) {
 
   $scope.init = function () {
-    if (e.user) $scope.user = e.user || null;
-    if (e.posts) $scope.posts = e.posts || [];
-    if (e.lists) $scope.lists = e.lists;
+    if (p.user) $scope.user = p.user || null;
+    if (p.posts) $scope.posts = p.posts || [];
+    if (p.lists) $scope.lists = p.lists;
   };
 
   $rootScope.$on('new post created', function (e, post) {

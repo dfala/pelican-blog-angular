@@ -5,20 +5,20 @@ angular.module('Pelican')
 
   //INIT
   $scope.init = function () {
-    if (e.user) $scope.user = e.user;
-    if (e.owner) $scope.owner = e.owner;
+    if (p.user) $scope.user = p.user;
+    if (p.owner) $scope.owner = p.owner;
 
-    if (e.owner && e.ownerLists) {
-      $scope.lists = e.ownerLists;
-    } else if (e.lists) {
-      $scope.lists = e.lists
+    if (p.owner && p.ownerLists) {
+      $scope.lists = p.ownerLists;
+    } else if (p.lists) {
+      $scope.lists = p.lists
     }
 
     // ENABLE WELCOME UI
-    if (!e.lists || e.lists.length < 1) return $scope.deactivateWelcome = false;
+    if (!p.lists || p.lists.length < 1) return $scope.deactivateWelcome = false;
 
-    for (var i = 0; i < e.lists.length; i++) {
-      if (e.lists[i].posts && e.lists[i].posts.length)
+    for (var i = 0; i < p.lists.length; i++) {
+      if (p.lists[i].posts && p.lists[i].posts.length)
         return $scope.deactivateWelcome = true;
     };
   };
