@@ -17,7 +17,7 @@
 
     <div ng-if="!editingPost">
       <h2>{{activePost.title}}</h2>
-      <a class="post-link" ng-href="{{activePost.link}}" ng-if="activePost.link" target="blank">{{activePost.link}}</a>
+      <a class="post-link" ng-href="{{activePost.link}}" ng-if="activePost.link" target="_blank">{{activePost.link}}</a>
       <div class="text-container" ng-show="activePost.text">
         <pre class="text">{{activePost.text}}</pre>
       </div>

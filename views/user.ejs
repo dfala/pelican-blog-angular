@@ -69,7 +69,7 @@
       <section class="post" ng-click="openPost(post, $index, $parent.$index)" ng-repeat="post in list.posts" search-post>
         <div class="body">
           <p class="post-title">{{post.title}}</p>
-          <a ng-href="{{post.link}}" target="blank"
+          <a ng-href="{{post.link}}" target="_blank"
              ng-click="$event.stopPropagation();"
              ng-if="post.link">{{post.link}}</a>
           <p class="text" ng-if="post.text">{{post.text}}</p>
