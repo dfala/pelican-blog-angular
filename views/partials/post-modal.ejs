@@ -3,7 +3,7 @@
 
   <div class="modal animated-fast fadeInRight">
     <div class="modal-icon ion-android-close" ng-click="closePostModal()" reset-location></div>
-    <div class="icon-wrapper" ng-if="user && (user._id === activePost.owner) || (user._id === activePost.owner._id)">
+    <div class="icon-wrapper" ng-if="user && ((user._id === activePost.owner) || (user._id === activePost.owner._id))">
       <div class="modal-icon icon ion-ios-compose-outline"
            ng-class="{'active-edit': editingPost}"
            ng-click="turnOnEditPost($index)" ></div>

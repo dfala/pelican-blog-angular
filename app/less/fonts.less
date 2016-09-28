@@ -1,4 +1,5 @@
-@p-line-height: 20px;
+@p-line-height: 1.5;
+@p-size: 16px;
 
 h1 {
 	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -11,24 +12,29 @@ h2 {
 }
 h3 {
 	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-	font-size: 14px;
+	font-size: @p-size;
 	font-weight: @default-weight + 100;
 	line-height: 15.4px;
 }
 p {
 	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-	// font-size: 14px;
+	font-size: @p-size;
 	font-weight: @default-weight;
 	line-height: @p-line-height;
 }
 blockquote {
 	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-	font-size: 21px;
+	font-size: @p-size;
 	font-weight: @default-weight + 100;
 	line-height: 30px;
 }
 pre {
-	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+	font-family: Georgia,Cambria,"Times New Roman",Times,serif;//"Helvetica Neue", Helvetica, Arial, sans-serif;
 	font-weight: @default-weight;
+	font-size: @p-size;
 	line-height: @p-line-height;
+	color: @darker-gray;
+}
+a {
+	font-size: @p-size;
 }
