@@ -1,9 +1,18 @@
 <% include ./partials/head-light.ejs %>
 <% include ./partials/header.ejs %>
 
+<script type="text/javascript">
+  var e = {
+    user: <%- JSON.stringify(user) %>,
+    lists: <%- JSON.stringify(lists) %>,
+    owner: <%- JSON.stringify(owner) %>,
+    ownerLists: <%- JSON.stringify(ownerLists) %>
+  };
+</script>
+
 <body class="with-menu">
   <% include ./partials/menu.ejs %>
-  <section class="lists user" ng-controller="ListsController" ng-init="init(<%= JSON.stringify(user) %>, <%= JSON.stringify(lists) %>, <%= JSON.stringify(owner) %>, <%= JSON.stringify(ownerLists) %>)" ng-cloak>
+  <section class="lists user" ng-controller="ListsController" ng-init="init()" ng-cloak>
     <div class="nothing-here" ng-if="owner && user && (!lists || !lists.length) && (user._id !== owner._id)">
       <h1>{{owner.givenName}} doesn't have <br>any posts yet.</h1>
     </div>

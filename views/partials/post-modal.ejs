@@ -3,11 +3,16 @@
 
   <div class="modal animated-fast fadeInRight">
     <div class="modal-icon ion-android-close" ng-click="closePostModal()" reset-location></div>
-    <div class="icon-wrapper" ng-if="user && (user._id === lists[0].owner)">
+    <div class="icon-wrapper" ng-if="user && (user._id === activePost.owner) || (user._id === activePost.owner._id)">
       <div class="modal-icon icon ion-ios-compose-outline"
            ng-class="{'active-edit': editingPost}"
-           ng-click="turnOnEditPost($index)"></div>
-      <div class="modal-icon ion-ios-trash-outline" ng-click="deletePost(activePost)"></div>
+           ng-click="turnOnEditPost($index)" ></div>
+      <div class="modal-icon ion-ios-trash-outline" ng-click="deletePost(activePost)" ></div>
+    </div>
+
+    <div class="icon-wrapper single" ng-if="user && (user._id !== activePost.owner._id) && (user._id !== activePost.owner)">
+      <div class="modal-icon ion-ios-download-outline"
+          ng-click="repin(activePost)"></div>
     </div>
 
     <div ng-if="!editingPost">

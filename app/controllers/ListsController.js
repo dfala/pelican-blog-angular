@@ -4,21 +4,21 @@ angular.module('Pelican')
   function ($scope, apiService, validator, $rootScope, $timeout) {
 
   //INIT
-  $scope.init = function (user, lists, owner, ownerList) {
-    if (user) $scope.user = user;
-    if (owner) $scope.owner = owner;
+  $scope.init = function () {
+    if (e.user) $scope.user = e.user;
+    if (e.owner) $scope.owner = e.owner;
 
-    if (owner && ownerList) {
-      $scope.lists = ownerList;
-    } else if (lists) {
-      $scope.lists = lists
+    if (e.owner && e.ownerLists) {
+      $scope.lists = e.ownerLists;
+    } else if (e.lists) {
+      $scope.lists = e.lists
     }
 
     // ENABLE WELCOME UI
-    if (!lists || lists.length < 1) return $scope.deactivateWelcome = false;
+    if (!e.lists || e.lists.length < 1) return $scope.deactivateWelcome = false;
 
-    for (var i = 0; i < lists.length; i++) {
-      if (lists[i].posts && lists[i].posts.length)
+    for (var i = 0; i < e.lists.length; i++) {
+      if (e.lists[i].posts && e.lists[i].posts.length)
         return $scope.deactivateWelcome = true;
     };
   };
@@ -40,6 +40,15 @@ angular.module('Pelican')
       'overflow': 'inherit',
       'marginRight': '0'
     });
+  };
+
+  // TODO: CREATE COMPOSE CONTROLLER TO REDUCE DUPLICATE IN DISCOVER CONTROLLER
+  $scope.repin = function (activePost) {
+    $rootScope.$emit('repin post', {
+      text: activePost.text,
+      link: activePost.link,
+      title: activePost.title
+    })
   };
 
   $scope.toggleListLock = function (list) {

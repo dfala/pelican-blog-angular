@@ -4,10 +4,16 @@ angular.module('Pelican')
   function ($scope, $rootScope, apiService, validator) {
 
   $scope.isListModalOpen = false;
+  $scope.modalLists = e.lists || [];
 
   $rootScope.$on('open compose modal', function (e, data) {
     $scope.isListModalOpen = true;
     if (data.activeList) $scope.activeList = data.activeList;
+  });
+
+  $rootScope.$on('repin post', function (e, newPost) {
+    $scope.isListModalOpen = true;
+    if (newPost) $scope.newPost = newPost;
   });
 
   $scope.closeListModal = function () {

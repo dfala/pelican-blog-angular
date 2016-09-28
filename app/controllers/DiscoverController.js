@@ -1,9 +1,12 @@
 angular.module('Pelican')
 
-.controller('DiscoverController', ['$scope', '$rootScope', function ($scope, $rootScope) {
-  $scope.init = function (user, posts) {
-    $scope.user = user || null;
-    $scope.posts = posts || [];
+.controller('DiscoverController', ['$scope', '$rootScope', 'apiService', 'validator',
+  function ($scope, $rootScope, apiService, validator) {
+
+  $scope.init = function () {
+    if (e.user) $scope.user = e.user || null;
+    if (e.posts) $scope.posts = e.posts || [];
+    if (e.lists) $scope.lists = e.lists;
   };
 
   $rootScope.$on('new post created', function (e, post) {
@@ -24,6 +27,74 @@ angular.module('Pelican')
       'overflow': 'inherit',
       'marginRight': '0'
     });
+  };
+
+  $scope.repin = function (activePost) {
+    $rootScope.$emit('repin post', {
+      title: activePost.title,
+      link: activePost.link,
+      text: activePost.text
+    },100)
+  };
+
+  $scope.deletePost = function (postToDelete) {
+    alertify.confirm("Are you sure you want to delete this post? This action cannot be undone.", function () {
+      apiService.deletePost(postToDelete)
+      .then(function (response) {
+        $rootScope.$emit('post deleted', postToDelete);
+        $scope.posts = $scope.posts.filter(function (post) {
+          if (post._id === postToDelete._id) return false;
+          return true;
+        })
+        $scope.closePostModal();
+        alertify.success('The post has been deleted.');
+      })
+      .catch(function (err) {
+        console.error(err);
+        alertify.error('There was a problem with deleting your post.');
+      })
+    });
+  }
+
+  $scope.turnOffEditPost = function () {
+    $scope.editingPost = false;
+  };
+
+  $scope.turnOnEditPost = function () {
+    if ($scope.editingPost) return $scope.turnOffEditPost();
+    $scope.editingPost = true;
+  };
+
+  $scope.updatePost = function () {
+    $scope.updatePost = function (post) {
+      try { validator.validateNewPost(true, post) } catch (err) { return alertify.error(err); }
+      if (post.link) {
+        try {
+          post.link = validator.verifyLink(post.link)
+        } catch (err) {
+          return alertify.error(err);
+        }
+      }
+
+      apiService.updatePost(post)
+      .then(function (response) {
+        $scope.activePost = response.data;
+        $scope.editingPost = false;
+
+        $rootScope.$emit('post edited', $scope.activePost);
+
+        $scope.posts = $scope.posts.map(function (post) {
+          if (post._id === response.data._id) return response.data;
+          return post;
+        });
+
+        alertify.success('Your changes were successfully saved.');
+      })
+      .catch(function (err) {
+        console.error(err);
+        alertify.error('Were not able to update post :(');
+      })
+    };
   };
 
   $rootScope.$on('search for post', function (e, data) {

@@ -1,10 +1,21 @@
 <% include ./partials/head-light.ejs %>
 <% include ./partials/header.ejs %>
 
+<script type="text/javascript">
+  var e = {
+    user: <%- JSON.stringify(user) %>,
+    lists: <%- JSON.stringify(lists) %>,
+    owner: <%- JSON.stringify(owner) %>,
+    ownerLists: <%- JSON.stringify(ownerLists) %>,
+    posts: <%- JSON.stringify(posts) %>
+  };
+  console.warn(e);
+</script>
+
 <body class="with-menu">
   <% include ./partials/menu.ejs %>
 
-  <section class="lists discover" ng-controller="DiscoverController" ng-init="init(<%= JSON.stringify(user) %>, <%= JSON.stringify(posts) %>)">
+  <section class="lists discover" ng-controller="DiscoverController" ng-init="init()">
 
     <section class="post" ng-repeat="post in posts" ng-cloak>
       <div class="body" ng-click="openPost(post)" search-post>
@@ -19,11 +30,14 @@
         </a>
 
 
-        <a class="list-name" href='/list/{{post.parentList._id}}/{{post.owner._id}}'># {{post.parentList.title}}</a>
+        <a class="list-name"
+          ng-if="post.parentList && post.parentList._id"
+          href='/list/{{post.parentList._id}}/{{post.owner._id}}'># {{post.parentList.title}}</a>
       </div>
     </section>
 
     <% include ./partials/post-modal.ejs %>
+    <% include ./partials/list-modal.ejs %>
   </section>
 
 <% include ./partials/footer.ejs %>

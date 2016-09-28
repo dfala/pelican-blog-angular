@@ -13,7 +13,7 @@
   </div>
 
   <div class="lists" ng-show="!activeList">
-    <div ng-repeat="list in lists | filter:query">
+    <div ng-repeat="list in modalLists | filter:query">
       <div class="list" ng-click="activateList(list)">
         <span class="locked-info ion-ios-locked-outline"
               ng-if="list.isPrivate"
