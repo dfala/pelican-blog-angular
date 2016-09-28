@@ -1,7 +1,10 @@
-<% include ./partials/head-light.ejs %>
-<% include ./partials/header.ejs %>
+<!DOCTYPE html>
+  <% include ./partials/head-light.ejs %>
+  <% include ./partials/header.ejs %>
 
 <script type="text/javascript">
+  document.getElementById('html').className = 'discover';
+  
   var p = {
     user: <%- JSON.stringify(user) %>,
     lists: <%- JSON.stringify(lists) %>,
