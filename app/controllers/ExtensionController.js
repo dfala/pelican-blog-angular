@@ -28,7 +28,7 @@ angular.module('Pelican')
       $scope.activateList(response.data);
 
       $scope.newList = null;
-      $scope.lists.unshift(response.data);
+      $scope.modalLists.unshift(response.data);
     })
     .catch(function (err) {
       console.error(err);
