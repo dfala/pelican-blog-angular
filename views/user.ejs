@@ -4,9 +4,11 @@
 <body class="with-menu">
   <% include ./partials/menu.ejs %>
   <section class="lists user" ng-controller="ListsController" ng-init="init(<%= JSON.stringify(user) %>, <%= JSON.stringify(lists) %>, <%= JSON.stringify(owner) %>, <%= JSON.stringify(ownerLists) %>)" ng-cloak>
-
+    <div class="nothing-here" ng-if="owner && user && (!lists || !lists.length) && (user._id !== owner._id)">
+      <h1>{{owner.givenName}} doesn't have <br>any posts yet.</h1>
+    </div>
     <div class="list" id="list-{{list._id}}"
-         ng-repeat="list in lists"
+         ng-repeat="list in lists" ng-if="lists"
          ng-class="{ 'private-list': list.isPrivate }">
       <h2>
         <span>

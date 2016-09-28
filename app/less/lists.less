@@ -7,18 +7,38 @@ section.lists {
 
   &.user {
     width: inherit;
-    margin: 60px 0 40px 0;
-    padding: 20px 0;
+    margin: 60px 0 0 0;
+    padding: 0;
   }
 
   &.discover {
     margin: 60px 0 40px 0;
   }
 
+  .nothing-here {
+    // background: linear-gradient(150deg,#f0fff6 0,#e4e0fb 94%);
+    width: 100%;
+    height: calc(~"100vh - 60px");
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    h1 {
+      @size: 4em;
+      font-size: @size;
+      line-height: @size/3;
+      text-align: center;
+      // text-transform: uppercase;
+      color: @dark-gray;
+      font-weight: 100;
+    }
+  }
+
   .list {
     padding: 10px 20px;
     &.private-list {
-      background-color: @almost-white;
+      // background-color: @almost-white;
+      background-color: rgba(0, 0, 0, 0.04);
     }
 
     &.active-list {
