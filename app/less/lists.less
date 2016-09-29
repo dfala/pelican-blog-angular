@@ -35,15 +35,17 @@ section.lists {
   }
 
   .list {
-    padding: 10px 20px;
+    @list-padding: 40px;
+    padding: 10px @list-padding;
     &.private-list {
       // background-color: @almost-white;
       background-color: rgba(0, 0, 0, 0.04);
     }
 
     &.active-list {
-      border-left: 5px solid @blue;
-      padding-left: 15px;
+      @border-width: 5px;
+      border-left: @border-width solid @blue;
+      padding-left: @list-padding - @border-width;
     }
 
     .right-icons {

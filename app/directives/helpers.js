@@ -80,7 +80,7 @@ angular.module('Pelican')
 
         $('html, body').animate({
           scrollTop: listElem.offset().top - 60
-        }, 500);
+        }, 450);
       });
     }
   }
