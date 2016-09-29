@@ -60,14 +60,28 @@ db.once('open', function (callback) {
 //     console.log('Server listening on port: ' + portNum, 'in ' + keys.env + ' mode.');
 // });
 
-var httpServer = http.createServer(app);
-httpServer.listen(portNum, function () {
-  console.log('HTTP server listening on port: ' + portNum, 'in ' + keys.env + ' mode.');
-});
 
-if (keys.env !== 'DEVELOPMENT') {
+
+
+
+if (keys.env === 'DEVELOPMENT') {
+
+  var httpServer = http.createServer(app);
+  httpServer.listen(portNum, function () {
+    console.log('HTTP server listening on port: ' + portNum, 'in ' + keys.env + ' mode.');
+  });
+
+} else {
+
+  var httpServer = express.createServer();
+  httpServer.get('*', function (req, res) {
+      res.redirect('https://thepelicanblog.com' + req.url)
+  })
+  httpServer.listen(8080);
+  
   var httpsServer = https.createServer(credentials, app);
   httpsServer.listen(443, function () {
     console.log('HTTPS server listening on port: 443 in ' + keys.env + ' mode.');
   });
+
 }
