@@ -73,10 +73,11 @@ if (keys.env === 'DEVELOPMENT') {
 
 } else {
 
-  var httpServer = express.createServer();
+  var httpServer = http.createServer(app);
   httpServer.get('*', function (req, res) {
-      res.redirect('https://thepelicanblog.com' + req.url)
-  })
+    if (!req.secure)
+      res.redirect('https://thepelicanblog.com' + req.url) 
+ })
   httpServer.listen(8080);
   
   var httpsServer = https.createServer(credentials, app);
