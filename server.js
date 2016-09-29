@@ -14,9 +14,9 @@ var express     = require('express'),
 if (keys.env !== "DEVELOPMENT") {
   var https       = require('https'),
       fs          = require('fs'),
-      privateKey  = fs.readFileSync('./config/server.key', 'utf8'),
+      privateKey  = fs.readFileSync('./config/server.enc.key', 'utf8'),
       certificate = fs.readFileSync('./config/server.crt', 'utf8'),
-      credentials = {key: privateKey, cert: certificate};
+      credentials = {key: privateKey, cert: certificate, passphrase: require('./config/keys.js').certKey};
 };
 
 // App definition
