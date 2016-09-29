@@ -1,3 +1,5 @@
 node_modules/
 .DS_Store
 config/keys.js
+config/server.key
+config/server.crt

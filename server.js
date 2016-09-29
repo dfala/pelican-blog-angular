@@ -11,6 +11,13 @@ var express     = require('express'),
     keys        = require('./config/keys.js').connections,
     http        = require('http');
 
+if (keys.env !== "DEVELOPMENT") {
+  var https       = require('https'),
+      privateKey  = fs.readFileSync('./config/server.key', 'utf8'),
+      certificate = fs.readFileSync('./config/server.crt', 'utf8'),
+      credentials = {key: privateKey, cert: certificate};
+};
+
 // App definition
 var app = express();
 app.set('view engine', 'ejs');
@@ -36,7 +43,7 @@ require('./controllers/Routes.js')(app, passport);
 require('./controllers/API.js')(app);
 
 // Connections
-if (keys.env == 'DEVELOPMENT') { var portNum = 3000; } else { var portNum = 80; }
+if (keys.env === 'DEVELOPMENT') { var portNum = 3000; } else { var portNum = 80; }
 
 var mongooseUri = keys.db;
 mongoose.connect(mongooseUri);
@@ -48,6 +55,18 @@ db.once('open', function (callback) {
 });
 
 
-var server = app.listen(portNum, function () {
-    console.log('Server listening on port: ' + portNum, 'in ' + keys.env + ' mode.');
+// var server = app.listen(portNum, function () {
+//     console.log('Server listening on port: ' + portNum, 'in ' + keys.env + ' mode.');
+// });
+
+var httpServer = http.createServer(app);
+httpServer.listen(portNum, function () {
+  console.log('HTTP server listening on port: ' + portNum, 'in ' + keys.env + ' mode.');
 });
+
+if (keys.env !== 'DEVELOPMENT') {
+  var httpsServer = https.createServer(credentials, app);
+  httpsServer.listen(443, function () {
+    console.log('HTTPS server listening on port: 443 in ' + keys.env + ' mode.');
+  });
+}
