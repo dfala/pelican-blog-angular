@@ -19,6 +19,11 @@ angular.module('Pelican')
       'overflow': 'hidden',
       'marginRight': '15px'
     });
+
+    calq.action.track(
+      "consumed post",
+      { "postId": post._id }
+    );
   };
 
   $scope.closePostModal = function () {

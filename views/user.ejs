@@ -70,7 +70,7 @@
         <div class="body">
           <p class="post-title">{{post.title}}</p>
           <div class="space" ng-if="!post.link && !post.text"></div>
-          <a ng-href="{{post.link}}" target="_blank"
+          <a open-link="{{post}}"
              ng-click="$event.stopPropagation();"
              ng-if="post.link">{{post.link}}</a>
           <p class="text" ng-if="post.text">{{post.text}}</p>

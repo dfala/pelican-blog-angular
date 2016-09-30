@@ -10,6 +10,24 @@ angular.module('Pelican')
   }
 }])
 
+.directive('openLink', [function () {
+  return {
+    restrict: 'A',
+    link: function (scope, elem, attr) {
+      elem.bind('click', function (e) {
+        if (attr.openLink) {
+          var post = JSON.parse(attr.openLink);
+          calq.action.track(
+            "consumed post",
+            { "postId": post._id }
+          );
+          window.open(post.link, '_blank');
+        }
+      })
+    }
+  }
+}])
+
 .directive('udpateUrl', [function () {
   return {
     restrict: 'A',

@@ -31,6 +31,11 @@ angular.module('Pelican')
       'overflow': 'hidden',
       'marginRight': '15px'
     });
+
+    calq.action.track(
+      "consumed post",
+      { "postId": post._id }
+    );
   };
 
   $scope.closePostModal = function () {
@@ -203,7 +208,7 @@ angular.module('Pelican')
 
   $rootScope.$on('new post created', function (e, newPost) {
     if (newPost.preventEmit) return;
-    
+
     if (!$scope.deactivateWelcome) $scope.deactivateWelcome = true;
     if (newPost.fromNewList) return;
     $scope.lists = $scope.lists.map(function (list) {
