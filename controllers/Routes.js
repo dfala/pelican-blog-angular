@@ -11,20 +11,31 @@ module.exports = function (app, passport) {
   app.get('/list/:listId/:userId', Pages.listView);
   app.get('/bookmark', Pages.bookmark);
 
-  // AUTH
-  app.get('/auth/facebook', passport.authenticate('facebook', { scope : 'email' }));
+  // AUTH --> home
+  app.get('/auth/facebook', passport.authenticate('homeLogin', { scope : 'email' }));
 
-  app.get('/auth/facebook/callback', passport.authenticate('facebook', {
+  app.get('/auth/facebook/callback', passport.authenticate('homeLogin', {
       successRedirect : '/user/',
       failureRedirect : '/failed'
     })
   );
 
+  // AUTH --> bookmark
+  app.get('/auth/alternate-facebook', passport.authenticate('extensionLogin', { scope : 'email' }));
+
+  app.get('/auth/alternate-facebook/bookmark', passport.authenticate('extensionLogin', {
+      successRedirect : '/bookmark',
+      failureRedirect : '/failed'
+    })
+  );
+
+  // LOG OUT
   app.get('/logout', function(req, res) {
     req.logout();
     res.redirect('/');
   });
 
+  // 404 NOT FOUND
   app.use(function(req, res, next) {
     res.status(404);
 
