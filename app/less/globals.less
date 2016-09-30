@@ -19,6 +19,47 @@ body.with-menu {
   margin-left: @menu-width;
 }
 
+body.not-found {
+  @head-height: 60px;
+  background: linear-gradient(150deg,#f3fbf6 25%,#edebf9 94%);
+
+  h1 {
+    text-align: center;
+  }
+
+  button {
+    margin-top: 20px;
+  }
+
+  .navigate {
+    height: @head-height;
+    background-color: #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0px 0px 5px 0px #000;//@strong-shadow;
+
+    a {
+      color: #fff;
+      font-size: 20px;
+      font-weight: 100;
+      text-transform: uppercase;
+
+      &:hover {
+        color: @gray;
+      }
+    }
+  }
+
+  .flex {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    height: calc(~"100vh - "@head-height);
+  }
+}
+
 a {
   text-decoration: none;
   color: @blue;

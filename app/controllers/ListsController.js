@@ -202,6 +202,8 @@ angular.module('Pelican')
   };
 
   $rootScope.$on('new post created', function (e, newPost) {
+    if (newPost.preventEmit) return;
+    
     if (!$scope.deactivateWelcome) $scope.deactivateWelcome = true;
     if (newPost.fromNewList) return;
     $scope.lists = $scope.lists.map(function (list) {
@@ -211,6 +213,7 @@ angular.module('Pelican')
   });
 
   $rootScope.$on('new list created', function (e, list) {
+    if (newList.preventEmit) return;
     $scope.lists.push(list);
   });
 

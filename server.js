@@ -40,8 +40,8 @@ app.use(express.static(path.join(__dirname, 'app')));
 app.use(favicon(path.join(__dirname,'app','css','favicon.ico')));
 
 
-require('./controllers/Routes.js')(app, passport);
 require('./controllers/API.js')(app);
+require('./controllers/Routes.js')(app, passport);
 
 // Connections
 if (keys.env === 'DEVELOPMENT') { var portNum = 3000; } else { var portNum = 80; }

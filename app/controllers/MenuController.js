@@ -57,7 +57,6 @@ angular.module('Pelican')
   });
 
   $rootScope.$on('new list created', function (e, newList) {
-    if (newList.preventEmit) return;
     $scope.lists.push(newList);
   });
 
@@ -88,7 +87,6 @@ angular.module('Pelican')
   });
 
   $rootScope.$on('new post created', function (e, newPost) {
-    if (newPost.preventEmit) return;
     $scope.lists = $scope.lists.map(function (list) {
       if (list._id === newPost.parentList) list.posts.unshift(newPost);
       return list;

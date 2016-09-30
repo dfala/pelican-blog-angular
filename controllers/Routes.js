@@ -6,6 +6,7 @@ module.exports = function (app, passport) {
   app.get('/', Pages.index);
   app.get('/home', Pages.home);
   app.get('/discover', Pages.discover);
+  app.get('/discovers', Pages.discover);
   app.get('/user/:userId?', UserCtrl.userView);
   app.get('/list/:listId/:userId', Pages.listView);
   app.get('/bookmark', Pages.bookmark);
@@ -23,6 +24,24 @@ module.exports = function (app, passport) {
     req.logout();
     res.redirect('/');
   });
+
+  app.use(function(req, res, next) {
+    res.status(404);
+
+    // respond with html page
+    if (req.accepts('html')) {
+      return res.render('404', { url: req.url });
+    }
+
+    // respond with json
+    if (req.accepts('json')) {
+      return res.send({ error: 'Not found' });
+    }
+
+    // default to plain-text. send()
+    res.type('txt').send('Not found');
+  });
+
 };
 
 function isLoggedIn(req, res, next) {

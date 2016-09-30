@@ -6,25 +6,12 @@ var Routes   = module.exports = {},
 
 Routes.index = function (req, res) {
   if (req.user && req.user._id) return res.redirect('/user/' + req.user._id);
-  return res.redirect('/home');
+  return res.render('index'); //res.redirect('/home');
 };
 
 Routes.home = function (req, res) {
-  List.find({owner: req.user && req.user._id || null})
-  .then(function(lists) {
-    Post.find({isPrivate: false})
-    .sort('-created_date')
-    .limit(20)
-    .populate({ path: 'owner', select: 'displayName _id lists image' })
-    .exec(function (err, result) {
-      res.render('index', {
-        user: req.user || null,
-        owner: null,
-        lists: lists || [],
-        posts: result || []
-      })
-    })
-  })
+  // TODO: Consider deprecating this route
+  return res.render('index');
 };
 
 Routes.discover = function (req, res) {
@@ -70,7 +57,10 @@ Routes.bookmark = function (req, res) {
   List.find({owner: req.user._id})
   .populate({path: 'posts', options: { sort: { 'created_date': -1 } }})
   .exec(function(error, result) {
-    if (error) return res.status(400).json(err);
+    if (error) {
+      console.log(error)
+      return res.redirect('/home');
+    }
 
     var passedUser = {
       _id: req.user._id,
