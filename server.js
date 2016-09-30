@@ -19,6 +19,8 @@ if (keys.env !== "DEVELOPMENT") {
       credentials = {key: privateKey, cert: certificate, passphrase: require('./config/keys.js').certKey};
 };
 
+process.env.NODE_ENV = require('./config/keys.js').env;
+
 // App definition
 var app = express();
 app.set('view engine', 'ejs');
