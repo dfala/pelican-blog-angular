@@ -5,9 +5,11 @@ angular.module('Pelican')
 
   $scope.isListModalOpen = false;
   $scope.modalLists = p.lists || [];
+  var preventEmit = false;
 
   $rootScope.$on('open compose modal', function (e, data) {
     $scope.isListModalOpen = true;
+    if (data.preventEmit) preventEmit = true;
     if (data.activeList) $scope.activeList = data.activeList;
   });
 
@@ -37,6 +39,7 @@ angular.module('Pelican')
       alertify.success('New list created!')
       // $scope.activateList(response.data);
       response.data.fromNewList = true;
+      response.data.preventEmit = preventEmit;
       $scope.activateList(response.data);
       $rootScope.$emit('new list created', response.data);
       $scope.newList = null;

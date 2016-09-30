@@ -107,8 +107,8 @@ section.menu {
         overflow: hidden;
         display: flex;
 
-        .icon {
-          margin-top: 2px;
+        .icon-discover, .icon-new {
+          margin-top: 3px;
         }
       }
 
@@ -142,18 +142,24 @@ section.menu {
 
       &.active {
         background-color: darken(@dim-blue, 10%);
-
-        &:hover {
-          hr {
-            border-bottom: 1px solid lighten(@dim-blue, 5%);
-          }
-        }
       }
 
       &.discover {
+        border-bottom: 1px solid lighten(@dim-blue, 5%);
 
-        .p-wrapper .icon {
+        .p-wrapper .icon-discover {
           color: #0AFFED;
+        }
+      }
+
+      &.new-list {
+
+        border-top: 1px solid lighten(@dim-blue, 5%);
+
+        .p-wrapper {
+          .icon-new {
+            color: #0aff21;
+          }
         }
 
         &.active {
@@ -171,6 +177,10 @@ section.menu {
             display: none;
           }
         }
+      }
+
+      &.no-border {
+        border-top: 0;
       }
     }
 

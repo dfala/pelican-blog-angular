@@ -25,10 +25,9 @@
     <% if (user && user._id) { %>
     <div class="list menu-list discover" identify-location="/discover">
       <div class="p-wrapper" send-to="/discover">
-        <span class="icon ion-ios-navigate-outline hashtag"></span>
+        <span class="icon-discover ion-ios-navigate-outline hashtag"></span>
         <p class="p-title">discover</p>
       </div>
-      <hr />
     </div>
     <% } %>
 
@@ -52,6 +51,20 @@
         </div>
       </div>
     </div>
+
+    <% if (user && user._id) { %>
+    <div class="list menu-list new-list"
+        ng-click="openComposeModal()"
+        ng-class="{ 'no-border': !lists }" ng-cloak>
+      <div class="p-wrapper">
+        <span class="icon-new hashtag ion-ios-plus-outline"></span>
+        <p>
+          add new list
+        </p>
+      </div>
+    </div>
+    <% } %>
+
   </div>
 
   <% if (owner) { %>

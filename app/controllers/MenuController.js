@@ -41,6 +41,17 @@ angular.module('Pelican')
     })
   };
 
+  $scope.openComposeModal = function (list) {
+    var data = {
+      user: $scope.user,
+      lists: $scope.lists,
+      focusId: '#create-list-name',
+      preventEmit: true
+    };
+
+    $rootScope.$emit('open compose modal', data)
+  };
+
   $rootScope.$on('post edited', function (e, editedPost) {
     $scope.lists[editedPost.listIndex].posts[editedPost.postIndex] = editedPost;
   });
@@ -50,6 +61,7 @@ angular.module('Pelican')
   });
 
   $rootScope.$on('new list created', function (e, newList) {
+    if (newList.preventEmit) return;
     $scope.lists.push(newList);
   });
 
