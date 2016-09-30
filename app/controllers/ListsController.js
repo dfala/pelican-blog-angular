@@ -193,7 +193,10 @@ angular.module('Pelican')
       focusId: '#search-list'
     };
 
-    if (list) data.activeList = list;
+    if (list) {
+      data.preventEmit = true;
+      data.activeList = list;
+    }
 
     $rootScope.$emit('open compose modal', data)
   };

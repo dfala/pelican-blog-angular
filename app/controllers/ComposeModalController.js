@@ -9,7 +9,11 @@ angular.module('Pelican')
 
   $rootScope.$on('open compose modal', function (e, data) {
     $scope.isListModalOpen = true;
-    if (data.preventEmit) preventEmit = true;
+    if (data.preventEmit) {
+      preventEmit = true;
+    } else {
+      preventEmit = false;
+    }
     if (data.activeList) $scope.activeList = data.activeList;
   });
 
@@ -67,6 +71,7 @@ angular.module('Pelican')
     apiService.addPost(newPost, $scope.activeList)
     .then(function (response) {
       response.data.owner = $scope.user;
+      response.data.preventEmit = preventEmit;
       if ($scope.activeList.fromNewList) response.data.fromNewList = true;
       $rootScope.$emit('new post created', response.data);
 
