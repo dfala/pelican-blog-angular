@@ -11,11 +11,11 @@ module.exports = function (app) {
   app.put('/api/list/rename/:listId', List.renameList);
 
   //POST
-  app.get('/api/post/:postId', Post.get);
+  app.get('/api/posts', App.getPosts);
+  app.get('/api/post/:postId', App.get);
   app.post('/api/post', Post.create);
   app.put('/api/post/:postId', Post.update);
   app.delete('/api/post/:listId/:postId', Post.delete);
-  app.get('/api/posts', App.getPosts);
 
   // OTHER
   app.post('/api/site-header', Request.getHeader);

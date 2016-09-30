@@ -3,16 +3,6 @@ var Exports  = module.exports = {},
     Post     = require('../models/PostModel'),
     ListCtrl = require('./ListController');
 
-Exports.get = function (req, res) {
-  Post.findById(req.params.postId)
-  .populate({ path: 'owner', select: 'displayName _id image' })
-  .populate({ path: 'parentList', select: 'title _id' })
-  .exec(function (err, post) {
-    if (err) return res.status(500).send(err);
-    return res.json(post);
-  })
-};
-
 Exports.create = function (req, res) {
   var newPost = new Post(req.body);
   newPost.owner = req.user._id;
