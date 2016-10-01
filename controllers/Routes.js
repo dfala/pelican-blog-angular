@@ -29,6 +29,19 @@ module.exports = function (app, passport) {
     })
   );
 
+  // AUTH --> app
+  app.get('/auth/app-facebook', passport.authenticate('appLogin', { scope : 'email' }));
+
+  app.get('/auth/app-facebook/app', function (req, res, next) {
+    passport.authenticate('appLogin', function (err, user) {
+      if (err) return res.status(500).send(err);
+      req.logIn(user, function (err) {
+        if (err) { return console.log(err) }
+        res.end();
+      });
+    })(req, res, next);
+  });
+
   // LOG OUT
   app.get('/logout', function(req, res) {
     req.logout();

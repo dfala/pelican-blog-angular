@@ -50,6 +50,18 @@ module.exports = function(passport) {
       performAuth(token, refreshToken, profile, done);
     }));
 
+    passport.use('appLogin', new FacebookStrategy({
+        // pull in our app id and secret from our auth.js file
+        clientID        : Keys.facebookAuth.clientID,
+        clientSecret    : Keys.facebookAuth.clientSecret,
+        callbackURL     : Keys.facebookAuth.appCallbackUrl,
+        profileFields   : ['email', 'displayName', 'name', 'picture']
+    },
+    // facebook will send back the token and profile
+    function(token, refreshToken, profile, done) {
+      performAuth(token, refreshToken, profile, done);
+    }));
+
 };
 
 function performAuth (token, refreshToken, profile, done) {
