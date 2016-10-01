@@ -5,6 +5,8 @@
     <title>The Pelican Blog</title>
 
     <link rel="stylesheet" type="text/css" href="/css/home.min.css">
+    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" media="screen" title="no title" charset="utf-8">
+
     <% include ./partials/analytics.ejs %>
   </head>
   <body>
@@ -17,35 +19,36 @@
           <a href="/auth/facebook"><button type="button" class="login-btn">Login</button></a>
         </div>
       </div>
+    </div>
+    <div class="content">
+      <h1>The best bookmarking tool <br>on planet earth.</h1>
       <div class="main">
-<!-- ////////////////////////////////////////////////////////////////////////////////////////// -->
-        <div class="right">
-          <img src="/css/home-main.png" alt="" />
-        </div>
-<!-- ////////////////////////////////////////////////////////////////////////////////////////// -->
         <div class="left">
-          <div class="title">
-            <h1>The best bookmarking tool on planet earth.</h1>
-          </div>
           <div class="bullets">
             <div class="bullet" id="b1">
-              <div class="circle"></div>
+              <div class="circle">
+                <span class="icon ion-ios-bookmarks-outline"></span>
+              </div>
               <div class="text">
                 <p>
-                  Save links with our chrome extension, or directly inside of Pelican
+                  Save and find links and thoughts
                 </p>
               </div>
             </div>
             <div class="bullet" id="b2">
-              <div class="circle"></div>
+              <div class="circle">
+                <span class="icon ion-ios-paper-outline"></span>
+              </div>
               <div class="text">
                 <p>
-                  Organize links into lists
+                  Organize links into lists (buckets)
                 </p>
               </div>
             </div>
             <div class="bullet" id="b3">
-              <div class="circle"></div>
+              <div class="circle">
+                <span class="icon ion-ios-upload-outline"></span>
+              </div>
               <div class="text">
                 <p>
                   Share links with friends
@@ -59,6 +62,13 @@
             </div>
           </div>
         </div>
+
+<!-- ////////////////////////////////////////////////////////////////////////////////////////// -->
+        <div class="right">
+          <img src="/css/home-main.png" alt="" />
+        </div>
+<!-- ////////////////////////////////////////////////////////////////////////////////////////// -->
+
       </div>
     </div>
   </body>

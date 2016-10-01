@@ -1,0 +1,156 @@
+@import "../variables.less";
+@import "../animate.less";
+@import "../normalize.less";
+@import "../fonts.less";
+
+body {
+  background: linear-gradient(150deg, #a6ffcb 0%, #34e3ff 0%, #53f 94%);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+.nav {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.33);
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.content {
+  margin-left: 100px;
+  max-width: 1000px;
+  margin: auto;
+}
+
+.logo {
+  color: white;
+}
+
+.login-btn {
+  color: white;
+  background: none;
+  border: 1px solid white;
+  border-radius: 3px;
+  padding: 6px;
+  font-weight: 100;
+  font-size: 12px;
+}
+
+.login-btn:hover {
+  color: black;
+  background-color: white;
+  cursor: pointer;
+}
+
+.main {
+  display: flex;
+  justify-content: space-between;
+}
+
+.left {
+
+}
+
+.right {
+  margin-left: 100px;
+  margin-top: -60px;
+
+  img {
+    max-width: 1000px;
+  }
+}
+
+h1 {
+  margin-top: 50px;
+  text-transform: uppercase;
+  max-width: 600px;
+  color: #FFFBFA;
+  background-color: rgba(46, 54, 70, 0.48);//#2e3646;
+  padding: 20px;
+  font-weight: 300;
+}
+
+.bullets  {
+  margin-top: 20px;
+  margin-bottom: 40px;
+}
+
+.bullets p {
+  max-width: 500px;
+}
+
+.bullet {
+  display: flex;
+  align-items: center;
+  /*margin-top: 50px;*/
+}
+
+#b2 {
+  margin-left: 25px;
+}
+
+#b3 {
+  margin-left: 50px;
+}
+
+.circle {
+  @c-size: 30px;
+  // border-radius: 100%;
+  // background-color: rgba(255, 255, 255, 0.4);
+  // height: @c-size;
+  // width: @c-size;
+  // display: flex;
+  // justify-content: center;
+  // align-items: center;
+  // border: 1px solid rgba(255, 255, 255, 0.4);
+
+  .icon {
+    font-size: @c-size;
+    color: rgba(255, 255, 255, 0.59);//#6a5a75;
+  }
+}
+
+.text {
+  margin-left: 20px;
+  color: #fff;
+  p {
+    font-size: 1.2em;
+  }
+}
+
+.signUp {
+  margin-left: 100px;
+}
+
+.button-border {
+  background: linear-gradient(150deg,#53f 15%,#34e3ff 70%,#a6ffcb 94%);
+  width: 250px;
+  height: 50px;
+  border-radius: 5px;
+  box-shadow: 0px 30px 100px black;
+}
+
+.sign-up-btn {
+  font-size: 1em;
+  color: black;
+  background: white;
+  border: none;
+  border-radius: @br;
+  width: 244px;
+  height: 44px;
+  margin: 3px;
+  cursor: pointer;
+}
+
+.sign-up-btn:hover {
+  transition: 0.2s ease;
+  /*background: none;*/
+  color: white;
+  background-color: #000;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
