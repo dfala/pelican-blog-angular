@@ -218,7 +218,7 @@ angular.module('Pelican')
   });
 
   $rootScope.$on('new list created', function (e, list) {
-    if (newList.preventEmit) return;
+    if (list.preventEmit) return;
     $scope.lists.push(list);
   });
 

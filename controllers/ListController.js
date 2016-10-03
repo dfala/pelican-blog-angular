@@ -71,10 +71,20 @@ Exports.deleteList = function (req, res) {
 
   var p1 = List.find({ _id: listId }).remove();
   var p2 = Post.find({ parentList: listId}).remove();
+  var p3 = new Promise(function (resolve, reject) {
+    User.findOneAndUpdate({
+       _id: req.user._id},
+       { $pull: { lists: listId } },
+       function(err, data) {
 
-  Promise.all([p1, p2])
+      if (err) return reject(err);
+      return resolve(data);
+    });
+  });
+
+  Promise.all([p1, p2, p3])
   .then(function () {
-    res.json('List and posts deleted');
+    res.json('List and posts deleted. User updated.');
   })
   .catch(function (err) {
     return res.status(500).json(err);
