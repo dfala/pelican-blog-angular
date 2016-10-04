@@ -121,7 +121,8 @@ Routes.listView = function (req, res) {
       lists: results[1] && results[1].lists || null,
       list: results[0],
       owner: results[2] && results[2].user || null,
-      ownerLists: results[2] && results[2].lists || null
+      ownerLists: results[2] && results[2].lists || null,
+      training: null
     });
   })
   .catch(function (err) {

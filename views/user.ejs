@@ -6,11 +6,16 @@
     user: <%- JSON.stringify(user) %>,
     lists: <%- JSON.stringify(lists) %>,
     owner: <%- JSON.stringify(owner) %>,
-    ownerLists: <%- JSON.stringify(ownerLists) %>
+    ownerLists: <%- JSON.stringify(ownerLists) %>,
+    training: <%- JSON.stringify(training) %>
   };
 </script>
 
 <body class="with-menu">
+  <% if (training) { %>
+    <% include ./partials/new-user-onboarding.ejs %>
+  <% } %>
+
   <% include ./partials/menu.ejs %>
   <section class="lists user" ng-controller="ListsController" ng-init="init()" ng-cloak>
     <div class="nothing-here" ng-if="owner && user && (!lists || !lists.length) && (user._id !== owner._id)">

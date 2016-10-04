@@ -4,7 +4,13 @@ angular.module('Pelican')
     restrict: 'A',
     link: function (scope, elem, attr) {
       elem.bind('click', function (e) {
-        if (attr.sendTo) window.location = attr.sendTo;
+        if (attr.sendTo) {
+          if (attr.newTab) {
+            window.open(attr.sendTo, '_blank');
+          } else {
+            window.location = attr.sendTo;
+          }
+        }
       })
     }
   }

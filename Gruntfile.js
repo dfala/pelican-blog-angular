@@ -3,24 +3,12 @@ module.exports = function(grunt) {
         less: {
             development: {
                 options: {
-                    paths: ['./app/less'],
+                    paths: ['./app/less', './app/*/less'],
                     yuicompress: true,
                     compress: true
                 },
                 files: {
                     "./app/css/style.css": "./app/less/style.less"
-                }
-            }
-        },
-        less: {
-            development: {
-                options: {
-                    paths: ['./app/home/less'],
-                    yuicompress: true,
-                    compress: true
-                },
-                files: {
-                    "./app/css/home.css": "./app/less/home/home.less"
                 }
             }
         },

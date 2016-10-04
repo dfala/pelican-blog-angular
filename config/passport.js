@@ -7,7 +7,8 @@ var LocalStrategy    = require('passport-local').Strategy,
     ImageController  = require('../controllers/ImageController');
 
 // load up the user model
-var User       = require('../models/UserModel');
+var User       = require('../models/UserModel'),
+    Training   = require('../models/TrainingModel');
 
 module.exports = function(passport) {
 
@@ -94,10 +95,18 @@ function performAuth (token, refreshToken, profile, done) {
               newUser.save(function(err, user) {
                   if (err) throw err;
 
-                  ImageController.downloadImage(profile.photos && profile.photos[0].value, user._id, 'jpg')
-
-                  // if successful, return the new user
-                  return done(null, newUser);
+                  ImageController.downloadImage(profile.photos && profile.photos[0].value, user._id, 'jpg');
+                  new Promise(function (resolve, reject) {
+                    var newTraining = new Training({ userId: user._id});
+                    newTraining.save(function (err, result) {
+                      if (err) return reject(err);
+                      return resolve(result);
+                    })
+                  })
+                  .then(function () {
+                    // if successful at creating user, return the new user
+                    return done(null, newUser);
+                  })
               });
           }
 
