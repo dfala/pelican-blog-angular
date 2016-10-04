@@ -6,10 +6,10 @@ angular.module('Pelican')
   //TODO: This needs refactoring -- just create one controller for compose.ejs
 
   //INIT
-  $scope.init = function (user, lists) {
-    if (!user) return ($scope.loginMessage = true);
-    if (user)   $scope.user   = user;
-    if (lists)  $scope.modalLists  = lists;
+  $scope.init = function () {
+    if (!p.user) return ($scope.loginMessage = true);
+    if (p.user)   $scope.user   = p.user;
+    if (p.lists)  $scope.modalLists  = p.lists;
     loadPostData();
   };
 

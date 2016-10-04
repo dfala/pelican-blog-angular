@@ -1,8 +1,16 @@
 <% include ./partials/head.ejs %>
 
+<script type="text/javascript">
+  var p = {
+    user: <%- JSON.stringify(user) %>,
+    lists: <%- JSON.stringify(lists) %>
+  };
+</script>
+
+
   <section class="lists extension" ng-cloak
       ng-controller="ExtensionController"
-      ng-init="init(<%= JSON.stringify(user) %>, <%= JSON.stringify(lists) %>)">
+      ng-init="init()">
     <% include ./partials/compose.ejs %>
 
     <div class="extension-message" ng-if="loginMessage">
