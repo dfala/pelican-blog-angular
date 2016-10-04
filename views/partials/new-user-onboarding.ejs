@@ -1,18 +1,74 @@
 <section class="onboard modal-container" ng-init="init()" ng-controller="OnboardController">
   <div class="modal-backdrop"></div>
-  <div class="modal">
-    <div class="top">
-      <img src="/css/onboard1.png" alt="Download the pelican chrome extension." />
+
+  <button class="left navigate" ng-click="previous()"
+      ng-class="{'hide': active < 2}" ng-cloak>
+    <span class="icon ion-ios-arrow-left"></span>
+  </button>
+
+  <div class="modal" ng-cloak>
+    <!-- MODAL ONE -->
+    <div class="wrapper" ng-show="active === 1">
+      <div class="top">
+        <img src="/css/onboard1.png" alt="Download the pelican chrome extension." />
+      </div>
+
+      <div class="bottom">
+        <h2>
+          Organize your favorite
+          <br>
+          online content into lists
+        </h2>
+      </div>
     </div>
 
-    <div class="bottom">
-      <h2>
-        Download our Chrome extension
-        <br>
-        and bookmark on the fly!
-      </h2>
+    <!-- MODAL TWO -->
+    <div class="wrapper" ng-show="active === 2">
+      <div class="top">
+        <img src="/css/onboard1.png" alt="Download the pelican chrome extension." />
+      </div>
 
-      <button class="cta" send-to="https://chrome.google.com/webstore/detail/pelican-blog/fifejldalccfblmcopgckhdjpjmlkgga" new-tab="true">Download Now</button>
+      <div class="bottom">
+        <h2>
+          You may add a title or
+          <br>
+          add any content to your fav' links
+        </h2>
+      </div>
+    </div>
+
+    <!-- MODAL THREE -->
+    <div class="wrapper" ng-show="active === 3">
+      <div class="top">
+        <img src="/css/onboard1.png" alt="Download the pelican chrome extension." />
+      </div>
+
+      <div class="bottom">
+        <h2>
+          Download our Chrome extension
+          <br>
+          and bookmark on the fly!
+        </h2>
+
+        <button class="cta" send-to="https://chrome.google.com/webstore/detail/pelican-blog/fifejldalccfblmcopgckhdjpjmlkgga" new-tab="true">Download Now</button>
+        <a>skip for now</a>
+      </div>
+    </div>
+
+    <!-- END MODALS -->
+
+    <div class="map">
+      <div class="circle" ng-click="goTo(1)"
+          ng-class="{'active': active === 1}"></div>
+      <div class="circle" ng-click="goTo(2)"
+          ng-class="{'active': active === 2}"></div>
+      <div class="circle" ng-click="goTo(3)"
+          ng-class="{'active': active === 3}"></div>
     </div>
   </div>
+
+  <button class="right navigate" ng-click="next()"
+      ng-class="{'hide': active > 2}" ng-cloak>
+    <span class="icon ion-ios-arrow-right"></span>
+  </button>
 </section>
