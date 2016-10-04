@@ -12,6 +12,8 @@
 </script>
 
 <body class="with-menu">
+  <% include ./partials/tag-manager.ejs %>
+  
   <% if (training && !training.newUser) { %>
     <% include ./partials/new-user-onboarding.ejs %>
   <% } %>
