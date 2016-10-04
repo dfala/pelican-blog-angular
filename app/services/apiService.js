@@ -4,6 +4,11 @@ angular.module('Pelican')
   var service = {};
 
   service.addList = function (listTitle, isPrivate) {
+    calq.action.track(
+      "created list",
+      { "userId": p.user._id }
+    );
+
     return $http.post('/api/list', {
       title: listTitle,
       isPrivate: isPrivate
@@ -19,6 +24,11 @@ angular.module('Pelican')
     } else {
       data.isPrivate = false;
     }
+
+    calq.action.track(
+      "created post",
+      { "userId": p.user._id }
+    );
 
     return $http.post('/api/post', data);
   };

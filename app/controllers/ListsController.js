@@ -195,7 +195,8 @@ angular.module('Pelican')
     var data = {
       user: $scope.user,
       lists: $scope.lists,
-      focusId: '#search-list'
+      focusId: '#search-list',
+      preventEmit: true
     };
 
     if (list) {

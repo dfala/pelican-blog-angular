@@ -1,6 +1,6 @@
 angular.module('Pelican')
 
-.controller('OnboardController', ['$scope', '$rootScope', 'apiService', function ($scope, $rootScope, apiService) {
+.controller('OnboardController', ['$scope', '$rootScope', 'apiService', '$timeout', function ($scope, $rootScope, apiService, $timeout) {
 
   $scope.init = function () {
     $scope.active = 1;
@@ -25,11 +25,15 @@ angular.module('Pelican')
     $scope.closed = true;
     apiService.newUserCompleted()
     .then(function (response) {
-      console.warn(response);
+      // console.warn(response);
     })
     .catch(function (err) {
       console.error(err);
     })
+
+    $timeout(function () {
+      $('#new-user-onboard').remove();
+    }, 100)
   };
 
   $scope.openBookMarkLink = function () {
