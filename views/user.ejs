@@ -12,7 +12,7 @@
 </script>
 
 <body class="with-menu">
-  <% if (training) { %>
+  <% if (training && !training.newUser) { %>
     <% include ./partials/new-user-onboarding.ejs %>
   <% } %>
 

@@ -18,6 +18,19 @@ section.onboard {
     flex-direction: column;
   }
 
+  .close {
+    position: absolute;
+    top: 0;
+    right: 20px;
+    cursor: pointer;
+    font-size: 50px;
+    color: @darker-gray;
+
+    &:hover {
+      color: #000;
+    }
+  }
+
   img {
     max-width: 100%;
     border-top-left-radius: @radius;
@@ -27,7 +40,7 @@ section.onboard {
   .bottom {
     width: 100%;
     height: 100%;
-    background-color: @dim-blue;
+    background-color: #6461A0;
     margin-top: -5px;
     display: flex;
     justify-content: center;
@@ -40,6 +53,27 @@ section.onboard {
       color: #fff;
       text-align: center;
     }
+
+    a {
+      margin-top: 15px;
+      color: #9c9c9c;
+      &:hover {
+        color: #fff;
+        @speed: .1s;
+        -moz-transition: all @speed ease-in;
+        -o-transition: all @speed ease-in;
+        -webkit-transition: all @speed ease-in;
+        transition: all @speed ease-in;
+      }
+    }
+  }
+
+  .first {
+    background-color: #3DDC97;
+  }
+
+  .second {
+    background-color: #0CBABA;
   }
 
   .navigate {

@@ -1,7 +1,8 @@
-var List    = require('./ListController'),
-    Post    = require('./PostController'),
-    App     = require('./AppController'),
-    Request = require('./RequestController');
+var List     = require('./ListController'),
+    Post     = require('./PostController'),
+    App      = require('./AppController'),
+    Request  = require('./RequestController'),
+    Training = require('./TrainingController');
 
 module.exports = function (app) {
   //LIST
@@ -20,4 +21,5 @@ module.exports = function (app) {
   // OTHER
   app.post('/api/site-header', Request.getHeader);
   app.get('/api/global-search/:query', Request.globalSearch);
+  app.put('/api/training/new-user-onboard', Training.newUserOnBoardCompleted);
 };

@@ -8,6 +8,9 @@ angular.module('Pelican')
 
   $scope.next = function () {
     $scope.active = $scope.active + 1;
+    if ($scope.active === 3 && !$scope.activatedClose) {
+      $scope.activatedClose = true;
+    }
   };
 
   $scope.previous = function () {
@@ -18,5 +21,21 @@ angular.module('Pelican')
     $scope.active = numb;
   };
 
+  $scope.close = function () {
+    $scope.closed = true;
+    apiService.newUserCompleted()
+    .then(function (response) {
+      console.warn(response);
+    })
+    .catch(function (err) {
+      console.error(err);
+    })
+  };
+
+  $scope.openBookMarkLink = function () {
+    window.open('https://chrome.google.com/webstore/detail/pelican-blog/fifejldalccfblmcopgckhdjpjmlkgga', '_blank');
+
+    $scope.close();
+  }
 
 }]);

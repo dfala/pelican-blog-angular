@@ -1,4 +1,5 @@
-<section class="onboard modal-container" ng-init="init()" ng-controller="OnboardController">
+<section class="onboard modal-container animated fadeIn" ng-init="init()" ng-controller="OnboardController"
+  ng-class="{'animated-fast fadeOut': closed}">
   <div class="modal-backdrop"></div>
 
   <button class="left navigate" ng-click="previous()"
@@ -8,16 +9,17 @@
 
   <div class="modal" ng-cloak>
     <!-- MODAL ONE -->
+    <div class="close ion-ios-close-empty" ng-show="activatedClose" ng-click="close()"></div>
     <div class="wrapper" ng-show="active === 1">
       <div class="top">
         <img src="/css/onboard1.png" alt="Download the pelican chrome extension." />
       </div>
 
-      <div class="bottom">
+      <div class="bottom" ng-class="{'first': active === 1}">
         <h2>
-          Organize your favorite
+          Save your fav' online content
           <br>
-          online content into lists
+          and organize it into lists
         </h2>
       </div>
     </div>
@@ -25,14 +27,14 @@
     <!-- MODAL TWO -->
     <div class="wrapper" ng-show="active === 2">
       <div class="top">
-        <img src="/css/onboard1.png" alt="Download the pelican chrome extension." />
+        <img src="/css/onboard2.png" alt="Download the pelican chrome extension." />
       </div>
 
-      <div class="bottom">
+      <div class="bottom" ng-class="{'second': active === 2}">
         <h2>
-          You may add a title or
+          Make a private list
           <br>
-          add any content to your fav' links
+          to hide your links from the public
         </h2>
       </div>
     </div>
@@ -40,7 +42,7 @@
     <!-- MODAL THREE -->
     <div class="wrapper" ng-show="active === 3">
       <div class="top">
-        <img src="/css/onboard1.png" alt="Download the pelican chrome extension." />
+        <img src="/css/onboard3.png" alt="Download the pelican chrome extension." />
       </div>
 
       <div class="bottom">
@@ -50,8 +52,11 @@
           and bookmark on the fly!
         </h2>
 
-        <button class="cta" send-to="https://chrome.google.com/webstore/detail/pelican-blog/fifejldalccfblmcopgckhdjpjmlkgga" new-tab="true">Download Now</button>
-        <a>skip for now</a>
+        <button class="cta animated fadeIn" new-tab="true" ng-click="openBookMarkLink()">
+            Download Now
+        </button>
+
+        <a ng-click="close()">skip for now</a>
       </div>
     </div>
 

@@ -56,5 +56,9 @@ angular.module('Pelican')
     return $http.get('/api/global-search/' + query);
   };
 
+  service.newUserCompleted = function () {
+    return $http.put('/api/training/new-user-onboard');
+  };
+
   return service;
 }]);
