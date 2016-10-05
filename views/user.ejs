@@ -9,7 +9,8 @@
     ownerLists: <%- JSON.stringify(ownerLists) %>,
     training: <%- JSON.stringify(training) %>
   };
-  if (p && p.user) {
+  if (p.user) {
+    calq.user.identify(p.user._id);
     calq.user.profile(
       { "_id": p.user._id, "$email": p.user.email, "$full_name": p.user.displayName }
     );
