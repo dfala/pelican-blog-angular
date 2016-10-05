@@ -70,6 +70,7 @@
     .clear-search {
       .icon-input;
       right: @modal-space + 10px;
+      top: 25px;
       font-size: 18px;
       color: @border-gray;
       &:hover {
@@ -121,6 +122,14 @@
     &:hover {
       background-color: #eee;
     }
+  }
+
+  .web {
+    display: inherit;
+  }
+
+  .mobile {
+    display: none;
   }
 }
 
@@ -189,8 +198,38 @@ section.lists.extension {
     align-items: baseline;
 
     .modal.compose-post {
-      height: calc(~"100vh - 60px");
+      // height: calc(~"100vh - 60px");
+      height: 460px;
+      max-height: 100vh;
       min-height: inherit;
+    }
+  }
+
+  .compose-post {
+    @height: 195px;
+    .lists {
+      max-height: @height;
+    }
+
+    textarea {
+      min-height: @height;
+    }
+
+    .web {
+      display: none;
+    }
+
+    .add-list input {
+      width: 100%;
+    }
+
+    .mobile {
+      display: inherit;
+      position: absolute;
+      bottom: 18px;
+      right: 20px;
+      height: 30px;
+      line-height: 11px;
     }
   }
 }
