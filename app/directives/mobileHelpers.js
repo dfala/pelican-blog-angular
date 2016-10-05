@@ -21,22 +21,8 @@ angular.module('Pelican')
   return {
     restrict: 'A',
     link: function (scope, elem, attr) {
-      elem.bind('click', function (e) {
-        var menu = $('#side-menu');
-        menu.addClass('slideOutLeft');
-        setTimeout(function () {
-          menu.css('display', 'none');
-          menu.removeClass('slideOutLeft');
-        }, 300);
-      })
-    }
-  }
-}])
-
-.directive('closeSideMenu', [function () {
-  return {
-    restrict: 'A',
-    link: function (scope, elem, attr) {
+      if (windowWidth > 600) return;
+      
       elem.bind('click', function (e) {
         var menu = $('#side-menu');
         menu.addClass('slideOutLeft');
@@ -92,4 +78,4 @@ angular.module('Pelican')
       })
     }
   }
-}])
+}]);

@@ -1,3 +1,7 @@
+<script type="text/javascript">
+  var windowWidth = $(window).width();
+</script>
+
 <section class="menu" ng-controller="MenuController" ng-init="init()" id="side-menu">
   <div class="top-header">
     <h2>The Pelican Blog</h2>
@@ -46,7 +50,7 @@
       <hr ng-show="query || list.displayPosts" identify-location="/list/{{list._id}}"/>
       <div class="posts" ng-show="query || list.displayPosts">
         <div class="post animated-fast fadeInLeft"
-            ng-repeat="post in list.posts" search-post
+            ng-repeat="post in list.posts" search-post close-side-menu
             ng-click="openPostMenu(post, $index, $parent.$index)">
           <p class="post-title" ng-bind-html="sanitizeHtml(post.title)"></p>
         </div>
