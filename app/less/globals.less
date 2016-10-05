@@ -77,6 +77,9 @@ input[type="text"], textarea {
   border-radius: 2px;
   border: 1px solid @gray;
   margin-bottom: 10px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
 
   &:focus {
     outline: none;
@@ -103,19 +106,6 @@ input[type="text"], textarea {
   width: 20px;
   height: 20px;
   padding: 3px 0 0 5px;
-}
-
-.highlight-title {
-  @local-height: 60px;
-  background-color: #000;
-  color: #fff;
-  font-size: @local-height;
-  line-height: @local-height;
-  padding: 15px 20px;
-  font-weight: 300;
-  display: inline-block;
-  margin: 0 0 20px 0;
-  border-radius: @br;
 }
 
 button, .btn {
@@ -177,4 +167,16 @@ button, .btn {
   position: relative;
   max-height: 100%;
   overflow-y: auto;
+}
+
+// MOBILE
+.icon-mobile {
+  font-size: @m-icon-size;
+  display: none;
+}
+
+@media only screen and (max-width: @mobile) {
+  .icon-mobile {
+    display: inherit;
+  }
 }

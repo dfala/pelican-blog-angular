@@ -34,6 +34,7 @@ section.menu {
     padding: @local-padding;
     display: flex;
     align-items: center;
+    justify-content: space-around;
 
     h2 {
       color: @gray;
@@ -240,5 +241,14 @@ section.small-menu {
         background-color: #4d847d;
       }
     }
+  }
+}
+
+@media only screen and (max-width: @mobile) {
+  section.menu {
+    display: none;
+    z-index: 100;
+    width: 95%;
+    min-width: @menu-width;
   }
 }

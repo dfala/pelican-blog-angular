@@ -4,12 +4,15 @@ header {
   width: 100%;
   height: @header-height;
   background-color: #fff;
-  // border-bottom: 1px solid @border-gray;
   padding: 0 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   box-shadow: @header-shadow;
+
+  .mobile-header, .mobile-close {
+    display: none;
+  }
 
   a {
     line-height: @header-height;
@@ -109,19 +112,28 @@ body.with-menu {
   }
 }
 
-section.jumbotron {
-  width: 100%;
-  background-color: @light-blue;
-  height: 300px;
-  overflow: hidden;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+@media only screen and (max-width: @mobile) {
+  body.with-menu header {
+    left: 0;
+    width: 100%;
 
-  .contain {
-    width: 1200px;
-    max-width: 100%;
-    padding: 0 20px;
-    margin: auto;
+    .search, input {
+      max-width: 80%;
+    }
+
+    .search, .auth {
+      display: none;
+    }
+
+    .mobile-header {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-content: center;
+
+      .icon-mobile {
+        font-size: @m-icon-size;
+      }
+    }
   }
 }

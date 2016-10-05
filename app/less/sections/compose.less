@@ -64,6 +64,7 @@
       color: @border-gray;
       font-size: 18px;
       margin-top: 1px;
+      top: 29px;
     }
 
     .clear-search {
@@ -181,4 +182,17 @@ section.lists.extension {
       margin-top: 20px;
     }
   }
+}
+
+@media only screen and (max-width: @mobile) {
+  .modal-container {
+    align-items: baseline;
+
+    .modal.compose-post {
+      height: calc(~"100vh - 60px");
+      min-height: inherit;
+    }
+  }
+
+
 }
