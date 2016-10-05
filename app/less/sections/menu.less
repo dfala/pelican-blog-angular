@@ -12,7 +12,6 @@ section.menu {
   font-size: 0.9em;
   overflow-y: auto;
 
-
   input {
     margin: @local-padding;
     margin-top: 0;
@@ -202,6 +201,10 @@ section.menu {
       }
     }
   }
+
+  .log-out {
+    display: none;
+  }
 }
 
 section.small-menu {
@@ -250,5 +253,13 @@ section.small-menu {
     z-index: 100;
     width: 95%;
     min-width: @menu-width;
+
+    .log-out {
+      display: inherit;
+      margin: 30px auto;
+      width: 90%;
+      background-color: rgba(0, 0, 0, 0.12);
+      border: 1px solid @gray;
+    }
   }
 }

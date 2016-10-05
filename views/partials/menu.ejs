@@ -72,6 +72,10 @@
 
   </div>
 
+  <% if (user && user._id) { %>
+    <button class="log-out" send-to="/logout">Logout</button>
+  <% }%>
+
   <% if (owner) { %>
     <% include ./menu-small.ejs %>
   <% } %>
