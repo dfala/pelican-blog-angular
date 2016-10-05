@@ -146,4 +146,51 @@ section.onboard {
   .hide {
     visibility: hidden;
   }
+
+  .mobile-navigate {
+    display: none;
+  }
+
+  .web {
+    display: inherit;
+  }
+}
+
+@media only screen and (max-width: @mobile) {
+  section.onboard {
+    .modal {
+      width: 90%;
+      height: 300px;
+      margin-top: 60px;
+    }
+
+    h2 {
+      font-size: 18px;
+    }
+
+    .navigate {
+      display: none;
+    }
+
+    .mobile-navigate {
+      display: inherit;
+    }
+
+    .web {
+      display: none;
+    }
+
+    .map {
+      @local-width: 100px;
+      bottom: -40px;
+      width: @local-width;
+      margin-left: calc(~"50% - "@local-width/2);
+    }
+
+    .circle {
+      @local-size: 16px;
+      width: @local-size;
+      height: @local-size;
+    }
+  }
 }
