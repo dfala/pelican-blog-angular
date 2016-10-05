@@ -219,7 +219,12 @@ angular.module('Pelican')
   });
 
   $rootScope.$on('new list created', function (e, list) {
-    if (list.preventEmit) return;
+    // if (list.preventEmit) return;
+    var isPresent = false;
+    $scope.lists.forEach(function (l) {
+      if (l._id === list._id) isPresent = true;
+    })
+    if (isPresent) return;
     $scope.lists.push(list);
   });
 
