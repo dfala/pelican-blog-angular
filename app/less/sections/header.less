@@ -113,26 +113,36 @@ body.with-menu {
 }
 
 @media only screen and (max-width: @mobile) {
-  body.with-menu header {
-    left: 0;
-    width: 100%;
+  body.with-menu {
+    margin: 0;
 
-    .search, input {
-      max-width: 80%;
-    }
-
-    .search, .auth {
-      display: none;
-    }
-
-    .mobile-header {
+    header {
+      left: 0;
       width: 100%;
-      display: flex;
-      justify-content: space-between;
-      align-content: center;
 
-      .icon-mobile {
-        font-size: @m-icon-size;
+      .search {
+        .suggestions {
+          max-width: 100%;
+        }
+      }
+
+      .search, input {
+        max-width: 80%;
+      }
+
+      .search, .auth {
+        display: none;
+      }
+
+      .mobile-header {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-content: center;
+
+        .icon-mobile {
+          font-size: @m-icon-size;
+        }
       }
     }
   }

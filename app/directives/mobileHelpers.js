@@ -10,7 +10,7 @@ angular.module('Pelican')
         menu.css('display', 'inherit');
 
         setTimeout(function () {
-          menu.removeClass('slideInLeft')
+          menu.removeClass('slideInLeft');
         }, 300);
       })
     }
@@ -26,7 +26,7 @@ angular.module('Pelican')
         menu.addClass('slideOutLeft');
         setTimeout(function () {
           menu.css('display', 'none');
-          menu.removeClass('slideOutLeft')
+          menu.removeClass('slideOutLeft');
         }, 300);
       })
     }
@@ -43,7 +43,7 @@ angular.module('Pelican')
 
         setTimeout(function () {
           menu.css('display', 'none');
-          menu.removeClass('slideOutLeft')
+          menu.removeClass('slideOutLeft');
         }, 300);
       })
     }
@@ -65,7 +65,8 @@ angular.module('Pelican')
         search.css('display', 'inherit');
 
         setTimeout(function () {
-          search.removeClass('slideInRight')
+          $('#header-search-input').focus();
+          search.removeClass('slideInRight');
         }, 300);
       })
     }
@@ -86,7 +87,7 @@ angular.module('Pelican')
         setTimeout(function () {
           search.css('display', 'none');
           $('.mobile-header').css('display', 'inherit');
-          search.removeClass('slideOutRight')
+          search.removeClass('slideOutRight');
         }, 300);
       })
     }
