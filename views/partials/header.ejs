@@ -15,7 +15,9 @@
         <img ng-src="{{item.image}}" alt="item.text" ng-if="item.image" />
         <span class="icon ion-ios-folder-outline" ng-if="item.type === 'lists'"></span>
         <span class="icon ion-ios-list-outline" ng-if="item.type === 'posts'"></span>
-        {{item.text}}
+        <div class="text">
+          {{item.text}}
+        </div>
       </div>
     </div>
   </form>
