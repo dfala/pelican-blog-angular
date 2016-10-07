@@ -4,7 +4,7 @@ angular.module('Pelican')
     restrict: 'A',
     link: function (scope, elem, attr) {
       elem.bind('click', function (e) {
-        if (attr.sendTo) window.location = attr.sendTo;        
+        if (attr.sendTo) window.location = attr.sendTo;
       })
     }
   }
@@ -152,20 +152,6 @@ angular.module('Pelican')
           } else {
             scope.addList(scope.newList);
           }
-        }
-      });
-    }
-  }
-}])
-
-.directive('escapeSearch', [function () {
-  return {
-    restrict: 'A',
-    link: function (scope, elem, attr) {
-      $(document).keyup(function(e) {
-        if (e.keyCode == 27) {
-          scope.query = "";
-          scope.$digest();
         }
       });
     }

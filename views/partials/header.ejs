@@ -5,13 +5,16 @@
     <div class="icon-mobile mobile-search ion-ios-search" open-header-search></div>
   </div>
 
-  <form class="search" ng-submit="search(query)" id="header-search">
-    <input ng-model="query" placeholder="Search users, lists, or posts..." escape-search id="header-search-input"/>
+  <form class="search" id="header-search" autocomplete="off">
+    <!-- ng-submit="search(query)" -->
+    <input ng-model="query" placeholder="Search users, lists, or posts..."
+          id="header-search-input" escape-search arrow-navigate submit-search/>
     <div class="icon-close ion-android-close" ng-click="query = ''" ng-show="query"></div>
     <button><span class="ion-ios-search-strong"></span></button>
 
     <div class="suggestions" ng-if="suggestions && query" ng-cloak>
-      <div class="suggestion" ng-repeat="item in suggestions" ng-click="activateSuggestion(item)">
+      <div class="suggestion" ng-repeat="item in suggestions"
+          ng-click="activateSuggestion(item)" id="suggestion-{{$index}}">
         <img ng-src="{{item.image}}" alt="item.text" ng-if="item.image" />
         <span class="icon ion-ios-folder-outline" ng-if="item.type === 'lists'"></span>
         <span class="icon ion-ios-list-outline" ng-if="item.type === 'posts'"></span>
