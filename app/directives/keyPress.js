@@ -48,6 +48,8 @@ angular.module('Pelican')
     link: function (scope, elem, attr) {
       $(elem).keydown(function(e) {
         if (e.keyCode == 13) {
+          var activeElem = $('.suggestion.active')[0];
+          if (!activeElem) return;
           var activeSuggestionIndex = parseInt($('.suggestion.active')[0].id.replace('suggestion-', ''));
           scope.activateSuggestion(scope.suggestions[activeSuggestionIndex]);
         }
