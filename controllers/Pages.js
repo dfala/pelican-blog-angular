@@ -21,7 +21,7 @@ Routes.discover = function (req, res) {
   var feedPromise = new Promise(function (resolve, reject) {
     Post.find({isPrivate: false})
     .sort('-created_date')
-    .limit(20)
+    .limit(40)
     .populate({ path: 'owner', select: 'displayName _id lists image' })
     .populate({ path: 'parentList', select: 'title _id' })
     .exec(function (err, posts) {
