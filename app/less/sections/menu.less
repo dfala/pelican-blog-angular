@@ -219,13 +219,31 @@ section.small-menu {
   width: 100%;
   box-shadow: 0 0 10px 0 rgba(0,0,0,.44), @inset-shadow;
 
+  &.toggled-down {
+    min-height: 62px;
+    height: 62px;
+    overflow-y: hidden;
+  }
+
   .body {
     .user {
       cursor: default;
       border-bottom: 1px solid rgba(238, 238, 238, 0.2);
+      position: relative;
 
       &:hover {
         background-color: inherit;
+      }
+
+      .toggle {
+        position: absolute;
+        right: 20px;
+        top: 20px;
+        cursor: pointer;
+
+        &.hidden {
+          display: none;
+        }
       }
     }
 

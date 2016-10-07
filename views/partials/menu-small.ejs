@@ -1,4 +1,4 @@
-<section class="small-menu" id="small-menu" resizable>
+<section class="small-menu animated-fast" id="small-menu" resizable>
   <div class="body">
     <% if (owner) { %>
     <div class="user">
@@ -6,6 +6,8 @@
         <img src="<%= owner.image %>" alt="<%= owner.displayName %>" />
       <% } %>
       <%= owner.givenName + "'s Pelican" %>
+      <div id="toggle-menu-down" class="toggle ion-ios-arrow-down" toggle-menu-down></div>
+      <div id="toggle-menu-up" class="toggle ion-ios-arrow-up hidden" toggle-menu-up></div>
     </div>
     <% } %>
 

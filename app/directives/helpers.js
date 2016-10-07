@@ -209,4 +209,38 @@ angular.module('Pelican')
       });
     }
   }
+}])
+
+.directive('toggleMenuDown', [function () {
+  return {
+    restrict: 'A',
+    link: function (scope, elem, attr) {
+      $(elem).click(function (e) {
+        $('#small-menu').resizable('destroy');
+        $("#small-menu").removeClass('fadeIn').addClass('toggled-down');
+        $('#toggle-menu-down').addClass('hidden');
+        $('#toggle-menu-up').removeClass('hidden');
+      });
+    }
+  }
+}])
+
+.directive('toggleMenuUp', [function () {
+  return {
+    restrict: 'A',
+    link: function (scope, elem, attr) {
+      $(elem).click(function (e) {
+        var maxHeight = $('.menu').height() * 0.8;
+        $('#small-menu').resizable({
+          handles: 'n',
+          maxHeight: maxHeight,
+          minHeight: 250
+        });
+
+        $("#small-menu").removeClass('toggled-down').addClass('fadeIn');
+        $('#toggle-menu-down').removeClass('hidden');
+        $('#toggle-menu-up').addClass('hidden');
+      });
+    }
+  }
 }]);
