@@ -16,7 +16,7 @@ module.exports = function (app, passport) {
 
   app.get('/auth/facebook/callback', passport.authenticate('homeLogin', {
       successRedirect : '/user/',
-      failureRedirect : '/failed'
+      failureRedirect : '/'
     })
   );
 
@@ -25,7 +25,7 @@ module.exports = function (app, passport) {
 
   app.get('/auth/alternate-facebook/bookmark', passport.authenticate('extensionLogin', {
       successRedirect : '/bookmark',
-      failureRedirect : '/failed'
+      failureRedirect : '/'
     })
   );
 
