@@ -62,11 +62,17 @@ section.post {
 
   .text {
     color: darken(@gray, 20%);
-    margin: 0 0 @post-space 0;
+    // margin: 0 0 @post-space 0;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    padding: 0 @post-space;
+    margin: 0 @post-space;
+    font-size: @p-size;
+    max-height: 35px;
+
+    p {
+      margin: 5px 0 8px;
+    }
   }
 
   .post-title {

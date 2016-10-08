@@ -1,7 +1,7 @@
 angular.module('Pelican')
 
-.controller('ListsController', ['$scope', 'apiService', 'validator', '$rootScope', '$timeout',
-  function ($scope, apiService, validator, $rootScope, $timeout) {
+.controller('ListsController', ['$scope', 'apiService', 'validator', '$rootScope', '$timeout', '$sce',
+  function ($scope, apiService, validator, $rootScope, $timeout, $sce) {
 
   //INIT
   $scope.init = function () {

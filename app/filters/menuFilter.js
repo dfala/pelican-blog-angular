@@ -69,4 +69,9 @@ angular.module('Pelican')
     args.output = output;
     return output;
   }
+}])
+
+.filter('markdown', [function() {
+    var converter = new Showdown.converter();
+    return converter.makeHtml;
 }]);

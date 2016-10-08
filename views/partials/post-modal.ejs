@@ -15,13 +15,21 @@
           ng-click="repin(activePost)"></div>
     </div>
 
+
+
+
+
     <div ng-if="!editingPost">
       <h2>{{activePost.title}}</h2>
       <a class="post-link" ng-href="{{activePost.link}}" ng-if="activePost.link" target="_blank">{{activePost.link}}</a>
       <div class="text-container" ng-show="activePost.text">
-        <pre class="text">{{activePost.text}}</pre>
+        <div class="text markdown" ng-bind-html="activePost.text | markdown"></div>
       </div>
     </div>
+
+
+
+
 
     <div ng-if="editingPost">
       <input id="post-title-edit" class="title-edit" type="text" ng-model="editablePost.title" />

@@ -42,7 +42,7 @@
   <div class="body" ng-show="activeList">
     <input type="text" placeholder="Name" ng-model="newPost.title" />
     <input type="text" placeholder="Link" ng-model="newPost.link" />
-    <textarea placeholder="Thoughts" ng-model="newPost.text"></textarea>
+    <textarea placeholder="Thoughts (markdown supported)..." ng-model="newPost.text"></textarea>
 
     <button class="cta" ng-click="addPost(newPost)">Post it!</button>
   </div>

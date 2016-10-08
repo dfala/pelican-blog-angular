@@ -86,7 +86,7 @@
           <a open-link="{{post}}"
              ng-click="$event.stopPropagation();"
              ng-if="post.link">{{post.link}}</a>
-          <p class="text" ng-if="post.text">{{post.text}}</p>
+          <div class="text" ng-if="post.text" ng-bind-html="post.text | markdown">{{post.text}}</div>
         </div>
       </section>
 
