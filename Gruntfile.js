@@ -25,7 +25,7 @@ module.exports = function(grunt) {
         uglify: {
           my_target: {
             files: {
-              './app/app.min.js': ['./app/app.js', './app/controllers/*.js', './app/services/*.js', './app/directives/*.js']
+              './app/app.min.js': ['./app/app.js', './app/controllers/*.js', './app/services/*.js', './app/directives/*.js', './app/filters/*.js']
             }
           }
         },

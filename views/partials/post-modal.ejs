@@ -22,7 +22,7 @@
     <div ng-if="!editingPost">
       <h2>{{activePost.title}}</h2>
       <a class="post-link" ng-href="{{activePost.link}}" ng-if="activePost.link" target="_blank">{{activePost.link}}</a>
-      <div class="text-container" ng-show="activePost.text">
+      <div class="text-container" ng-if="activePost.text">
         <div class="text markdown" ng-bind-html="activePost.text | markdown"></div>
       </div>
     </div>
