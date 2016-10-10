@@ -15,8 +15,6 @@ Routes.home = function (req, res) {
 };
 
 Routes.discover = function (req, res) {
-  if (!req.user || !req.user._id) return res.redirect('/home');
-
   var userInfoPromise = UserCtrl.getUserInfo(req);
   var feedPromise = new Promise(function (resolve, reject) {
     Post.find({isPrivate: false})
@@ -36,13 +34,14 @@ Routes.discover = function (req, res) {
       user:       req.user || null,
       owner:      null,
       ownerLists: null,
-      lists:      results[0].lists  || [],
+      lists:      results[0]? results[0].lists  : [],
       posts:      results[1] || []
     })
   })
   .catch(function (err) {
     console.log('Error loading discover feed: ', err);
-    res.redirect('/user/' + req.user._id);
+    if (req.user && req.user._id) return res.redirect('/user/' + req.user._id);
+    return res.redirect('/home');
   })
 
 };

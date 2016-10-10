@@ -38,6 +38,10 @@ section.menu {
     h2 {
       color: @gray;
     }
+
+    .icon-mobile {
+      font-size: 40px;
+    }
   }
 
   .body {
@@ -209,14 +213,14 @@ section.menu {
 
 section.small-menu {
   @sm-color: #1B998B; //@dim-blue; //#9E7B9B; //#9A8C98;
-  position: absolute;
+  position: fixed;
   bottom: 0;
   left: 0;
   top: auto !important;
   background-color: @sm-color;
   overflow-y: auto;
   min-height: 250px;
-  width: 100%;
+  width: 230px;
   box-shadow: 0 0 10px 0 rgba(0,0,0,.44), @inset-shadow;
 
   &.toggled-down {
@@ -278,6 +282,13 @@ section.small-menu {
       width: 90%;
       background-color: rgba(0, 0, 0, 0.12);
       border: 1px solid @gray;
+    }
+  }
+
+  section.small-menu {
+    width: 95%;
+    .body .user .toggle {
+      top: 12px;
     }
   }
 }

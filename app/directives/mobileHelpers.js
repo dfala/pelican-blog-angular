@@ -22,7 +22,7 @@ angular.module('Pelican')
     restrict: 'A',
     link: function (scope, elem, attr) {
       if (windowWidth > 600) return;
-      
+
       elem.bind('click', function (e) {
         var menu = $('#side-menu');
         menu.addClass('slideOutLeft');
