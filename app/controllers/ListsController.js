@@ -95,7 +95,7 @@ angular.module('Pelican')
 
   // LIST SETTINGS
   $scope.openListSettings = function (list) {
-    list.isOpenSettings = true;
+    list.isOpenSettings = !list.isOpenSettings;
   };
 
   $scope.closeListSettings = function (list, all) {
