@@ -10,7 +10,7 @@ angular.module('Pelican')
         if (end) return;
         if ((window.innerHeight + window.scrollY) + 1000 >= document.body.offsetHeight) {
           // return console.log('bottom');
-          if (scope.fetching) return;
+          if (scope.fetching || !scope.posts.length) return;
           // console.log('bottom');
           scope.fetching = true;
           apiService.lazyLoad(scope.posts.length)
