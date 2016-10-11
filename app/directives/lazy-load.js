@@ -9,9 +9,8 @@ angular.module('Pelican')
       window.onscroll = function(ev) {
         if (end) return;
         if ((window.innerHeight + window.scrollY) + 1000 >= document.body.offsetHeight) {
-          // return console.log('bottom');
-          if (scope.fetching || scope.posts.length < 1) return;
-          // console.log('bottom');
+          if (scope.fetching || !scope.posts.length) return;
+
           scope.fetching = true;
           apiService.lazyLoad(scope.posts.length)
           .then(function (response) {
