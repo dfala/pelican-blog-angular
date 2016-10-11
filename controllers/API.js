@@ -13,6 +13,7 @@ module.exports = function (app) {
 
   //POST
   app.get('/api/posts', App.getPosts);
+  app.get('/api/more-posts/:start', App.getMorePosts);
   app.get('/api/post/:postId', App.get);
   app.post('/api/post', Post.create);
   app.put('/api/post/:postId', Post.update);

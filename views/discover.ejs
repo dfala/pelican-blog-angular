@@ -13,13 +13,11 @@
   };
 </script>
 
-<script type="text/javascript" src="/scripts/lazy-load.js"></script>
-
 <body class="with-menu">
   <% include ./partials/tag-manager.ejs %>
   <% include ./partials/menu.ejs %>
 
-  <section class="lists discover" ng-controller="DiscoverController" ng-init="init()">
+  <section class="lists discover" ng-controller="DiscoverController" ng-init="init()" lazy-load>
 
     <section class="post" ng-repeat="post in posts" ng-cloak>
       <div class="body" ng-click="openPost(post)" search-post>
@@ -38,6 +36,10 @@
           ng-if="post.parentList && post.parentList._id"
           href='/list/{{post.parentList._id}}/{{post.owner._id}}'># {{post.parentList.title}}</a>
       </div>
+    </section>
+
+    <section class="post loading" ng-if="fetching">
+      <p>Loading</p>
     </section>
 
     <% include ./partials/post-modal.ejs %>

@@ -41,6 +41,10 @@ angular.module('Pelican')
     return $http.delete('/api/post/' + post.parentList + '/' + post._id);
   };
 
+  service.lazyLoad = function (start) {
+    return $http.get('/api/more-posts/' + start);
+  };
+
   service.deleteList = function (list) {
     return $http.delete('/api/list/' + list._id);
   };

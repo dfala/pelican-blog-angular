@@ -88,4 +88,39 @@ section.post {
     width: 100%;
     height: @post-space;
   }
+
+  &.loading {
+    // text-align: center;
+    overflow: auto;
+    border: 1px solid @gray;
+    color: #969696;
+    border-radius: @br;
+    background-color: rgba(0, 0, 0, 0.02);
+
+    p {
+      padding-left: 41%;
+    }
+
+    p:after {
+      overflow: hidden;
+      display: inline-block;
+      vertical-align: bottom;
+      -webkit-animation: ellipsis steps(4,end) 1500ms infinite;
+      animation: ellipsis steps(4,end) 1500ms infinite;
+      content: "\2026";
+      width: 0px;
+    }
+
+    @keyframes ellipsis {
+      to {
+        width: 1.25em;
+      }
+    }
+
+    @-webkit-keyframes ellipsis {
+      to {
+        width: 1.25em;
+      }
+    }
+  }
 }
