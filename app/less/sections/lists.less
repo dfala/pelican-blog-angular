@@ -175,7 +175,11 @@ section.lists {
     }
 
     .list {
-      padding: 5px 15px;
+      @local-padding: 5px 15px;
+      padding: @local-padding;
+      &.active-list {
+        padding: @local-padding;
+      }
     }
 
     &.user {
