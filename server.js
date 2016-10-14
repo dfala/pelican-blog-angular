@@ -58,9 +58,9 @@ db.once('open', function (callback) {
 });
 
 
-// var server = app.listen(portNum, function () {
-//     console.log('Server listening on port: ' + portNum, 'in ' + keys.env + ' mode.');
-// });
+var server = app.listen(portNum, function () {
+    console.log('Server listening on port: ' + portNum, 'in ' + keys.env + ' mode.');
+});
 
 
 
@@ -68,10 +68,10 @@ db.once('open', function (callback) {
 
 // if (keys.env === 'DEVELOPMENT') {
 
-  var httpServer = http.createServer(app);
-  httpServer.listen(portNum, function () {
-    console.log('HTTP server listening on port: ' + portNum, 'in ' + keys.env + ' mode.');
-  });
+  // var httpServer = http.createServer(app);
+  // httpServer.listen(portNum, function () {
+  //   console.log('HTTP server listening on port: ' + portNum, 'in ' + keys.env + ' mode.');
+  // });
 
 // } else {
 //
