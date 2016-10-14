@@ -66,24 +66,24 @@ db.once('open', function (callback) {
 
 
 
-if (keys.env === 'DEVELOPMENT') {
+// if (keys.env === 'DEVELOPMENT') {
 
   var httpServer = http.createServer(app);
   httpServer.listen(portNum, function () {
     console.log('HTTP server listening on port: ' + portNum, 'in ' + keys.env + ' mode.');
   });
 
-} else {
-
-  var http = require('http');
-  http.createServer(function (req, res) {
-    res.writeHead(301, { "Location": "https://" + req.headers['host'] + req.url });
-    res.end();
-  }).listen(80);
-
-  var httpsServer = https.createServer(credentials, app);
-  httpsServer.listen(443, function () {
-    console.log('HTTPS server listening on port: 443 in ' + keys.env + ' mode.');
-  });
-
-}
+// } else {
+//
+//   var http = require('http');
+//   http.createServer(function (req, res) {
+//     res.writeHead(301, { "Location": "https://" + req.headers['host'] + req.url });
+//     res.end();
+//   }).listen(80);
+//
+//   var httpsServer = https.createServer(credentials, app);
+//   httpsServer.listen(443, function () {
+//     console.log('HTTPS server listening on port: 443 in ' + keys.env + ' mode.');
+//   });
+//
+// }
