@@ -1,8 +1,9 @@
-var List     = require('./ListController'),
-    Post     = require('./PostController'),
-    App      = require('./AppController'),
-    Request  = require('./RequestController'),
-    Training = require('./TrainingController');
+var List      = require('./ListController'),
+    Post      = require('./PostController'),
+    Vanity    = require('./VanityController'),
+    App       = require('./AppController'),
+    Request   = require('./RequestController'),
+    Training  = require('./TrainingController');
 
 module.exports = function (app) {
   //LIST
@@ -18,6 +19,9 @@ module.exports = function (app) {
   app.post('/api/post', Post.create);
   app.put('/api/post/:postId', Post.update);
   app.delete('/api/post/:listId/:postId', Post.delete);
+
+  //VANITY
+  app.put('/api/post-vanity/:postId', Vanity.trackConsume);
 
   // OTHER
   app.post('/api/site-header', Request.getHeader);

@@ -1,7 +1,7 @@
 angular.module('Pelican')
 
-.controller('ListsController', ['$scope', 'apiService', 'validator', '$rootScope', '$timeout', '$sce',
-  function ($scope, apiService, validator, $rootScope, $timeout, $sce) {
+.controller('ListsController', ['$scope', 'apiService', 'validator', '$rootScope', '$timeout', '$sce', 'trackingService',
+  function ($scope, apiService, validator, $rootScope, $timeout, $sce, trackingService) {
 
   //INIT
   $scope.init = function () {
@@ -32,10 +32,7 @@ angular.module('Pelican')
       'marginRight': '15px'
     });
 
-    calq.action.track(
-      "consumed post",
-      { "postId": post._id }
-    );
+    trackingService.trackConsumedPost(post);
   };
 
   $scope.closePostModal = function () {

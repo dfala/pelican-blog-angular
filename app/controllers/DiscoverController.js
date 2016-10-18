@@ -1,7 +1,7 @@
 angular.module('Pelican')
 
-.controller('DiscoverController', ['$scope', '$rootScope', 'apiService', 'validator',
-  function ($scope, $rootScope, apiService, validator) {
+.controller('DiscoverController', ['$scope', '$rootScope', 'apiService', 'validator', 'trackingService',
+  function ($scope, $rootScope, apiService, validator, trackingService) {
 
   $scope.init = function () {
     if (p.user) $scope.user = p.user || null;
@@ -19,11 +19,7 @@ angular.module('Pelican')
       'overflow': 'hidden',
       'marginRight': '15px'
     });
-
-    calq.action.track(
-      "consumed post",
-      { "postId": post._id }
-    );
+    trackingService.trackConsumedPost(post);
   };
 
   $scope.closePostModal = function () {

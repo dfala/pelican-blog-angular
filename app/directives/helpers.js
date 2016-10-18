@@ -10,17 +10,14 @@ angular.module('Pelican')
   }
 }])
 
-.directive('openLink', [function () {
+.directive('openLink', ['trackingService', function (trackingService) {
   return {
     restrict: 'A',
     link: function (scope, elem, attr) {
       elem.bind('click', function (e) {
         if (attr.openLink) {
           var post = JSON.parse(attr.openLink);
-          calq.action.track(
-            "consumed post",
-            { "postId": post._id }
-          );
+          trackingService.trackConsumedPost(post);
           window.open(post.link, '_blank');
         }
       })
