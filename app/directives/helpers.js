@@ -257,7 +257,9 @@ angular.module('Pelican')
               scrollHeight = toolbox.get(0).scrollHeight;
 
           toolbox.bind('mousewheel', function(e, d) {
+            console.log(this.scrollTop, scrollHeight - height - 100, d);
             if((this.scrollTop === (scrollHeight - height - 100) && d < 0) || (this.scrollTop === 0 && d > 0)) {
+              console.warn('prevent');
               e.preventDefault();
             }
           });
