@@ -243,4 +243,27 @@ angular.module('Pelican')
       });
     }
   }
+}])
+
+.directive('mousewheel', ['$timeout', function ($timeout) {
+  return {
+    restrict: 'A',
+    link: function (scope, elem, attr) {
+      $timeout(function () {
+        $(function() {
+
+          var toolbox = $('#side-menu'),
+              height = toolbox.height(),
+              scrollHeight = toolbox.get(0).scrollHeight;
+
+          toolbox.bind('mousewheel', function(e, d) {
+            if((this.scrollTop === (scrollHeight - height - 100) && d < 0) || (this.scrollTop === 0 && d > 0)) {
+              e.preventDefault();
+            }
+          });
+
+        });
+      })
+    }
+  }
 }]);
