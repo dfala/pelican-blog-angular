@@ -17,7 +17,7 @@ if (keys.env !== "DEVELOPMENT") {
       privateKey  = fs.readFileSync('./config/server.enc.key', 'utf8'),
       certificate = fs.readFileSync('./config/server.crt', 'utf8'),
       ca          = fs.readFileSync('./config/bundle.crt', 'utf8'),
-      credentials = {key: privateKey, cert: certificate, passphrase: require('./config/keys.js').certKey};
+      credentials = {key: privateKey, cert: certificate, ca: ca, passphrase: require('./config/keys.js').certKey};
 };
 
 process.env.NODE_ENV = require('./config/keys.js').env;
