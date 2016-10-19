@@ -65,12 +65,18 @@ Routes.trending = function (req, res) {
 
   Promise.all([userInfoPromise, feedPromise])
   .then(function (results) {
+
     if (results[1]) {
       var feedPosts = results[1];
       feedPosts = feedPosts.map(function (vanity) {
-        var data = vanity.post;
+        var data = Object.assign({}, vanity.post)._doc;
         data.owner = vanity.owner;
         data.parentList = vanity.parentList;
+        data.metric = {
+          ownerClick: vanity.ownerClick,
+          guestClick: vanity.guestClick,
+          created_date: vanity.created_date
+        }
         return data;
       });
     }

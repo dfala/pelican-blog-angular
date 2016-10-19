@@ -5,8 +5,27 @@ angular.module('Pelican')
 
   $scope.init = function () {
     if (p.user) $scope.user = p.user || null;
-    if (p.posts) $scope.posts = p.posts || [];
     if (p.lists) $scope.lists = p.lists;
+    if (window.location.href.indexOf('/discover') > -1 && p.posts) $scope.posts = p.posts || [];
+    else $scope.posts = sortPopularPosts();
+  };
+
+  function sortPopularPosts () {
+    p.posts = p.posts.map(function (post) {
+      var t = Math.abs(new Date() - new Date(post.metric.created_date)) / 36e5;
+      post.trending = (post.metric.guestClick) / Math.pow(t + 2, 1.5);
+      console.log(post.trending);
+      return post;
+    }).sort(function(a, b) {
+      if (a.trending > b.trending) {
+        return -1;
+      }
+      if (a.trending < b.trending) {
+        return 1;
+      }
+      return 0;
+    });
+    return p.posts;
   };
 
   $rootScope.$on('new post created', function (e, post) {
