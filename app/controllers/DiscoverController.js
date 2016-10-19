@@ -14,7 +14,6 @@ angular.module('Pelican')
     p.posts = p.posts.map(function (post) {
       var t = Math.abs(new Date() - new Date(post.metric.created_date)) / 36e5;
       post.trending = (post.metric.guestClick) / Math.pow(t + 2, 1.5);
-      console.log(post.trending);
       return post;
     }).sort(function(a, b) {
       if (a.trending > b.trending) {

@@ -4,11 +4,11 @@
   box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.2);
   border-radius: 1px; }
   .alertify-logs > *, .alertify-logs > *.default {
-    background: rgba(0, 0, 0, 0.8); }
+    background: #2D93AD; }
   .alertify-logs > *.error {
-    background: rgba(244, 67, 54, 0.8); }
+    background: #E85D75; }
   .alertify-logs > *.success {
-    background: rgba(76, 175, 80, 0.9); }
+    background: #FC7A57; }
 
 .alertify {
   position: fixed;
@@ -136,6 +136,8 @@
       padding: 0;
       overflow: hidden;
       opacity: 0;
+      border-radius: 2px;
+      min-width: 150px;
       pointer-events: none; }
     .alertify-logs > *.show {
       margin-top: 12px;
