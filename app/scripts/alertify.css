@@ -8,7 +8,7 @@
   .alertify-logs > *.error {
     background: #E85D75; }
   .alertify-logs > *.success {
-    background: #FC7A57; }
+    background: #2D7DD2; }
 
 .alertify {
   position: fixed;
@@ -138,6 +138,7 @@
       opacity: 0;
       border-radius: 2px;
       min-width: 150px;
+      font-size: 14px;
       pointer-events: none; }
     .alertify-logs > *.show {
       margin-top: 12px;
