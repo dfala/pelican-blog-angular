@@ -174,11 +174,23 @@ section.lists {
       display: none;
     }
 
-    .list {
-      @local-padding: 5px 15px;
-      padding: @local-padding;
-      &.active-list {
+    &.discover, &.user {
+      .list {
+        @local-padding: 5px 15px;
         padding: @local-padding;
+        &.active-list {
+          padding: @local-padding;
+        }
+      }
+    }
+
+    &.extension {
+      .list {
+        @local-padding: 10px;
+        padding: @local-padding;
+        &.active-list {
+          padding: @local-padding;
+        }
       }
     }
 
