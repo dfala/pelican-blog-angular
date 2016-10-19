@@ -61,7 +61,10 @@ angular.module('Pelican')
       apiService.toggleListPrivate(list)
       .then(function (response) {
         list.isPrivate = !list.isPrivate;
-        $rootScope.$emit('list privacy toggled', list)
+        $rootScope.$emit('list privacy toggled', list);
+
+        if (response.data.isNowPrivate) alertify.success('Your list is now private');
+        else alertify.success('Your list is now public');
       })
       .catch(function (err) {
         console.error(err);

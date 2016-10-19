@@ -1,21 +1,26 @@
 var Exports       = module.exports = {},
     List          = require('../models/ListModel'),
     Post          = require('../models/PostModel'),
-    Postvanity    = require('../models/PostVanityModel');
+    Postmetric    = require('../models/PostMetricModel');
 
 Exports.trackConsume = function (req, res) {
-  Postvanity.findOne({'postId': req.params.postId}, function (err, result) {
+  if (!req.body || req.body.isPrivate)
+    return res.json({data: 'There is no post or is private. Vanity was not saved.'});
+
+  Postmetric.findOne({'post': req.params.postId}, function (err, result) {
     if (err) return res.status(500).send(err);
 
     if (!result) {
-      var newPostVanity = new Postvanity();
-      newPostVanity.postId = req.params.postId;
-      if (req.user && req.user._id) newPostVanity.ownerClick = 1;
-      else newPostVanity.guestClick = 1;
+      var newPostMetric = new Postmetric();
+      newPostMetric.post = req.params.postId;
+      newPostMetric.parentList = req.body.parentList;
+      
+      if (req.user && req.user._id) newPostMetric.ownerClick = 1;
+      else newPostMetric.guestClick = 1;
 
-      newPostVanity.owner = req.body.owner._id || req.body.owner;
+      newPostMetric.owner = req.body.owner._id || req.body.owner;
 
-      newPostVanity.save(function (err, result) {
+      newPostMetric.save(function (err, result) {
         if (err) return res.status(500).json(err);
         return res.json(result);
       })

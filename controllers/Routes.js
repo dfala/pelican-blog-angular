@@ -6,6 +6,7 @@ module.exports = function (app, passport) {
   app.get('/', Pages.index);
   app.get('/home', Pages.home);
   app.get('/discover', Pages.discover);
+  app.get('/trending', Pages.trending);
   app.get('/discovers', Pages.discover);
   app.get('/user/:userId?', UserCtrl.userView);
   app.get('/list/:listId/:userId', Pages.listView);

@@ -1,8 +1,9 @@
-var Routes   = module.exports = {},
-    UserCtrl = require('./UserController'),
-    User     = require('../models/UserModel'),
-    List     = require('../models/ListModel'),
-    Post     = require('../models/PostModel');
+var Routes      = module.exports = {},
+    UserCtrl    = require('./UserController'),
+    User        = require('../models/UserModel'),
+    List        = require('../models/ListModel'),
+    Post        = require('../models/PostModel'),
+    Postmetric  = require('../models/PostMetricModel');
 
 Routes.index = function (req, res) {
   if (req.user && req.user._id) return res.redirect('/user/' + req.user._id);
@@ -20,7 +21,7 @@ Routes.discover = function (req, res) {
     Post.find({isPrivate: false})
     .sort('-created_date')
     .limit(20)
-    .populate({ path: 'owner', select: 'displayName _id lists image' })
+    .populate({ path: 'owner', select: 'displayName _id image' })
     .populate({ path: 'parentList', select: 'title _id' })
     .exec(function (err, posts) {
       if (err) return reject(err);
@@ -36,6 +37,50 @@ Routes.discover = function (req, res) {
       ownerLists: null,
       lists:      results[0]? results[0].lists  : [],
       posts:      results[1] || []
+    })
+  })
+  .catch(function (err) {
+    console.log('Error loading discover feed: ', err);
+    if (req.user && req.user._id) return res.redirect('/user/' + req.user._id);
+    return res.redirect('/home');
+  })
+
+};
+
+Routes.trending = function (req, res) {
+  var userInfoPromise = UserCtrl.getUserInfo(req);
+  var feedPromise = new Promise(function (resolve, reject) {
+    Postmetric.find({})
+    .sort('-guestClick')
+    .sort('-ownerClick')
+    .limit(100)
+    .populate({ path: 'post'})
+    .populate({ path: 'owner', select: 'displayName _id image' })
+    .populate({ path: 'parentList', select: 'title _id' })
+    .exec(function (err, posts) {
+      if (err) return reject(err);
+      return resolve(posts);
+    })
+  })
+
+  Promise.all([userInfoPromise, feedPromise])
+  .then(function (results) {
+    if (results[1]) {
+      var feedPosts = results[1];
+      feedPosts = feedPosts.map(function (vanity) {
+        var data = vanity.post;
+        data.owner = vanity.owner;
+        data.parentList = vanity.parentList;
+        return data;
+      });
+    }
+
+    res.render('discover', {
+      user:       req.user || null,
+      owner:      null,
+      ownerLists: null,
+      lists:      results[0]? results[0].lists  : [],
+      posts:      feedPosts? feedPosts : []
     })
   })
   .catch(function (err) {

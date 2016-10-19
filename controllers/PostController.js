@@ -1,7 +1,8 @@
-var Exports  = module.exports = {},
-    List     = require('../models/ListModel'),
-    Post     = require('../models/PostModel'),
-    ListCtrl = require('./ListController');
+var Exports     = module.exports = {},
+    List        = require('../models/ListModel'),
+    Post        = require('../models/PostModel'),
+    ListCtrl    = require('./ListController'),
+    Postmetric  = require('../models/PostMetricModel');
 
 Exports.create = function (req, res) {
   var newPost = new Post(req.body);
@@ -56,7 +57,15 @@ Exports.delete = function (req, res) {
     );
   });
 
-  Promise.all([p1, p2])
+  var p3 = new Promise(function (resolve, reject) {
+    Postmetric.find({ post: req.params.postId })
+    .remove(function (err, result) {
+      if (err) return reject(err);
+      return resolve(result);
+    });
+  })
+
+  Promise.all([p1, p2, p3])
   .then(function (values) {
     res.json({postStatus: 'deleted'})
   })

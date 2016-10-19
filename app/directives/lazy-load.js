@@ -4,6 +4,8 @@ angular.module('Pelican')
   return {
     restrict: 'A',
     link: function (scope, elem, attr) {
+      if (window.location.href.indexOf('/trending') > -1) return;
+      
       scope.fetching = false;
       var end = false;
       window.onscroll = function(ev) {

@@ -9,6 +9,7 @@ angular.module('Pelican')
       { "postId": post._id }
     );
 
+    if (post.isPrivate) return;
     $http.put('/api/post-vanity/' + post._id, post);
   };
 

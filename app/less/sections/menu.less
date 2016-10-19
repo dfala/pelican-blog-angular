@@ -149,12 +149,21 @@ section.menu {
         background-color: darken(@dim-blue, 10%);
       }
 
-      &.discover {
+      &.trending {
         border-bottom: 1px solid lighten(@dim-blue, 5%);
+      }
 
-        .p-wrapper .icon-discover {
-          color: @blue-green;
+      &.alternative {
+
+        .p-wrapper {
+          .icon-discover {
+            color: @blue-green;
+          }
+          .icon-trending {
+            color: #98CE00;
+          }
         }
+
       }
 
       &.new-list {

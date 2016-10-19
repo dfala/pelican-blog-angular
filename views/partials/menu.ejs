@@ -27,14 +27,21 @@
       </div>
     <% } %>
 
-    <% if (user && user._id) { %>
-    <div class="list menu-list discover" identify-location="/discover">
+
+
+    <div class="list menu-list alternative" identify-location="/discover">
       <div class="p-wrapper" send-to="/discover">
         <span class="icon-discover ion-ios-navigate-outline hashtag"></span>
         <p class="p-title">discover</p>
       </div>
     </div>
-    <% } %>
+
+    <div class="list menu-list alternative trending" identify-location="/trending">
+      <div class="p-wrapper" send-to="/trending">
+        <span class="icon-trending ion-ios-pulse hashtag"></span>
+        <p class="p-title">trending</p>
+      </div>
+    </div>
 
     <div class="list menu-list"
          ng-click="makeActive(list)"

@@ -1,6 +1,6 @@
 var List      = require('./ListController'),
     Post      = require('./PostController'),
-    Vanity    = require('./VanityController'),
+    Vanity    = require('./MetricController'),
     App       = require('./AppController'),
     Request   = require('./RequestController'),
     Training  = require('./TrainingController');

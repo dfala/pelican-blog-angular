@@ -1,7 +1,8 @@
-var Exports  = module.exports = {},
-    User     = require('../models/UserModel'),
-    List     = require('../models/ListModel'),
-    Post     = require('../models/PostModel');
+var Exports     = module.exports = {},
+    User        = require('../models/UserModel'),
+    List        = require('../models/ListModel'),
+    Post        = require('../models/PostModel'),
+    Postmetric  = require('../models/PostMetricModel');
 
 Exports.create = function (req, res) {
   if (!req.user._id) return res.status(400).send('Please login.');
@@ -57,7 +58,17 @@ Exports.updatePrivacy = function (req, res) {
     });
   });
 
-  Promise.all([p1, p2])
+  var p3 = new Promise(function (resolve, reject) {
+    if (!req.body.newStatus) return resolve();
+
+    Postmetric.find({ parentList: req.params.listId })
+    .remove(function (err, result) {
+      if (err) return reject(err);
+      return resolve(result);
+    });
+  })
+
+  Promise.all([p1, p2, p3])
   .then(function (values) {
     res.json({isNowPrivate: req.body.newStatus})
   })
@@ -82,7 +93,15 @@ Exports.deleteList = function (req, res) {
     });
   });
 
-  Promise.all([p1, p2, p3])
+  var p4 = new Promise(function (resolve, reject) {
+    Postmetric.find({ parentList: listId })
+    .remove(function (err, result) {
+      if (err) return reject(err);
+      return resolve(result);
+    });
+  })
+
+  Promise.all([p1, p2, p3, p4])
   .then(function () {
     res.json('List and posts deleted. User updated.');
   })
