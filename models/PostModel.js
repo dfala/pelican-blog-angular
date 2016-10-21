@@ -9,7 +9,8 @@ var PostSchema = new mongoose.Schema({
   owner         : { type: String, ref: 'User' },
   isPrivate     : { type: Boolean, default: false },
   created_date  : { type: Date, default: Date.now },
-  parentList    : { type: String, ref: 'List' }
+  parentList    : { type: String, ref: 'List' },
+  likes         : [{ type: String, ref: 'User' }]
 });
 
 // ADDING SEARCH WEIGHTS

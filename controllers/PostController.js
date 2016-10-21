@@ -36,6 +36,31 @@ Exports.update = function (req, res) {
   );
 };
 
+Exports.like = function (req, res) {
+  if (!req.user || !req.user._id) return res.status(401).send('Please log in.');
+
+  Post.findById(req.params.postId)
+  .then(function (post) {
+    if (!post) return res.status(404).send('Post not found.');
+    if (post && !post.likes) post.likes = [];
+
+    var userIndex = post.likes.indexOf(req.user._id);
+    if (userIndex < 0) post.likes.push(req.user._id);
+    else post.likes.splice(userIndex, 1);
+
+    post.save(function (err, result) {
+      if (err) return res.status(500).send(err);
+      return res.json({
+        isLiked: result.likes.indexOf(req.user._id) < 0 ? false : true,
+        likes: result.likes
+      });
+    })
+  })
+  .catch(function (err) {
+    return res.status(500).send(err);
+  })
+};
+
 Exports.delete = function (req, res) {
   var p1 = new Promise(function (resolve, reject) {
     Post.findById(req.params.postId)

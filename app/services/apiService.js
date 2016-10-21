@@ -74,5 +74,9 @@ angular.module('Pelican')
     return $http.put('/api/training/new-user-onboard');
   };
 
+  service.likePost = function (post) {
+    return $http.put('/api/like-post/' + post._id);
+  };
+
   return service;
 }]);

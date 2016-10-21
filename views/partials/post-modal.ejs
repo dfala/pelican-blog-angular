@@ -44,13 +44,17 @@
       </div>
     </div>
 
-    <div class="modal-footer">
+    <div class="modal-footer" post-actions>
       <div class="actions">
-        <div class="action">
+        <div class="like-count">
+          {{activePost.likes && activePost.likes.length}}
+          <div class="arrow"></div>
+        </div>
+        <div class="action" ng-click="likePost(activePost)" ng-class="{'liked-post': likedPost}">
           <div class="icon ion-android-happy"></div>
           Like
         </div>
-        <div class="action">
+        <div class="action" ng-click="repin(activePost)">
           <div class="icon ion-arrow-return-left"></div>
           Repost
         </div>

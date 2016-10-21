@@ -101,16 +101,35 @@ section.side-modal {
         margin-top: -3px;
       }
 
+      .like-count {
+        @local-white: #fbfbfb;
+        background-color: @local-white;
+        line-height: 26px;
+        padding: 0 8px;
+        border-radius: @br;
+        position: relative;
+        margin-right: -1px;
+
+        .arrow {
+          width: 0;
+          height: 0;
+          position: absolute;
+          right: -5px;
+          top: 8px;
+          border-top: 5px solid transparent;
+          border-bottom: 5px solid transparent;
+          border-left: 5px solid @local-white;
+        }
+      }
+
       .action {
         display: flex;
         padding: 5px 10px 0;
         border-radius: @br;
         cursor: pointer;
 
-        &:hover {
-          background-color: @almost-white;
-          // background-color: rgba(0, 0, 0, 0.02);
-          // color: @blue;
+        &.liked-post {
+          color: @blue;
         }
       }
     }

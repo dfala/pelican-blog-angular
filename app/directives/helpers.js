@@ -297,4 +297,28 @@ angular.module('Pelican')
       })
     }
   }
+}])
+
+.directive('postActions', ['apiService', function (apiService) {
+  return {
+    restrict: 'A',
+    link: function (scope, elem, attr) {
+      if (!p || !p.user || !p.user._id) return;
+
+      if (!scope.$parent.activePost.likes) scope.likedPost = false;
+      scope.likedPost = scope.$parent.activePost.likes.indexOf(p.user._id) < 0 ? false : true;
+
+      scope.likePost = function (post) {
+        apiService.likePost(post)
+        .then(function (response) {
+          scope.likedPost = response.data.isLiked;
+          scope.$parent.activePost.likes = response.data.likes;
+        })
+        .catch(function (err) {
+          console.error(err);
+          alertify.error('There was a problem with your request :(')
+        })
+      };
+    }
+  }
 }]);
