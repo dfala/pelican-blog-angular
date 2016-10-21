@@ -83,7 +83,7 @@
         <div class="body">
           <p class="post-title">{{post.title}}</p>
           <div class="space" ng-if="!post.link && !post.text"></div>
-          <a open-link="{{post}}"
+          <a class="a" open-link="{{post}}"
              ng-click="$event.stopPropagation();"
              ng-if="post.link">{{post.link}}</a>
           <div class="text" ng-if="post.text" ng-bind-html="post.text | markdown">{{post.text}}</div>

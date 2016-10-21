@@ -22,7 +22,8 @@
     <section class="post" ng-repeat="post in posts" ng-cloak>
       <div class="body" ng-click="openPost(post)" search-post>
         <p class="post-title">{{post.title}}</p>
-        <a ng-if="post.link" ng-click="$event.stopPropagation();" open-link="{{post}}">{{post.link}}</a>
+        <div class="space" ng-if="!post.link && !post.text"></div>
+        <a class="a" ng-if="post.link" ng-click="$event.stopPropagation();" open-link="{{post}}">{{post.link}}</a>
         <div class="text" ng-if="post.text" ng-bind-html="post.text | markdown">{{post.text}}</div>
       </div>
       <div class="author">
