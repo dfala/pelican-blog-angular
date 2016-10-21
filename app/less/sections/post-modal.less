@@ -1,0 +1,154 @@
+section.side-modal {
+  justify-content: flex-end;
+
+  .modal {
+    height: 100vh;
+    padding-bottom: 80px;
+    overflow-y: inherit;
+    border-top-left-radius: 0;
+    padding: 0;
+    background-color: @light-gray;
+
+    .post-link {
+      .truncate;
+      padding: 10px;
+      background-color: lighten(@light-gray, 3%);
+      border-radius: @br;
+      display: block;
+      width: 100%;
+      margin-top: 20px;
+    }
+
+    .post-text {
+      min-height: 200px;
+    }
+
+    .text-container {
+      overflow: auto;
+      max-height: calc(~"100vh - 105px");
+      overflow: auto;
+      padding: 10px 50px 10px 10px;
+      border-radius: 2px;
+      width: 100%;
+
+      .markdown {
+        code {
+          color: @red;
+          background-color: @light-gray;
+          padding: 0 5px;
+          border-radius: 2px;
+        }
+      }
+    }
+
+    .text {
+      margin: 0;
+    }
+
+    // EDIT POST
+    .edit-options {
+      margin-top: 10px;
+      padding-top: 20px;
+      border-top: 1px solid @light-gray;
+      position: relative;
+
+      button {
+        float: left;
+      }
+
+      a {
+        float: right;
+        line-height: 40px;
+      }
+    }
+
+    .title-edit {
+      font-size: 1.5em;
+      border: none;
+      padding: 0;
+      width: 95%;
+      margin: 0;
+    }
+
+    .link-edit {
+      border: none;
+      color: @blue;
+    }
+  }
+
+  .modal-body {
+    padding: @modal-space @modal-space @modal-space + 10px;
+    background-color: #fff;
+    border-bottom: 1px solid @border-gray;
+  }
+
+  .modal-footer {
+    background-color: @light-gray;
+    padding: @modal-space;
+    max-width: 100%;
+    font-size: 14px;
+    color: @darker-gray;
+
+    .actions {
+      display: flex;
+      margin-bottom: 20px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid @border-gray;
+
+      .icon {
+        margin-right: 8px;
+        font-size: 20px;
+        margin-top: -3px;
+      }
+
+      .action {
+        display: flex;
+        padding: 5px 10px 0;
+        border-radius: @br;
+        cursor: pointer;
+
+        &:hover {
+          background-color: @almost-white;
+          // background-color: rgba(0, 0, 0, 0.02);
+          // color: @blue;
+        }
+      }
+    }
+
+    .user-comment {
+      display: flex;
+      align-items: flex-start;
+      width: 400px;
+
+      @local-height: 34px;
+      img {
+        margin-right: 5px;
+        max-height: @local-height;
+        border: 1px solid transparent;
+        border-radius: @br;
+      }
+
+      .submit-wrapper {
+        width: 100%;
+        position: relative;
+
+        .icon {
+          position: absolute;
+          bottom: 17px;
+          right: 14px;
+          font-size: 20px;
+          color: @darker-gray;
+          cursor: pointer;
+        }
+      }
+
+      textarea {
+        height: @local-height;
+        resize: none;
+        padding: 9px 36px 7px 7px;
+        // overflow: hidden;
+        resize: none;
+      }
+    }
+  }
+}

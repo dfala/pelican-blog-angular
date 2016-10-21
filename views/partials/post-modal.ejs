@@ -2,43 +2,69 @@
   <div class="modal-backdrop animated-fast fadeIn" ng-click="closePostModal()" reset-location></div>
 
   <div class="modal animated-fast fadeInRight">
-    <div class="modal-icon ion-android-close" ng-click="closePostModal()" reset-location></div>
-    <div class="icon-wrapper" ng-if="user && ((user._id === activePost.owner) || (user._id === activePost.owner._id))">
-      <div class="modal-icon icon ion-ios-compose-outline"
-           ng-class="{'active-edit': editingPost}"
-           ng-click="turnOnEditPost($index)" ></div>
-      <div class="modal-icon ion-ios-trash-outline" ng-click="deletePost(activePost)" ></div>
-    </div>
+    <div class="modal-body">
+      <div class="modal-icon ion-android-close" ng-click="closePostModal()" reset-location></div>
+      <div class="icon-wrapper" ng-if="user && ((user._id === activePost.owner) || (user._id === activePost.owner._id))">
+        <div class="modal-icon icon ion-ios-compose-outline"
+             ng-class="{'active-edit': editingPost}"
+             ng-click="turnOnEditPost($index)" ></div>
+        <div class="modal-icon ion-ios-trash-outline" ng-click="deletePost(activePost)" ></div>
+      </div>
 
-    <div class="icon-wrapper single" ng-if="user && (user._id !== activePost.owner._id) && (user._id !== activePost.owner)">
-      <div class="modal-icon ion-ios-bookmarks-outline"
-          ng-click="repin(activePost)"></div>
-    </div>
-
-
-
+      <div class="icon-wrapper single" ng-if="user && (user._id !== activePost.owner._id) && (user._id !== activePost.owner)">
+        <div class="modal-icon ion-ios-bookmarks-outline"
+            ng-click="repin(activePost)"></div>
+      </div>
 
 
-    <div ng-if="!editingPost">
-      <h2>{{activePost.title}}</h2>
-      <a class="post-link" ng-href="{{activePost.link}}" ng-if="activePost.link" target="_blank">{{activePost.link}}</a>
-      <div class="text-container" ng-if="activePost.text">
-        <div class="text markdown" ng-bind-html="activePost.text | markdown"></div>
+
+
+
+      <div ng-if="!editingPost">
+        <h2>{{activePost.title}}</h2>
+        <a class="post-link" ng-href="{{activePost.link}}" ng-if="activePost.link" target="_blank">{{activePost.link}}</a>
+        <div class="text-container" ng-if="activePost.text">
+          <div class="text markdown" ng-bind-html="activePost.text | markdown"></div>
+        </div>
+      </div>
+
+
+
+
+
+      <div ng-if="editingPost">
+        <input id="post-title-edit" class="title-edit" type="text" ng-model="editablePost.title" />
+        <input class="post-link link-edit" type="text" ng-model="editablePost.link" placeholder="Post link" />
+        <textarea class="post-text" ng-model="editablePost.text"></textarea>
+
+        <div class="edit-options">
+          <button ng-click="updatePost(editablePost)" class="cta">Update post</button>
+          <a ng-click="turnOffEditPost()">Cancel edit</a>
+        </div>
       </div>
     </div>
 
-
-
-
-
-    <div ng-if="editingPost">
-      <input id="post-title-edit" class="title-edit" type="text" ng-model="editablePost.title" />
-      <input class="post-link link-edit" type="text" ng-model="editablePost.link" placeholder="Post link" />
-      <textarea class="post-text" ng-model="editablePost.text"></textarea>
-
-      <div class="edit-options">
-        <button ng-click="updatePost(editablePost)" class="cta">Update post</button>
-        <a ng-click="turnOffEditPost()">Cancel edit</a>
+    <div class="modal-footer">
+      <div class="actions">
+        <div class="action">
+          <div class="icon ion-android-happy"></div>
+          Like
+        </div>
+        <div class="action">
+          <div class="icon ion-arrow-return-left"></div>
+          Repost
+        </div>
+        <div class="action">
+          <div class="icon ion-android-create"></div>
+          Edit
+        </div>
+      </div>
+      <div class="user-comment" ng-show="$parent.user">
+        <img ng-src="{{$parent.user.image}}" alt="{{$parent.user.displayName}}" />
+        <div class="submit-wrapper">
+          <textarea placeholder="Write a comment..." rows="2" adjust-height data-autoresize></textarea>
+          <div class="icon ion-ios-paperplane-outline"></div>
+        </div>
       </div>
     </div>
   </div>

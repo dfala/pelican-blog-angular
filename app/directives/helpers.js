@@ -208,6 +208,41 @@ angular.module('Pelican')
   }
 }])
 
+.directive('adjustHeight', ['$timeout', function ($timeout) {
+  return {
+    restrict: 'A',
+    link: function (scope, element, attr) {
+      $timeout(function () {
+
+        function resizeTextArea(addedHeight) {
+          var scroll = $(document).scrollTop();
+          textarea.style.height = "2px",
+          textarea.style.height = addedHeight + textarea.scrollHeight + "px",
+          $(document).scrollTop(scroll)
+        }
+
+        var textarea = element[0];
+        $(window).resize(resizeTextArea),
+        element.bind("keydown", function(key) {
+          13 === key.keyCode && resizeTextArea(20)
+        }),
+
+        element.bind("keyup", function(key) {
+          8 === key.keyCode && resizeTextArea(2)
+        }),
+
+        scope.$watch(attrs.ngModel, function(newValue, oldValue) {
+          if (void 0 !== newValue) {
+              var lastChar = newValue.charAt(newValue - 1);
+              " " !== lastChar && resizeTextArea(2)
+          }
+        })
+
+      })
+    }
+  }
+}])
+
 .directive('toggleMenuDown', [function () {
   return {
     restrict: 'A',
