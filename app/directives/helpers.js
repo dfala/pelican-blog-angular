@@ -211,7 +211,7 @@ angular.module('Pelican')
 .directive('adjustHeight', ['$timeout', function ($timeout) {
   return {
     restrict: 'A',
-    link: function (scope, element, attr) {
+    link: function (scope, element, attrs) {
       $timeout(function () {
 
         function resizeTextArea(addedHeight) {

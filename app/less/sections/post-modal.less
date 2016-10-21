@@ -119,6 +119,7 @@ section.side-modal {
       display: flex;
       align-items: flex-start;
       width: 400px;
+      max-width: 100%;
 
       @local-height: 34px;
       img {
@@ -144,6 +145,7 @@ section.side-modal {
 
       textarea {
         height: @local-height;
+        min-height: @local-height !important;
         resize: none;
         padding: 9px 36px 7px 7px;
         // overflow: hidden;
