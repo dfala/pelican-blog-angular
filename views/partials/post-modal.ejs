@@ -4,21 +4,6 @@
   <div class="modal animated-fast fadeInRight">
     <div class="modal-body">
       <div class="modal-icon ion-android-close" ng-click="closePostModal()" reset-location></div>
-      <div class="icon-wrapper" ng-if="user && ((user._id === activePost.owner) || (user._id === activePost.owner._id))">
-        <div class="modal-icon icon ion-ios-compose-outline"
-             ng-class="{'active-edit': editingPost}"
-             ng-click="turnOnEditPost($index)" ></div>
-        <div class="modal-icon ion-ios-trash-outline" ng-click="deletePost(activePost)" ></div>
-      </div>
-
-      <div class="icon-wrapper single" ng-if="user && (user._id !== activePost.owner._id) && (user._id !== activePost.owner)">
-        <div class="modal-icon ion-ios-bookmarks-outline"
-            ng-click="repin(activePost)"></div>
-      </div>
-
-
-
-
 
       <div ng-if="!editingPost">
         <h2>{{activePost.title}}</h2>
@@ -27,9 +12,6 @@
           <div class="text markdown" ng-bind-html="activePost.text | markdown"></div>
         </div>
       </div>
-
-
-
 
 
       <div ng-if="editingPost">
@@ -46,26 +28,31 @@
 
     <div class="modal-footer" post-actions>
       <div class="actions">
-        <div class="like-count">
-          {{activePost.likes && activePost.likes.length}}
-          <div class="arrow"></div>
+        <div class="contain">
+          <div class="like-count">
+            {{activePost.likes && activePost.likes.length}}
+            <div class="arrow"></div>
+          </div>
+          <div class="action" ng-click="likePost(activePost)" ng-class="{'liked-post': likedPost}">
+            <div class="icon ion-android-happy"></div>
+            Like
+          </div>
+          <div class="action" ng-click="repin(activePost)" ng-show="user">
+            <div class="icon ion-arrow-return-left"></div>
+            Repost
+          </div>
         </div>
-        <div class="action" ng-click="likePost(activePost)" ng-class="{'liked-post': likedPost}">
-          <div class="icon ion-android-happy"></div>
-          Like
+
+        <div class="contain right" ng-if="user && ((user._id === activePost.owner) || (user._id === activePost.owner._id))">
+          <div class="action" ng-click="turnOnEditPost($index)">
+            <div class="icon ion-android-create"></div>
+            Edit
+          </div>
+          <div class="action" ng-click="deletePost(activePost)">
+            <div class="icon ion-trash-b"></div>
+            Delete
+          </div>
         </div>
-        <div class="action" ng-click="repin(activePost)">
-          <div class="icon ion-arrow-return-left"></div>
-          Repost
-        </div>
-        <!-- <div class="action">
-          <div class="icon ion-android-create"></div>
-          Edit
-        </div>
-        <div class="action">
-          <div class="icon ion-trash-b"></div>
-          Delete
-        </div> -->
       </div>
       <div class="user-comment" ng-show="$parent.user">
         <img ng-src="{{$parent.user.image}}" alt="{{$parent.user.displayName}}" />

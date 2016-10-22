@@ -8,6 +8,7 @@ section.side-modal {
     border-top-left-radius: 0;
     padding: 0;
     background-color: @light-gray;
+    overflow: auto;
 
     .post-link {
       .truncate;
@@ -24,8 +25,8 @@ section.side-modal {
     }
 
     .text-container {
-      overflow: auto;
-      max-height: calc(~"100vh - 105px");
+      // overflow: auto;
+      // max-height: calc(~"100vh - 105px");
       overflow: auto;
       padding: 10px 50px 10px 10px;
       border-radius: 2px;
@@ -77,6 +78,7 @@ section.side-modal {
   }
 
   .modal-body {
+    overflow: auto;
     padding: @modal-space @modal-space @modal-space + 10px;
     background-color: #fff;
     border-bottom: 1px solid @border-gray;
@@ -94,6 +96,16 @@ section.side-modal {
       margin-bottom: 20px;
       padding-bottom: 10px;
       border-bottom: 1px solid @border-gray;
+
+      .contain {
+        display: flex;
+        width: 50%;
+        justify-content: flex-start;
+
+        &.right {
+          justify-content: flex-end;
+        }
+      }
 
       .icon {
         margin-right: 8px;
