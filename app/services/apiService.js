@@ -78,5 +78,20 @@ angular.module('Pelican')
     return $http.put('/api/like-post/' + post._id);
   };
 
+  service.sendComment = function (newComment, user, post) {
+    var data = {
+      creator       : user._id,
+      postOwner     : post.owner._id || post.owner,
+      post          : post._id,
+      message       : newComment
+    }
+
+    return $http.post('/api/comment', data);
+  };
+
+  service.getComments = function (postId) {
+    return $http.get('/api/comments/' + postId);
+  };
+
   return service;
 }]);

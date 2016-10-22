@@ -6,7 +6,6 @@ var Exports     = module.exports = {},
 Exports.create = function (req, res) {
   if (!req.user._id) return res.status(401).send('Please login.');
   var newComment = new Comment(req.body);
-  newComment.user = req.user._id;
 
   newComment.save()
   .then(function (comment) {
@@ -14,5 +13,15 @@ Exports.create = function (req, res) {
   })
   .catch(function(err) {
     res.status(500).send(err);
+  })
+};
+
+Exports.get = function (req, res) {
+  Comment.find({ 'post': req.params.postId })
+  .sort('created_date')
+  .populate({ path: 'creator', select: 'displayName _id image' })
+  .exec(function (err, result) {
+    if (err) return res.status(400).json(err);
+    return res.json(result);
   })
 };

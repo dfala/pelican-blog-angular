@@ -54,11 +54,22 @@
           </div>
         </div>
       </div>
+
+      <div class="comments" ng-if="comments && comments.length">
+        <div class="comment" ng-repeat="comment in comments">
+          <img ng-src="{{comment.creator.image}}" alt="{{comment.creator.displayName}}" />
+          <div class="content">
+            <p class="title">{{comment.creator.displayName}}</p>
+            <p>{{comment.message}}</p>
+          </div>
+        </div>
+      </div>
+
       <div class="user-comment" ng-show="$parent.user" comment-helper>
         <img ng-src="{{$parent.user.image}}" alt="{{$parent.user.displayName}}" />
         <div class="submit-wrapper">
-          <textarea placeholder="Write a comment..." rows="2" adjust-height data-autoresize></textarea>
-          <div class="icon ion-ios-paperplane-outline"></div>
+          <textarea placeholder="Write a comment..." rows="2" adjust-height ng-model="newComment"></textarea>
+          <div class="icon ion-ios-paperplane-outline" ng-click="sendComment(newComment)"></div>
         </div>
       </div>
     </div>

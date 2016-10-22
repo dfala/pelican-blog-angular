@@ -26,6 +26,7 @@ module.exports = function (app) {
   app.put('/api/post-vanity/:postId', Vanity.trackConsume);
 
   //COMMENTS
+  app.get('/api/comments/:postId', Comment.get);
   app.post('/api/comment', Comment.create);
 
   // OTHER

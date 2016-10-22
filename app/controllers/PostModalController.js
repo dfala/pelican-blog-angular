@@ -5,6 +5,7 @@ function ($scope, $rootScope, apiService, trackingService, validator, $timeout) 
 
   $scope.openPost = function (post, postIndex, listIndex) {
     $scope.activePost = post;
+    $scope.user = p.user;
     $scope.activePost.postIndex = postIndex;
     $scope.activePost.listIndex = listIndex;
 
@@ -17,6 +18,19 @@ function ($scope, $rootScope, apiService, trackingService, validator, $timeout) 
     });
 
     trackingService.trackConsumedPost(post);
+    getComments($scope.activePost._id);
+  };
+
+  function getComments (postId) {
+    apiService.getComments(postId)
+    .then(function (response) {
+      if (!response.data) $scope.comments = [];
+      else $scope.comments = response.data;
+    })
+    .catch(function (err) {
+      console.error(err);
+      alertify.error('Error: ', err.data);
+    });
   };
 
   $scope.closePostModal = function () {
@@ -70,6 +84,28 @@ function ($scope, $rootScope, apiService, trackingService, validator, $timeout) 
     .catch(function (err) {
       console.error(err);
       alertify.error('There was a problem with your request :(')
+    })
+  };
+
+  $scope.sendComment = function (newComment) {
+    if (!newComment) return alertify.error('Please add some text to your comment.');
+
+    apiService.sendComment(newComment, $scope.user, $scope.activePost)
+    .then(function (response) {
+      $scope.newComment = '';
+
+      var data = response.data;
+      data.creator = {
+        displayName : p.user.displayName,
+        _id         : p.user._id,
+        image       : p.user.image
+      }
+
+      $scope.comments.push(data)
+    })
+    .catch(function (err) {
+      console.error(err);
+      alertify.error('There was a problem with your request :(');
     })
   };
 
