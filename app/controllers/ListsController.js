@@ -23,35 +23,6 @@ angular.module('Pelican')
     };
   };
 
-  $scope.openPost = function (post, postIndex, listIndex) {
-    $scope.activePost = post;
-    $scope.activePost.postIndex = postIndex;
-    $scope.activePost.listIndex = listIndex;
-    $('body').css({
-      'overflow': 'hidden',
-      'marginRight': '15px'
-    });
-
-    trackingService.trackConsumedPost(post);
-  };
-
-  $scope.closePostModal = function () {
-    $scope.activePost = null;
-    $scope.editingPost = false;
-    $('body').css({
-      'overflow': 'inherit',
-      'marginRight': '0'
-    });
-  };
-
-  // TODO: CREATE COMPOSE CONTROLLER TO REDUCE DUPLICATE IN DISCOVER CONTROLLER
-  $scope.repin = function (activePost) {
-    $rootScope.$emit('repin post', {
-      text: activePost.text,
-      link: activePost.link,
-      title: activePost.title
-    })
-  };
 
   $scope.toggleListLock = function (list) {
     var confirmMessage = 'You are about to make this lists private. Are you sure you want to proceed?';
@@ -93,6 +64,30 @@ angular.module('Pelican')
     });
   };
 
+  $scope.openComposeModal = function (list) {
+    var data = {
+      user: $scope.user,
+      lists: $scope.lists,
+      focusId: '#search-list',
+      preventEmit: true
+    };
+
+    if (list) {
+      data.preventEmit = true;
+      data.activeList = list;
+    }
+
+    $rootScope.$emit('open compose modal', data)
+  };
+
+  $scope.openPost = function (post, postIndex, listIndex) {
+    $rootScope.$emit('open post modal', {
+      post: post,
+      postIndex: postIndex,
+      listIndex: listIndex
+    })
+  };
+
   // LIST SETTINGS
   $scope.openListSettings = function (list) {
     list.isOpenSettings = !list.isOpenSettings;
@@ -126,87 +121,6 @@ angular.module('Pelican')
     });
   });
 
-  // EDIT POST
-  $scope.turnOffEditPost = function () {
-    $scope.editingPost = false;
-  };
-
-  $scope.turnOnEditPost = function (index) {
-    if ($scope.editingPost) return $scope.turnOffEditPost();
-
-    $scope.editablePost = angular.copy($scope.activePost);
-    $scope.editablePostIndex = index;
-    $scope.editingPost = true;
-    $timeout(function () {
-      $('#post-title-edit').focus();
-    })
-  };
-
-  $scope.deletePost = function (postToDelete) {
-    alertify.confirm("Are you sure you want to delete this post? This action cannot be undone.", function () {
-      apiService.deletePost(postToDelete)
-      .then(function (response) {
-        $rootScope.$emit('post deleted', postToDelete);
-        $scope.lists = $scope.lists.map(function (list) {
-          if (list._id === postToDelete.parentList) {
-            list.posts = list.posts.filter(function (post) {
-              if (post._id == postToDelete._id) return false;
-              return true;
-            })
-          }
-          return list;
-        })
-        $scope.closePostModal();
-        alertify.success('The post has been deleted.');
-      })
-      .catch(function (err) {
-        console.error(err);
-        alertify.error('There was a problem with deleting your post.');
-      })
-    });
-  };
-
-  $scope.updatePost = function (post) {
-    try { validator.validateNewPost(true, post) } catch (err) { return alertify.error(err); }
-    if (post.link) {
-      try {
-        post.link = validator.verifyLink(post.link)
-      } catch (err) {
-        return alertify.error(err);
-      }
-    }
-
-    apiService.updatePost(post)
-    .then(function (response) {
-      $scope.activePost = response.data;
-      $scope.editingPost = false;
-
-      $rootScope.$emit('post edited', $scope.activePost);
-      $scope.lists[$scope.activePost.listIndex].posts[$scope.activePost.postIndex] = response.data;
-      alertify.success('Your changes were successfully saved.');
-    })
-    .catch(function (err) {
-      console.error(err);
-      alertify.error('Were not able to update post :(');
-    })
-  };
-
-  $scope.openComposeModal = function (list) {
-    var data = {
-      user: $scope.user,
-      lists: $scope.lists,
-      focusId: '#search-list',
-      preventEmit: true
-    };
-
-    if (list) {
-      data.preventEmit = true;
-      data.activeList = list;
-    }
-
-    $rootScope.$emit('open compose modal', data)
-  };
-
   $rootScope.$on('new post created', function (e, newPost) {
     if (newPost.preventEmit) return;
 
@@ -228,10 +142,6 @@ angular.module('Pelican')
     $scope.lists.push(list);
   });
 
-  $rootScope.$on('open post modal', function (e, data) {
-    $scope.openPost(data.post, data.postIndex, data.listIndex);
-  });
-
   $rootScope.$on('search for post', function (e, data) {
 
     var info = {};
@@ -247,6 +157,22 @@ angular.module('Pelican')
 
     if (!info.post) return;
     $scope.openPost(info.post, info.postIndex, info.listIndex);
+  });
+
+  $rootScope.$on('post edited', function (e, data) {
+    $scope.lists[data.listIndex].posts[data.postIndex] = data;
+  });
+
+  $rootScope.$on('post deleted', function (e, postToDelete) {
+    $scope.lists = $scope.lists.map(function (list) {
+      if (list._id === postToDelete.parentList) {
+        list.posts = list.posts.filter(function (post) {
+          if (post._id == postToDelete._id) return false;
+          return true;
+        })
+      }
+      return list;
+    })
   });
 
 }]);

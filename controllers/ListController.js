@@ -5,7 +5,7 @@ var Exports     = module.exports = {},
     Postmetric  = require('../models/PostMetricModel');
 
 Exports.create = function (req, res) {
-  if (!req.user._id) return res.status(400).send('Please login.');
+  if (!req.user._id) return res.status(401).send('Please login.');
   var newList = new List(req.body);
   newList.owner = req.user._id;
 

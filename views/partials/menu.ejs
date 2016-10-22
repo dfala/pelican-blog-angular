@@ -54,7 +54,9 @@
         <p class="p-title" ng-bind-html="sanitizeHtml(list.title)"></p>
         <span class="icon ion-ios-locked-outline" ng-if="list.isPrivate"></span>
       </div>
+
       <hr ng-show="query || list.displayPosts" identify-location="/list/{{list._id}}"/>
+      
       <div class="posts" ng-show="query || list.displayPosts">
         <div class="post animated-fast fadeInLeft"
             ng-repeat="post in list.posts" search-post close-side-menu

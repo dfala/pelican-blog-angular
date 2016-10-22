@@ -1,4 +1,4 @@
-<section class="modal-container side-modal" ng-if="activePost" ng-cloak>
+<section class="modal-container side-modal" ng-show="activePost" ng-cloak ng-controller="PostModalController">
   <div class="modal-backdrop animated-fast fadeIn" ng-click="closePostModal()" reset-location></div>
 
   <div class="modal animated-fast fadeInRight">
@@ -54,7 +54,7 @@
           </div>
         </div>
       </div>
-      <div class="user-comment" ng-show="$parent.user">
+      <div class="user-comment" ng-show="$parent.user" comment-helper>
         <img ng-src="{{$parent.user.image}}" alt="{{$parent.user.displayName}}" />
         <div class="submit-wrapper">
           <textarea placeholder="Write a comment..." rows="2" adjust-height data-autoresize></textarea>

@@ -3,7 +3,8 @@ var List      = require('./ListController'),
     Vanity    = require('./MetricController'),
     App       = require('./AppController'),
     Request   = require('./RequestController'),
-    Training  = require('./TrainingController');
+    Training  = require('./TrainingController'),
+    Comment   = require('./CommentController');
 
 module.exports = function (app) {
   //LIST
@@ -23,6 +24,9 @@ module.exports = function (app) {
 
   //VANITY
   app.put('/api/post-vanity/:postId', Vanity.trackConsume);
+
+  //COMMENTS
+  app.post('/api/comment', Comment.create);
 
   // OTHER
   app.post('/api/site-header', Request.getHeader);

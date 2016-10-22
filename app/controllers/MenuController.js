@@ -17,6 +17,7 @@ angular.module('Pelican')
     } else {
       if ($scope.owner && ($scope.owner.id !== $scoe.user._id)) return;
       if (window.location.href.indexOf('/discover') > -1) return;
+      if (window.location.href.indexOf('/trending') > -1) return;
 
       $scope.lists = $scope.lists.map(function (list) {
         list.displayPosts = false;
@@ -53,7 +54,19 @@ angular.module('Pelican')
   };
 
   $rootScope.$on('post edited', function (e, editedPost) {
-    $scope.lists[editedPost.listIndex].posts[editedPost.postIndex] = editedPost;
+    if (editedPost.listIndex && editedPost.postIndex) return ($scope.lists[editedPost.listIndex].posts[editedPost.postIndex] = editedPost);
+
+    for (var i = 0; i < $scope.lists.length; i++) {
+      if ($scope.lists[i]._id === editedPost.parentList._id) {
+        for (var p = 0; p < $scope.lists[i].posts.length; p++) {
+          if ($scope.lists[i].posts[p]._id === editedPost._id) {
+            $scope.lists[i].posts[p] = editedPost;
+            return;
+          }
+        }
+      }
+    };
+
   });
 
   $rootScope.$on('new list created', function (e, newList) {
@@ -75,8 +88,14 @@ angular.module('Pelican')
   })
 
   $rootScope.$on('post deleted', function (e, postDeleted) {
+    if (postDeleted.parentList._id) {
+      var parentListId = postDeleted.parentList._id;
+    } else {
+      var parentListId = postDeleted.parentList;
+    }
+
     $scope.lists = $scope.lists.map(function (list) {
-      if (list._id === postDeleted.parentList) {
+      if (list._id === parentListId) {
         list.posts = list.posts.filter(function (post) {
           if (post._id === postDeleted._id) return false;
           return true;
