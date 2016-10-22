@@ -31,13 +31,6 @@ angular.module('Pelican')
     $rootScope.$emit('open post modal', {
       post: post
     });
-
-    $('body').css({
-      'overflow': 'hidden',
-      'marginRight': '15px'
-    });
-
-    trackingService.trackConsumedPost(post);
   };
 
   $rootScope.$on('new post created', function (e, post) {

@@ -1,8 +1,7 @@
 angular.module('Pelican')
 
-.controller('ListsController', ['$scope', 'apiService', 'validator', '$rootScope', '$timeout', '$sce', 'trackingService',
-  function ($scope, apiService, validator, $rootScope, $timeout, $sce, trackingService) {
-
+.controller('ListsController', ['$scope', 'apiService', 'validator', '$rootScope', '$timeout', '$sce',
+  function ($scope, apiService, validator, $rootScope, $timeout, $sce) {
   //INIT
   $scope.init = function () {
     if (p.user) $scope.user = p.user;
