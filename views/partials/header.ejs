@@ -36,6 +36,10 @@
           <div class="notification" ng-repeat="notification in notifications" ng-click="notificationAction(notification)">
             <p>{{notification.message}}</p>
           </div>
+
+          <div class="notification" ng-if="notificationsOpened && !notifications.length">
+            <p>No new notifications!</p>
+          </div>
         </div>
       </div>
       <!-- <div class="icon ion-ios-bell" ng-click="openNotifications()"></div> -->
