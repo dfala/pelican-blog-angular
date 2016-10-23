@@ -1,4 +1,4 @@
-<header ng-controller="HeaderController" should-open-post>
+<header ng-controller="HeaderController" ng-init="init()" should-open-post>
 
   <div class="mobile-header">
     <div class="icon-mobile hamburger ion-navicon" open-side-menu></div>
@@ -31,7 +31,13 @@
 
   <% if (user && user._id) { %>
     <div class="header-wrapper">
-      <div class="icon ion-android-globe" ng-click="openNotifications()"></div>
+      <div class="icon ion-android-globe" ng-click="toggleNotifications()">
+        <div class="notifications" ng-if="notificationsOpened" ng-cloak>
+          <div class="notification" ng-repeat="notification in notifications" ng-click="notificationAction(notification)">
+            <p>{{notification.message}}</p>
+          </div>
+        </div>
+      </div>
       <!-- <div class="icon ion-ios-bell" ng-click="openNotifications()"></div> -->
       <a class="auth" href="/logout">Logout</a>
     </div>

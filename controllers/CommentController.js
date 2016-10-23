@@ -1,7 +1,8 @@
-var Exports     = module.exports = {},
-    User        = require('../models/UserModel'),
-    Post        = require('../models/PostModel'),
-    Comment     = require('../models/CommentModel');
+var Exports           = module.exports = {},
+    User              = require('../models/UserModel'),
+    Post              = require('../models/PostModel'),
+    Comment           = require('../models/CommentModel'),
+    NotificationCtrl  = require('./NotificationController');
 
 Exports.create = function (req, res) {
   if (!req.user._id) return res.status(401).send('Please login.');
@@ -9,6 +10,12 @@ Exports.create = function (req, res) {
 
   newComment.save()
   .then(function (comment) {
+    NotificationCtrl.create({
+      user: req.body.postOwner,
+      message: 'New comment on your post.',
+      action: '/user/' + req.body.postOwner + '?post=' + req.body.post
+    }, req.user._id);
+
     res.json(comment);
   })
   .catch(function(err) {

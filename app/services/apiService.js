@@ -93,5 +93,13 @@ angular.module('Pelican')
     return $http.get('/api/comments/' + postId);
   };
 
+  service.getNotifications = function () {
+    return $http.get('/api/notifications');
+  };
+
+  service.dismissNotification = function (nId) {
+    return $http.put('/api/dismiss-notification/' + nId);
+  };
+
   return service;
 }]);

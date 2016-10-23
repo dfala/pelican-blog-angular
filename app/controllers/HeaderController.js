@@ -1,13 +1,30 @@
 angular.module('Pelican')
 
-.controller('HeaderController', ['$scope', '$rootScope', 'searchService', function ($scope, $rootScope, searchService) {
+.controller('HeaderController', ['$scope', '$rootScope', 'searchService', 'apiService', function ($scope, $rootScope, searchService, apiService) {
+
+  $scope.init = function () {
+    if (!p.user) return;
+    apiService.getNotifications()
+    .then(function (response) {
+      console.warn(response.data);
+      $scope.notifications = response.data;
+    })
+    .catch(function (err) {
+      console.error(err);
+    })
+  };
+
+  $scope.notificationAction = function (notification) {
+    apiService.dismissNotification(notification._id);
+    window.location = notification.action;
+  };
+
   $scope.search = function (query) {
     if (!query) return;
     searchService.globalSearch(query)
     .then(function (response) {
       console.warn(response.data);
-      // DO CRAAAAZY STUFF HERE
-
+      // TODO: DO CRAAAAZY STUFF HERE
     })
     .catch(function (err) {
       console.error(err);
@@ -38,7 +55,7 @@ angular.module('Pelican')
     }
   };
 
-  $scope.openNotifications = function () {
-    alertify.log('Alerts coming soon!');
+  $scope.toggleNotifications = function () {
+    $scope.notificationsOpened = !$scope.notificationsOpened;
   }
 }]);

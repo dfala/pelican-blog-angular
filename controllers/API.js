@@ -1,10 +1,11 @@
-var List      = require('./ListController'),
-    Post      = require('./PostController'),
-    Vanity    = require('./MetricController'),
-    App       = require('./AppController'),
-    Request   = require('./RequestController'),
-    Training  = require('./TrainingController'),
-    Comment   = require('./CommentController');
+var List          = require('./ListController'),
+    Post          = require('./PostController'),
+    Vanity        = require('./MetricController'),
+    App           = require('./AppController'),
+    Request       = require('./RequestController'),
+    Training      = require('./TrainingController'),
+    Comment       = require('./CommentController'),
+    Notification  = require('./NotificationController');
 
 module.exports = function (app) {
   //LIST
@@ -28,6 +29,10 @@ module.exports = function (app) {
   //COMMENTS
   app.get('/api/comments/:postId', Comment.get);
   app.post('/api/comment', Comment.create);
+
+  //NOTIFICATIONS
+  app.get('/api/notifications', Notification.get);
+  app.put('/api/dismiss-notification/:notificationId', Notification.dismissNotification);
 
   // OTHER
   app.post('/api/site-header', Request.getHeader);
