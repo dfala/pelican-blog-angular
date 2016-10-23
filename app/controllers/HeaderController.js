@@ -37,4 +37,8 @@ angular.module('Pelican')
       window.location.href = '/user/' + item.owner + '?post=' + item._id;
     }
   };
+
+  $scope.openNotifications = function () {
+    alertify.log('Alerts coming soon!');
+  }
 }]);

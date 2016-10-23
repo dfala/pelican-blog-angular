@@ -30,7 +30,11 @@
   </div>
 
   <% if (user && user._id) { %>
-    <a class="auth" href="/logout">Logout</a>
+    <div class="header-wrapper">
+      <div class="icon ion-android-globe" ng-click="openNotifications()"></div>
+      <!-- <div class="icon ion-ios-bell" ng-click="openNotifications()"></div> -->
+      <a class="auth" href="/logout">Logout</a>
+    </div>
   <% } else { %>
     <a class="auth" href="/auth/facebook">Sign Up / Login</a>
   <% } %>

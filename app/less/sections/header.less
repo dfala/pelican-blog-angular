@@ -16,6 +16,26 @@ header {
 
   a {
     line-height: @header-height;
+    color: @darker-gray;
+    &:hover {
+      color: @blue;
+    }
+  }
+
+  .header-wrapper {
+    display: flex;
+    align-items: center;
+
+    .icon {
+      margin-right: 20px;
+      cursor: pointer;
+      color: @darker-gray;
+      font-size: 24px;
+
+      &:hover {
+        color: @blue;
+      }
+    }
   }
 
   .search {
