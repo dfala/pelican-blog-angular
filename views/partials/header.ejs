@@ -31,19 +31,19 @@
 
   <% if (user && user._id) { %>
     <div class="header-wrapper">
-      <div class="icon ion-android-globe" ng-click="toggleNotifications()" loose-focus>
-        <div class="notification-count"
+      <div class="hn icon ion-android-globe" ng-click="toggleNotifications()" loose-focus>
+        <div class="hn notification-count"
             ng-show="notifications && notifications.length" ng-cloak>{{notifications.length}}</div>
 
-        <div class="notifications" ng-if="notificationsOpened" ng-cloak>
-          <div class="arrow-up"></div>
-          <div class="notification" ng-repeat="notification in notifications" ng-click="notificationAction(notification); $event.stopPropagation();">
-            <img ng-src="{{notification.created_by.image}}" />
-            <p>{{notification.message}}</p>
+        <div class="hn notifications" ng-if="notificationsOpened" ng-cloak>
+          <div class="hn arrow-up"></div>
+          <div class="hn notification" ng-repeat="notification in notifications" ng-click="notificationAction(notification); $event.stopPropagation();">
+            <img class="hn" ng-src="{{notification.created_by.image}}" />
+            <p class="hn">{{notification.message}}</p>
           </div>
 
-          <div class="notification" ng-if="notificationsOpened && !notifications.length">
-            <p>No new notifications!</p>
+          <div class="hn notification" ng-if="notificationsOpened && !notifications.length">
+            <p class="hn">No new notifications!</p>
           </div>
         </div>
       </div>

@@ -55,6 +55,8 @@ header {
         width: 300px;
         background-color: #fff;
         border: 1px solid #ddd;
+        box-shadow: 0px 0px 8px -4px #575c61;
+        border-radius: @br;
 
         &:hover p {
           color: inherit;
@@ -71,9 +73,14 @@ header {
           top: -5px;
         }
 
+        div:nth-child(2) {
+          border-top: none;
+        }
+
         .notification {
           padding: 10px 15px;
           display: flex;
+          border-top: 1px solid @light-gray;
 
           p {
             margin: 0;

@@ -1,8 +1,9 @@
-var Exports     = module.exports = {},
-    List        = require('../models/ListModel'),
-    Post        = require('../models/PostModel'),
-    ListCtrl    = require('./ListController'),
-    Postmetric  = require('../models/PostMetricModel');
+var Exports           = module.exports = {},
+    List              = require('../models/ListModel'),
+    Post              = require('../models/PostModel'),
+    ListCtrl          = require('./ListController'),
+    Postmetric        = require('../models/PostMetricModel'),
+    NotificationCtrl  = require('./NotificationController');
 
 Exports.create = function (req, res) {
   var newPost = new Post(req.body);
@@ -50,6 +51,19 @@ Exports.like = function (req, res) {
 
     post.save(function (err, result) {
       if (err) return res.status(500).send(err);
+
+      // CREATE NOTIFICATION
+      NotificationCtrl.create({
+        user: post.owner,
+        created_by: req.user._id,
+        message: req.user.displayName + ' liked your post.',
+        action: '/user/' + post.owner + '?post=' + post._id,
+        type: 'like'
+      }, req.user._id)
+      .catch(function (err) {
+        console.error(err);
+      });
+
       return res.json({
         isLiked: result.likes.indexOf(req.user._id) < 0 ? false : true,
         likes: result.likes

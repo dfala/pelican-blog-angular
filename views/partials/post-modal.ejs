@@ -60,9 +60,9 @@
           <img ng-src="{{comment.creator.image}}" alt="{{comment.creator.displayName}}" />
           <div class="content">
             <p class="title">{{comment.creator.displayName}}</p>
-            <p>{{comment.message}}</p>
-
             <p class="time">{{comment.created_date | moment}}</p>
+            
+            <p>{{comment.message}}</p>
           </div>
         </div>
       </div>

@@ -149,8 +149,8 @@ section.side-modal {
 
     @sub-height: 34px;
     .comments {
-      border: 1px solid @border-gray;
-      background-color: #fbfbfb;
+      // border: 1px solid @border-gray;
+      // background-color: #fbfbfb;
     }
 
     .comment {
@@ -162,7 +162,7 @@ section.side-modal {
       img {
         max-height: @sub-height;
         min-width: @sub-height;
-        border-radius: @br;
+        border-radius: 100%;
       }
 
       p {
@@ -172,19 +172,19 @@ section.side-modal {
 
       .title {
         font-weight: 600;
+        display: inline-block;
+      }
+
+      .time {
+        display: inline-block;
+        color: #acadad;
+        font-size: 12px;
+        margin-left: 5px;
       }
 
       .content {
         margin-top: -5px;
         margin-left: 10px;
-      }
-
-      .time {
-        position: absolute;
-        right: 10px;
-        top: 5px;
-        color: #acadad;
-        font-size: 12px;
       }
     }
 

@@ -16,7 +16,10 @@ Exports.create = function (req, res) {
       message: req.user.displayName + ' left a comment on your post.',
       action: '/user/' + req.body.postOwner + '?post=' + req.body.post,
       type: 'comment'
-    }, req.user._id);
+    }, req.user._id)
+    .catch(function (err) {
+      console.error(err);
+    });
 
     res.json(comment);
   })

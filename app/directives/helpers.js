@@ -130,10 +130,10 @@ angular.module('Pelican')
             scope.$digest();
           };
         } else if (scope.toggleNotifications && scope.notificationsOpened) {
-          // if (!jQuery.contains( element, e.target ) || !container.is(e.target)) {
-          //   scope.notificationsOpened = false;
-          //   scope.$digest();
-          // };
+          if ($(e.target).hasClass('hn')) return;
+
+          scope.notificationsOpened = false;
+          scope.$digest();
         }
 
       });
