@@ -57,18 +57,20 @@
 
       <div class="comments" ng-if="comments && comments.length">
         <div class="comment" ng-repeat="comment in comments">
-          <img ng-src="{{comment.creator.image}}" alt="{{comment.creator.displayName}}" />
+          <img class="c-img" ng-src="{{comment.creator.image}}" alt="{{comment.creator.displayName}}" />
           <div class="content">
             <p class="title">{{comment.creator.displayName}}</p>
             <p class="time">{{comment.created_date | moment}}</p>
-            
+
             <p>{{comment.message}}</p>
           </div>
         </div>
       </div>
 
+      <hr class="hr" ng-if="comments && comments.length" />
+
       <div class="user-comment" ng-show="$parent.user" comment-helper>
-        <img ng-src="{{$parent.user.image}}" alt="{{$parent.user.displayName}}" />
+        <img class="c-img" ng-src="{{$parent.user.image}}" alt="{{$parent.user.displayName}}" />
         <div class="submit-wrapper">
           <textarea placeholder="Write a comment..." rows="2"
               ng-model="newComment" adjust-height submit-enter>

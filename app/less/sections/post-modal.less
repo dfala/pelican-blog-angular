@@ -94,7 +94,7 @@ section.side-modal {
     .actions {
       display: flex;
       margin-bottom: 20px;
-      padding-bottom: 10px;
+      padding-bottom: 20px;
       border-bottom: 1px solid @border-gray;
 
       .contain {
@@ -146,8 +146,24 @@ section.side-modal {
       }
     }
 
+    .hr {
+      box-sizing: content-box;
+      border: 0;
+      border-bottom: 1px dashed @border-gray;
+      margin-top: 20px;
+    }
+
 
     @sub-height: 34px;
+    @comment-padding: 8px;
+
+    .c-img {
+      max-height: @sub-height;
+      min-width: @sub-height;
+      border-radius: 100%;
+      margin-right: 5px;
+    }
+
     .comments {
       // border: 1px solid @border-gray;
       // background-color: #fbfbfb;
@@ -155,15 +171,9 @@ section.side-modal {
 
     .comment {
       display: flex;
-      padding: 8px;
+      padding: @comment-padding;
       border-radius: @br;
       position: relative;
-
-      img {
-        max-height: @sub-height;
-        min-width: @sub-height;
-        border-radius: 100%;
-      }
 
       p {
         margin: 0;
@@ -179,7 +189,6 @@ section.side-modal {
         display: inline-block;
         color: #acadad;
         font-size: 12px;
-        margin-left: 5px;
       }
 
       .content {
@@ -192,16 +201,9 @@ section.side-modal {
       display: flex;
       align-items: flex-start;
       max-width: 100%;
-      padding: 10px;
-      background-color: #f5f5f5;
-
-      img {
-        margin-right: 5px;
-        max-height: @sub-height;
-        min-width: @sub-height;
-        border: 1px solid transparent;
-        border-radius: @br;
-      }
+      width: 380px;
+      margin-top: 20px;
+      padding: @comment-padding;
 
       .submit-wrapper {
         width: 100%;
@@ -228,6 +230,9 @@ section.side-modal {
         padding: 9px 36px 7px 7px;
         margin-bottom: 0;
         resize: none;
+        background-color: transparent;
+        border: 0;
+        border-bottom: 1px solid #ddd;
       }
     }
   }
