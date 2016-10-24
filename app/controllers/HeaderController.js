@@ -6,7 +6,6 @@ angular.module('Pelican')
     if (!p.user) return;
     apiService.getNotifications()
     .then(function (response) {
-      console.warn(response.data);
       $scope.notifications = response.data;
     })
     .catch(function (err) {
@@ -16,6 +15,7 @@ angular.module('Pelican')
 
   $scope.notificationAction = function (notification) {
     apiService.dismissNotification(notification._id);
+    console.log(notification.action);
     window.location = notification.action;
   };
 

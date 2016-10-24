@@ -37,11 +37,22 @@ header {
       //   color: @blue;
       // }
 
+      .notification-count {
+        font-size: 12px;
+        background-color: #2ecc71;
+        color: #fff;
+        position: absolute;
+        padding: 2px 5px;
+        border-radius: 2px;
+        top: -5px;
+        right: -6px;
+      }
+
       .notifications {
         position: absolute;
-        right: -20px;
+        right: -12px;
         top: 30px;
-        width: 240px;
+        width: 300px;
         background-color: #fff;
         border: 1px solid #ddd;
 
@@ -49,11 +60,31 @@ header {
           color: inherit;
         }
 
+        .arrow-up {
+          width: 0;
+          height: 0;
+          border-left: 5px solid transparent;
+          border-right: 5px solid transparent;
+          border-bottom: 5px solid @border-gray;
+          position: absolute;
+          right: 15px;
+          top: -5px;
+        }
+
         .notification {
           padding: 10px 15px;
+          display: flex;
 
           p {
             margin: 0;
+            font-size: 14px;
+            line-height: 16px;
+          }
+
+          img {
+            height: 36px;
+            min-width: 36px;
+            margin-right: 10px;
           }
 
           &:hover {

@@ -5,15 +5,17 @@ var Exports           = module.exports = {},
     NotificationCtrl  = require('./NotificationController');
 
 Exports.create = function (req, res) {
-  if (!req.user._id) return res.status(401).send('Please login.');
+  if (!req.user || !req.user._id) return res.status(401).send('Please login.');
   var newComment = new Comment(req.body);
 
   newComment.save()
   .then(function (comment) {
     NotificationCtrl.create({
       user: req.body.postOwner,
-      message: 'New comment on your post.',
-      action: '/user/' + req.body.postOwner + '?post=' + req.body.post
+      created_by: req.user._id,
+      message: req.user.displayName + ' left a comment on your post.',
+      action: '/user/' + req.body.postOwner + '?post=' + req.body.post,
+      type: 'comment'
     }, req.user._id);
 
     res.json(comment);

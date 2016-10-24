@@ -122,15 +122,20 @@ angular.module('Pelican')
     link: function (scope, element, attr) {
 
       $(document).mouseup(function(e) {
-        // scope.closeListSettings(scope.list)
-        // scope.$digest();
-
         var container = $(element);
 
-        if (scope.list.isOpenSettings && !container.is(e.target)) {
-          scope.closeListSettings(scope.list)
-          scope.$digest();
-        };
+        if (scope.list && scope.closeListSettings) {
+          if (scope.list.isOpenSettings && !container.is(e.target)) {
+            scope.closeListSettings(scope.list)
+            scope.$digest();
+          };
+        } else if (scope.toggleNotifications && scope.notificationsOpened) {
+          // if (!jQuery.contains( element, e.target ) || !container.is(e.target)) {
+          //   scope.notificationsOpened = false;
+          //   scope.$digest();
+          // };
+        }
+
       });
     }
   }
