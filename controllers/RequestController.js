@@ -17,6 +17,10 @@ Exports.getHeader = function (req, res) {
   })
 };
 
+Exports.getImage = function (req, res) {
+
+};
+
 Exports.globalSearch = function (req, res) {
   var query = decodeURIComponent(req.params.query);
   query = query.replace('.com', '');

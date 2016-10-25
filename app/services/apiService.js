@@ -60,7 +60,7 @@ angular.module('Pelican')
   };
 
   service.getHeader = function (link) {
-    return $http.post('/api/site-header', {
+    return $http.post('/api/request/header', {
       uri: link
     });
   };

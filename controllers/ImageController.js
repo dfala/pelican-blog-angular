@@ -1,7 +1,6 @@
 var exports = module.exports = {};
     Keys    = require('../config/keys.js').amazon,
     User    = require('../models/UserModel'),
-    fs      = require('fs'),
     AWS     = require('aws-sdk'),
     request = require('request').defaults({ encoding: null });
 

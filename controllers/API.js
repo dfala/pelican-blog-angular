@@ -35,7 +35,8 @@ module.exports = function (app) {
   app.put('/api/dismiss-notification/:notificationId', Notification.dismissNotification);
 
   // OTHER
-  app.post('/api/site-header', Request.getHeader);
+  app.post('/api/request/header', Request.getHeader);
+  // app.get('/api/request/image', Request.getImage);
   app.get('/api/global-search/:query', Request.globalSearch);
   app.put('/api/training/new-user-onboard', Training.newUserOnBoardCompleted);
 };
