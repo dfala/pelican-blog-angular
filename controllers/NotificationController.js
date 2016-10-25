@@ -4,7 +4,7 @@ var Exports       = module.exports = {},
 
 Exports.create = function (data, userId) {
   var promise = new Promise(function (resolve, reject) {
-    if (data.user === userId) resolve('No notification needed.');
+    if (data.user === userId) return resolve('No notification needed.');
     var newNotification = new Notification(data);
 
     newNotification.save(function (err, result) {
