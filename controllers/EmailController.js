@@ -22,7 +22,7 @@ Exports.send = function (email) {
 
 Exports.createNotificationEmail = function () {
   console.log('Email notifications cron job is on.');
-  
+
   var cron = new CronJob('00 00 07 * * *', function() {
     new Promise(function (resolve, reject) {
       // LET'S FIND THE DISCOVERY SINCE
@@ -42,7 +42,7 @@ Exports.createNotificationEmail = function () {
       .then(function (users) {
         users.forEach(function (user) {
           // GET THE NOTIFICATIONS FOR THAT USER
-          Notification.find({ 'user': user._id, 'emailSent': false })
+          Notification.find({ 'user': user._id, 'emailSent': false, 'dismissed': false })
           .sort('-created_date')
           .populate({ path: 'created_by', select: 'image' })
           .exec(function (err, notifications) {
