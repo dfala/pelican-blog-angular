@@ -5,7 +5,8 @@ var List          = require('./ListController'),
     Request       = require('./RequestController'),
     Training      = require('./TrainingController'),
     Comment       = require('./CommentController'),
-    Notification  = require('./NotificationController');
+    Notification  = require('./NotificationController'),
+    Emails        = require('./EmailController');
 
 module.exports = function (app) {
   //LIST
@@ -34,6 +35,9 @@ module.exports = function (app) {
   app.get('/api/notifications', Notification.get);
   app.put('/api/dismiss-notification/:notificationId', Notification.dismissNotification);
   app.put('/api/notifications/viewed', Notification.viewedNotifications);
+
+  //EMAILS
+  // app.put('/api/emails/notifications', Emails.createNotificationEmail);
 
   // OTHER
   app.post('/api/request/header', Request.getHeader);

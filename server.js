@@ -9,7 +9,8 @@ var express     = require('express'),
     ejs         = require('ejs'),
     path        = require('path'),
     keys        = require('./config/keys.js').connections,
-    http        = require('http');
+    http        = require('http'),
+    EmailCtrl   = require('./controllers/EmailController');
 
 if (keys.env !== "DEVELOPMENT") {
   var https       = require('https'),
@@ -58,6 +59,7 @@ var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function (callback) {
   console.log('Mongoose uri:', mongooseUri);
+  EmailCtrl.createNotificationEmail();
 });
 
 

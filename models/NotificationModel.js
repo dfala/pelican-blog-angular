@@ -10,7 +10,8 @@ var NotificationSchema = new mongoose.Schema({
   action        : { type: String, required: false },
   created_date  : { type: Date, default: Date.now },
   viewed        : { type: Boolean, default: false },
-  dismissed     : { type: Boolean, default: false }
+  dismissed     : { type: Boolean, default: false },
+  emailSent     : { type: Boolean, default: false }
 });
 
 // TYPES:
