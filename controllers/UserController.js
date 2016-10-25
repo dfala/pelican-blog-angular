@@ -55,6 +55,7 @@ Export.getUserInfo = function (req) {
     if (!req.user || !req.user._id) return resolve();
 
     List.find({owner: req.user._id})
+    .sort('isPrivate')
     .populate({path: 'posts', options: { sort: { 'created_date': -1 } }})
     .exec(function(error, result) {
       User.findById(req.user._id, function (err, user) {
