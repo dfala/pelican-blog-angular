@@ -30,10 +30,12 @@ require('./config/passport')(passport);
 
 // Middleware
 app.use(session({
-    secret: 'super mega secret',
+    secret: keys.sessionSecret,
     resave: true,
-    saveUninitialized: true
+    saveUninitialized: true,
+    maxAge : 3600000 * 24 * 365
 }));
+
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(cors());
