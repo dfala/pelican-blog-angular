@@ -13,7 +13,7 @@ Exports.create = function (req, res) {
     NotificationCtrl.create({
       user: req.body.postOwner,
       created_by: req.user._id,
-      message: req.user.displayName + ' left a comment on your post.',
+      message: req.user.displayName + ' left a comment on your post',
       action: '/user/' + req.body.postOwner + '?post=' + req.body.post,
       type: 'comment'
     }, req.user._id)

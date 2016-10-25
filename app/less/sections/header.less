@@ -79,8 +79,12 @@ header {
 
         .notification {
           padding: 10px 15px;
-          display: flex;
           border-top: 1px solid @light-gray;
+          display: flex;
+
+          &.unread {
+            background-color: rgba(0, 147, 255, 0.05);
+          }
 
           p {
             margin: 0;

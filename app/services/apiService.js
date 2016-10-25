@@ -101,5 +101,9 @@ angular.module('Pelican')
     return $http.put('/api/dismiss-notification/' + nId);
   };
 
+  service.markNotificationsAsViewed = function (notifications) {
+    return $http.put('/api/notifications/viewed', notifications);
+  }
+
   return service;
 }]);

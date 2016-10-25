@@ -7,15 +7,21 @@ angular.module('Pelican')
     apiService.getNotifications()
     .then(function (response) {
       $scope.notifications = response.data;
+      $scope.activeNotifications = getNotificationCount(response.data);
     })
     .catch(function (err) {
       console.error(err);
     })
   };
 
+  function getNotificationCount (notifications) {
+    var activeNotifications = 0;
+    notifications.forEach(function (n) { if (!n.viewed) activeNotifications++; })
+    return activeNotifications;
+  };
+
   $scope.notificationAction = function (notification) {
     apiService.dismissNotification(notification._id);
-    console.log(notification.action);
     window.location = notification.action;
   };
 
@@ -57,5 +63,14 @@ angular.module('Pelican')
 
   $scope.toggleNotifications = function () {
     $scope.notificationsOpened = !$scope.notificationsOpened;
+    if ($scope.notificationsOpened) {
+      apiService.markNotificationsAsViewed($scope.notifications)
+      .then(function (response) {
+        $scope.activeNotifications = 0;
+      })
+      .catch(function (err) {
+        console.error(err);
+      })
+    }
   }
 }]);

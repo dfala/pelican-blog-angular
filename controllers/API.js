@@ -33,6 +33,7 @@ module.exports = function (app) {
   //NOTIFICATIONS
   app.get('/api/notifications', Notification.get);
   app.put('/api/dismiss-notification/:notificationId', Notification.dismissNotification);
+  app.put('/api/notifications/viewed', Notification.viewedNotifications);
 
   // OTHER
   app.post('/api/request/header', Request.getHeader);

@@ -56,7 +56,7 @@ Exports.like = function (req, res) {
       NotificationCtrl.create({
         user: post.owner,
         created_by: req.user._id,
-        message: req.user.displayName + ' liked your post.',
+        message: req.user.displayName + ' liked your post',
         action: '/user/' + post.owner + '?post=' + post._id,
         type: 'like'
       }, req.user._id)
