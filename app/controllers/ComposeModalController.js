@@ -64,10 +64,18 @@ angular.module('Pelican')
       try {
         newPost.link = validator.verifyLink(newPost.link)
       } catch (err) {
-        return alertify.error(err);
+        return alertify.confirm(newPost.link + " doesn't seem like a legit URL. Are you sure that's correct?", function () {
+          createPost(newPost);
+        }, function() {
+          // user clicked "cancel"
+        });
       }
     }
 
+    createPost(newPost);
+  };
+
+  function createPost (newPost) {
     apiService.addPost(newPost, $scope.activeList)
     .then(function (response) {
       response.data.owner = $scope.user;
