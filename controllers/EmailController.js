@@ -8,12 +8,12 @@ var Exports             = module.exports = {},
     User                = require('../models/UserModel'),
     Notification        = require('../models/NotificationModel');
 
-Exports.send = function (email) {
+Exports.send = function (email, recipientEmail, subject) {
   client.sendEmail({
       "From": "admin@thepelicanblog.com",
-      "To": "dnlfala@gmail.com",
-      "Subject": "Test",
-      "TextBody": "hi daniel!",
+      "To": recipientEmail,
+      "Subject": subject,
+      "TextBody": "Please enable html to see your email.",
       "HtmlBody": email
   }, function (err, result) {
     console.log(arguments);
@@ -23,7 +23,7 @@ Exports.send = function (email) {
 Exports.createNotificationEmail = function () {
   console.log('Email notifications cron job is on.');
 
-  var cron = new CronJob('00 00 07 * * *', function() {
+  var cron = new CronJob('00 15 09 * * *', function() {
     new Promise(function (resolve, reject) {
       // LET'S FIND THE DISCOVERY SINCE
       // THEY ARE THE SAME FOR ALL USERS
@@ -51,7 +51,7 @@ Exports.createNotificationEmail = function () {
 
             // CREATE AND SEND FROM TEMPLATE
             var email = emailNotification.template(notifications, discover);
-            Exports.send(emailNotification.template(notifications, discover));
+            Exports.send(email, user.email, 'You got updates | The Pelican Blog');
 
             // UPDATE NOTIFICATION EMAIL STATUS
             notifications.forEach(function (n) {
@@ -62,5 +62,5 @@ Exports.createNotificationEmail = function () {
         })
       })
     })
-  })
+  }, null, true, 'America/Denver')
 };
