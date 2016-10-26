@@ -48,9 +48,11 @@ Exports.createNotificationEmail = function () {
           .exec(function (err, notifications) {
             if (err) return console.error(err);
             if (!notifications || !notifications.length) return;
+            if (!user.email) return;
 
             // CREATE AND SEND FROM TEMPLATE
             var email = emailNotification.template(notifications, discover);
+
             Exports.send(email, user.email, 'You got updates | The Pelican Blog');
 
             // UPDATE NOTIFICATION EMAIL STATUS
