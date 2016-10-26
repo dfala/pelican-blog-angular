@@ -40,7 +40,7 @@
           <div class="hn notification" ng-class="{ 'unread': !notification.viewed }"
               ng-repeat="notification in notifications" ng-click="notificationAction(notification); $event.stopPropagation();">
             <img class="hn" ng-src="{{notification.created_by.image}}" />
-            <p class="hn">{{notification.message}} {{notification.created_data | moment}}</p>
+            <p class="hn">{{notification.message}} {{notification.created_date | moment}}</p>
           </div>
 
           <div class="hn notification" ng-if="notificationsOpened && !notifications.length">
