@@ -23,7 +23,7 @@ Exports.send = function (email, recipientEmail, subject) {
 Exports.createNotificationEmail = function () {
   console.log('Email notifications cron job is on.');
 
-  var cron = new CronJob('00 15 09 * * *', function() {
+  var cron = new CronJob('00 00 07 * * *', function() {
     new Promise(function (resolve, reject) {
       // LET'S FIND THE DISCOVERY SINCE
       // THEY ARE THE SAME FOR ALL USERS
