@@ -29,7 +29,7 @@ Exports.getMorePosts = function (req, res) {
   })
 };
 
-Exports.getPosts = function (req, res) {
+Exports.get = function (req, res) {
   Post.findById(req.params.postId)
   .populate({ path: 'owner', select: 'displayName _id image' })
   .populate({ path: 'parentList', select: 'title _id' })
