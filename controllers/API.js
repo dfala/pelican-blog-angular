@@ -18,7 +18,7 @@ module.exports = function (app) {
   // POST
   app.get('/api/posts', App.getPosts);
   app.get('/api/more-posts/:start', App.getMorePosts);
-  app.get('/api/post/:postId', App.get);
+  app.get('/api/post/:postId', App.getPost);
   app.post('/api/post', Post.create);
   app.put('/api/post/:postId', Post.update);
   app.delete('/api/post/:listId/:postId', Post.delete);
@@ -41,6 +41,7 @@ module.exports = function (app) {
 
   // USERS
   app.get('/api/users', App.getUsers);
+  app.get('/api/user-posts/:userId', App.getUserPosts);
 
   // OTHER
   app.post('/api/request/header', Request.getHeader);
