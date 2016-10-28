@@ -29,7 +29,7 @@ Exports.getMorePosts = function (req, res) {
   })
 };
 
-Exports.get = function (req, res) {
+Exports.getPosts = function (req, res) {
   Post.findById(req.params.postId)
   .populate({ path: 'owner', select: 'displayName _id image' })
   .populate({ path: 'parentList', select: 'title _id' })
@@ -37,4 +37,11 @@ Exports.get = function (req, res) {
     if (err) return res.status(500).send(err);
     return res.json(post);
   })
+};
+
+Exports.getUsers = function (req, res) {
+  User.find({}, 'displayName email image', function (err, users) {
+    if (err) return res.status(500).send(err);
+    return res.json(users)
+  });
 };

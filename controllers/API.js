@@ -9,35 +9,38 @@ var List          = require('./ListController'),
     Emails        = require('./EmailController');
 
 module.exports = function (app) {
-  //LIST
+  // LIST
   app.post('/api/list', List.create);
   app.put('/api/list/privacy/:listId', List.updatePrivacy);
   app.delete('/api/list/:listId', List.deleteList);
   app.put('/api/list/rename/:listId', List.renameList);
 
-  //POST
+  // POST
   app.get('/api/posts', App.getPosts);
   app.get('/api/more-posts/:start', App.getMorePosts);
-  app.get('/api/post/:postId', App.get);
+  app.get('/api/post/:postId', App.getPosts);
   app.post('/api/post', Post.create);
   app.put('/api/post/:postId', Post.update);
   app.delete('/api/post/:listId/:postId', Post.delete);
   app.put('/api/like-post/:postId', Post.like);
 
-  //VANITY
+  // VANITY
   app.put('/api/post-vanity/:postId', Vanity.trackConsume);
 
-  //COMMENTS
+  // COMMENTS
   app.get('/api/comments/:postId', Comment.get);
   app.post('/api/comment', Comment.create);
 
-  //NOTIFICATIONS
+  // NOTIFICATIONS
   app.get('/api/notifications', Notification.get);
   app.put('/api/dismiss-notification/:notificationId', Notification.dismissNotification);
   app.put('/api/notifications/viewed', Notification.viewedNotifications);
 
-  //EMAILS
+  // EMAILS
   // app.put('/api/emails/notifications', Emails.createNotificationEmail);
+
+  // USERS
+  app.get('/api/users', App.getUsers);
 
   // OTHER
   app.post('/api/request/header', Request.getHeader);
