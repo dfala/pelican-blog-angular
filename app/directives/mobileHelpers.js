@@ -45,6 +45,8 @@ angular.module('Pelican')
         $('.mobile-header').css('display', 'none');
         $('.mobile-close').css('display', 'inherit');
 
+        $('#notification-globe').css('display', 'none');
+
         // toggle search bar
         var search = $('#header-search');
         search.addClass('animated-fast slideInRight');
@@ -73,6 +75,8 @@ angular.module('Pelican')
         setTimeout(function () {
           search.css('display', 'none');
           $('.mobile-header').css('display', 'inherit');
+          $('#notification-globe').css('display', 'inherit');
+
           search.removeClass('slideOutRight');
         }, 300);
       })

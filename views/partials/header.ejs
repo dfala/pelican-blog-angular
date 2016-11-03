@@ -31,7 +31,7 @@
 
   <% if (user && user._id) { %>
     <div class="header-wrapper">
-      <div class="hn icon ion-android-globe" ng-click="toggleNotifications()" loose-focus>
+      <div id="notification-globe" class="hn icon ion-android-globe" ng-click="toggleNotifications()" loose-focus>
         <div class="hn notification-count animated fadeIn"
             ng-show="activeNotifications" ng-cloak>{{activeNotifications}}</div>
 
