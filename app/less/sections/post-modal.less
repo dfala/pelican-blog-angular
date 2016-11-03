@@ -237,3 +237,20 @@ section.side-modal {
     }
   }
 }
+
+@media only screen and (max-width: 369px) {
+  section.side-modal {
+    .modal-footer .actions {
+      display: inherit;
+
+      .contain.right {
+        justify-content: inherit;
+        margin-top: 15px;
+
+        .first {
+          padding-left: 0;
+        }
+      }
+    }
+  }
+}
