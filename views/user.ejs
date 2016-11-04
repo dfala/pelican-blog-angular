@@ -81,12 +81,17 @@
 
       <section class="post" ng-click="openPost(post, $index, $parent.$index)" ng-repeat="post in list.posts" search-post>
         <div class="body">
-          <p class="post-title">{{post.title}}</p>
-          <div class="space" ng-if="!post.link && !post.text"></div>
-          <a class="a" open-link="{{post}}"
-             ng-click="$event.stopPropagation();"
-             ng-if="post.link">{{post.link}}</a>
-          <div class="text" ng-if="post.text" ng-bind-html="post.text | markdown">{{post.text}}</div>
+          <div class="post-img">
+            <img ng-if="post.img" ng-src="{{post.img}}" alt="{{post.title}}" />
+          </div>
+          <div class="post-content">
+            <p class="post-title">{{post.title}}</p>
+            <div class="space" ng-if="!post.link && !post.text"></div>
+            <a class="a" open-link="{{post}}"
+               ng-click="$event.stopPropagation();"
+               ng-if="post.link">{{post.link}}</a>
+            <div class="text" ng-if="post.text" ng-bind-html="post.text | markdown">{{post.text}}</div>
+          </div>
         </div>
       </section>
 

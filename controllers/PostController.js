@@ -2,6 +2,7 @@ var Exports           = module.exports = {},
     List              = require('../models/ListModel'),
     Post              = require('../models/PostModel'),
     ListCtrl          = require('./ListController'),
+    RequestCtrl       = require('./RequestController'),
     Postmetric        = require('../models/PostMetricModel'),
     NotificationCtrl  = require('./NotificationController');
 
@@ -19,7 +20,14 @@ Exports.create = function (req, res) {
         if (err) console.log(err);
       }
     );
-    res.json(post);
+
+    RequestCtrl.getImage(post.link)
+    .then(function (imgUrl) {
+      post.img = imgUrl;
+      post.save(function (err, result) {
+        res.json(post);
+      });
+    })
   })
   .catch(function (err) {
     res.status(500).send(err);

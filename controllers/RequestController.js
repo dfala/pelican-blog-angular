@@ -19,30 +19,32 @@ Exports.getHeader = function (req, res) {
   })
 };
 
-Exports.getImage = function (req, res) {
-  var uri = req.body.uri;
+Exports.getImage = function (uri) {
+  return new Promise(function (resolve, reject) {
+    if (!uri) return resolve('');
+    
+    request(uri, function (error, response, body) {
+      if (!error && response.statusCode == 200) {
+        $ = cheerio.load(body);
+        var facebookImage = $('meta[property="og:image"]').attr('content');
+        if (!facebookImage) return resolve('');
 
-  request(uri, function (error, response, body) {
-    if (!error && response.statusCode == 200) {
-      $ = cheerio.load(body);
-      var facebookImage = $('meta[property="og:image"]').attr('content');
-      if (!facebookImage) return res.json({'img': ''});
+        var fileUrl = facebookImage.split("?")[0];
+        var extension = fileUrl.substr(fileUrl.lastIndexOf('.')+1);
 
-      var fileUrl = facebookImage.split("?")[0];
-      var extension = fileUrl.substr(fileUrl.lastIndexOf('.')+1);
+        ImgCtrl.downloadMetaImage(facebookImage, extension)
+        .then(function (img) {
+          return resolve(img);
+        })
+        .catch(function (err) {
+          return reject(err);
+        })
 
-      ImgCtrl.downloadMetaImage(facebookImage, extension)
-      .then(function (img) {
-        res.json({'img': img});
-      })
-      .catch(function (err) {
-        res.status(400).send('Image not found');
-      })
-
-    } else {
-      res.status(400).send('Not found');
-    }
-  })
+      } else {
+        return reject(err);
+      }
+    })
+  });
 };
 
 Exports.globalSearch = function (req, res) {

@@ -76,6 +76,7 @@ angular.module('Pelican')
   };
 
   function createPost (newPost) {
+    alertify.log('Saving your new post');
     apiService.addPost(newPost, $scope.activeList)
     .then(function (response) {
       response.data.owner = $scope.user;
