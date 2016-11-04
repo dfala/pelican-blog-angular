@@ -6,6 +6,7 @@ var PostSchema = new mongoose.Schema({
   title         : { type: String, required: true },
   link          : { type: String, required: false },
   text          : { type: String, required: false },
+  img           : { type: String, required: false},
   owner         : { type: String, ref: 'User' },
   isPrivate     : { type: Boolean, default: false },
   created_date  : { type: Date, default: Date.now },
