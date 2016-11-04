@@ -36,3 +36,24 @@ exports.downloadImage = function (uri, userId, extension) {
 
   });
 };
+
+exports.downloadMetaImage = function (uri, extension) {
+  return new Promise(function (resolve, reject) {
+    request.get(uri, function (error, response, body) {
+      if (error) return console.log(error);
+
+      var params = {
+          Bucket: Keys.amazonBucket
+        , Key: uri + '.' + extension
+        , Body: new Buffer(body)
+        , ContentType: 'image/' + extension
+        , ACL: 'public-read'
+      };
+
+      s3.upload(params, function (err, img) {
+        if (err) return console.error("S3 UPLOAD ERROR", err);
+        return resolve(img.Location);
+      });
+    });
+  });
+};

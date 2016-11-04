@@ -1,5 +1,7 @@
 var Exports  = module.exports = {},
     request  = require('request'),
+    cheerio  = require('cheerio'),
+    ImgCtrl  = require('./ImageController'),
     User     = require('../models/UserModel'),
     List     = require('../models/ListModel'),
     Post     = require('../models/PostModel');
@@ -18,7 +20,29 @@ Exports.getHeader = function (req, res) {
 };
 
 Exports.getImage = function (req, res) {
+  var uri = req.body.uri;
 
+  request(uri, function (error, response, body) {
+    if (!error && response.statusCode == 200) {
+      $ = cheerio.load(body);
+      var facebookImage = $('meta[property="og:image"]').attr('content');
+      if (!facebookImage) return res.json({'img': ''});
+
+      var fileUrl = facebookImage.split("?")[0];
+      var extension = fileUrl.substr(fileUrl.lastIndexOf('.')+1);
+
+      ImgCtrl.downloadMetaImage(facebookImage, extension)
+      .then(function (img) {
+        res.json({'img': img});
+      })
+      .catch(function (err) {
+        res.status(400).send('Image not found');
+      })
+
+    } else {
+      res.status(400).send('Not found');
+    }
+  })
 };
 
 Exports.globalSearch = function (req, res) {
