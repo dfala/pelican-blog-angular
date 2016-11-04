@@ -21,10 +21,15 @@
 
     <section class="post" ng-repeat="post in posts" ng-cloak>
       <div class="body" ng-click="openPost(post)" search-post>
-        <p class="post-title">{{post.title}}</p>
-        <div class="space" ng-if="!post.link && !post.text"></div>
-        <a class="a" ng-if="post.link" ng-click="$event.stopPropagation();" open-link="{{post}}">{{post.link}}</a>
-        <div class="text" ng-if="post.text" ng-bind-html="post.text | markdown">{{post.text}}</div>
+        <div class="post-img">
+          <img ng-if="post.img" ng-src="{{post.img}}" alt="{{post.title}}" />
+        </div>
+        <div class="post-content">
+          <p class="post-title">{{post.title}}</p>
+          <div class="space" ng-if="!post.link && !post.text"></div>
+          <a class="a" ng-if="post.link" ng-click="$event.stopPropagation();" open-link="{{post}}">{{post.link}}</a>
+          <div class="text" ng-if="post.text" ng-bind-html="post.text | markdown">{{post.text}}</div>
+        </div>
       </div>
       <div class="author">
         <a href="/user/{{post.owner._id}}">
