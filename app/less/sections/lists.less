@@ -170,13 +170,20 @@ section.lists {
 
 @media only screen and (max-width: @mobile) {
   section.lists {
+
+    .list {
+       .right-icons {
+         width: 65px;
+       }
+    }
+
     .compose img {
       display: none;
     }
 
     &.discover, &.user {
       .list {
-        @local-padding: 5px 15px;
+        @local-padding: 15px 15px 5px;
         padding: @local-padding;
         &.active-list {
           padding: @local-padding;

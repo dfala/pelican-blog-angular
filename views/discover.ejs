@@ -21,10 +21,10 @@
 
     <section class="post" ng-repeat="post in posts" ng-cloak>
       <div class="body" ng-click="openPost(post)" search-post>
-        <div class="post-img">
-          <img ng-if="post.img" ng-src="{{post.img}}" alt="{{post.title}}" />
+        <div class="post-img" ng-if="post.img" >
+          <img ng-src="{{post.img}}" alt="{{post.title}}" />
         </div>
-        <div class="post-content">
+        <div class="post-content" ng-class="{'with-img': post.img}">
           <p class="post-title">{{post.title}}</p>
           <div class="space" ng-if="!post.link && !post.text"></div>
           <a class="a" ng-if="post.link" ng-click="$event.stopPropagation();" open-link="{{post}}">{{post.link}}</a>

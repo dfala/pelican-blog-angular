@@ -81,8 +81,8 @@
 
       <section class="post" ng-click="openPost(post, $index, $parent.$index)" ng-repeat="post in list.posts" search-post>
         <div class="body">
-          <div class="post-img">
-            <img ng-if="post.img" ng-src="{{post.img}}" alt="{{post.title}}" />
+          <div class="post-img" ng-if="post.img" >
+            <img ng-src="{{post.img}}" alt="{{post.title}}" />
           </div>
           <div class="post-content">
             <p class="post-title">{{post.title}}</p>
