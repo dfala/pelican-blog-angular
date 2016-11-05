@@ -22,7 +22,7 @@ Exports.getHeader = function (req, res) {
 Exports.getImage = function (uri) {
   return new Promise(function (resolve, reject) {
     if (!uri) return resolve('');
-    
+
     request(uri, function (error, response, body) {
       if (!error && response.statusCode == 200) {
         $ = cheerio.load(body);
@@ -45,6 +45,57 @@ Exports.getImage = function (uri) {
       }
     })
   });
+};
+
+Exports.getImageTemp = function (req, res) {
+  Post.find({})
+  .then(function (posts) {
+    posts.forEach(function (post) {
+      if (!post) return;
+      // res.status(404).send('No post found.');
+      if (!post.link) return;
+      // res.send('No post link');
+      if (post.img) return;
+      // res.send('Already has image');
+
+      var uri = post.link;
+
+      request(uri, function (error, response, body) {
+        if (!error && response.statusCode == 200) {
+          $ = cheerio.load(body);
+          var facebookImage = $('meta[property="og:image"]').attr('content');
+          if (!facebookImage) return;
+          // res.send('No facebook image');
+
+          var fileUrl = facebookImage.split("?")[0];
+          var extension = fileUrl.substr(fileUrl.lastIndexOf('.')+1);
+
+          ImgCtrl.downloadMetaImage(facebookImage, extension)
+          .then(function (img) {
+            post.img = img;
+            post.save(function (err, result) {
+              if (err) return res.status(400).send(err);
+              return;
+              // res.json(result);
+            })
+          })
+          .catch(function (err) {
+            return;
+            // res.status(400).send(err);
+          })
+
+        } else {
+          return;
+          // res.status(400).send(err);
+        }
+      })
+
+    })
+  })
+  .catch(function (err) {
+    return;
+    // res.status(500).send(err);
+  })
 };
 
 Exports.globalSearch = function (req, res) {
