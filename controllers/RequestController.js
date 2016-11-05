@@ -35,6 +35,13 @@ Exports.getImage = function (uri) {
       if (!error && response.statusCode == 200) {
         $ = cheerio.load(body);
         var facebookImage = $('meta[property="og:image"]').attr('content');
+
+        // IF NOT FACEBOOK TRY TWITTER
+        if (!facebookImage) {
+          var facebookImage = $('meta[property="twitter:image"]').attr('content');
+        }
+
+        // IF NO FACEBOOK OR TWITTER IMAGE, SORRY!
         if (!facebookImage) return resolve('');
 
         var fileUrl = facebookImage.split("?")[0];
@@ -47,6 +54,7 @@ Exports.getImage = function (uri) {
           return reject(err);
         }
 
+        // UPLOAD IMAGE TO AMAZON
         ImgCtrl.downloadMetaImage(facebookImage, extension)
         .then(function (img) {
           return resolve(img);
