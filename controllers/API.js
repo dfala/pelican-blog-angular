@@ -45,7 +45,7 @@ module.exports = function (app) {
 
   // OTHER
   app.post('/api/request/header', Request.getHeader);
-  app.post('/api/request/image', Request.getImageTemp);
+  // app.post('/api/request/image', Request.getImageTemp);
   app.get('/api/global-search/:query', Request.globalSearch);
   app.put('/api/training/new-user-onboard', Training.newUserOnBoardCompleted);
 };
