@@ -19,6 +19,14 @@ Exports.getHeader = function (req, res) {
   })
 };
 
+function validateUrl (link) {
+  if (link.indexOf('http') < 0) link = 'http://' + link;
+  var re = new RegExp(/[-a-zA-Z0-9@:%_\+.~#?&//=]{2,256}\.[a-z]{2,4}\b(\/[-a-zA-Z0-9@:%_\+.~#?&//=]*)?/gi);
+  var isUrl = link.match(re);
+  if (!isUrl) throw 'Not a valid URL';
+  return link;
+}
+
 Exports.getImage = function (uri) {
   return new Promise(function (resolve, reject) {
     if (!uri) return resolve('');
@@ -31,6 +39,13 @@ Exports.getImage = function (uri) {
 
         var fileUrl = facebookImage.split("?")[0];
         var extension = fileUrl.substr(fileUrl.lastIndexOf('.')+1);
+
+        // TESTING FOR VALID URL
+        try {
+          facebookImage = validateUrl(facebookImage);
+        } catch (err) {
+          return reject(err);
+        }
 
         ImgCtrl.downloadMetaImage(facebookImage, extension)
         .then(function (img) {
