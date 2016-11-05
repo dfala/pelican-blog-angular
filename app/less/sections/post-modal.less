@@ -10,6 +10,46 @@ section.side-modal {
     background-color: @light-gray;
     overflow: auto;
 
+    .top-wrapper {
+      display: flex;
+
+      @img-width: 100px;
+      @img-margin: 20px;
+
+      .post-img {
+        width: @img-width;
+        margin-right: @img-margin;
+        position: relative;
+        // border: 1px solid @light-gray;
+
+        img {
+          width: 100%;
+        }
+      }
+
+      .with-img {
+        width: calc(~"100% - "@img-width + @img-margin);
+      }
+
+      .delete-img {
+        position: absolute;
+        top: 0;
+        right: 0;
+        color: @red;
+        background-color: @almost-white;
+        width: 20px;
+        height: 20px;
+        text-align: right;
+        padding: 2px 5px;
+        cursor: pointer;
+
+        &:hover {
+          color: #fff;
+          background-color: @red;
+        }
+      }
+    }
+
     .post-link {
       .truncate;
       padding: 10px;
@@ -65,10 +105,11 @@ section.side-modal {
 
     .title-edit {
       font-size: 20px;
-      border: none;
-      padding: 0;
+      // border: none;
+      // padding: 0;
       width: 95%;
       margin: 0;
+      padding: 14px 10px;
     }
 
     .link-edit {

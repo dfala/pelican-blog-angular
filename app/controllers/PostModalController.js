@@ -51,6 +51,10 @@ function ($scope, $rootScope, apiService, trackingService, validator, $timeout) 
     })
   };
 
+  $scope.removeImg = function () {
+    $scope.editablePost.img = '';
+  };
+
   $scope.updatePost = function (post) {
     try { validator.validateNewPost(true, post) } catch (err) { return alertify.error(err); }
     if (post.link) {

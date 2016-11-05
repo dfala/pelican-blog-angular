@@ -6,16 +6,35 @@
       <div class="modal-icon ion-android-close" ng-click="closePostModal()" reset-location></div>
 
       <div ng-if="!editingPost">
-        <h2>{{activePost.title}}</h2>
+        <div class="top-wrapper">
+          <div class="post-img" ng-if="activePost.img">
+            <img ng-src="{{activePost.img}}" alt="{{activePost.title}}" />
+          </div>
+
+          <div ng-class="{'with-img': activePost.img}">
+            <h2>{{activePost.title}}</h2>
+          </div>
+        </div>
+
         <a class="post-link" ng-href="{{activePost.link}}" ng-if="activePost.link" target="_blank">{{activePost.link}}</a>
         <div class="text-container" ng-if="activePost.text">
           <div class="text markdown" ng-bind-html="activePost.text | markdown"></div>
         </div>
       </div>
 
-
       <div ng-if="editingPost">
-        <input id="post-title-edit" class="title-edit" type="text" ng-model="editablePost.title" />
+        <div class="top-wrapper">
+          <div class="post-img" ng-if="editablePost.img">
+            <img ng-src="{{editablePost.img}}" alt="{{activePost.title}}" />
+            <div class="delete-img ion-android-delete" ng-click="removeImg()"></div>
+          </div>
+
+          <div ng-class="{'with-img': activePost.img}">
+            <input id="post-title-edit" class="title-edit" type="text" ng-model="editablePost.title" />
+          </div>
+        </div>
+
+
         <input class="post-link link-edit" type="text" ng-model="editablePost.link" placeholder="Post link" />
         <textarea class="post-text" ng-model="editablePost.text"></textarea>
 
