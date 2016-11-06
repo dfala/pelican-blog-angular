@@ -81,6 +81,8 @@ function ($scope, $rootScope, apiService, trackingService, validator, $timeout) 
 
   // LIKE POST
   $scope.likePost = function (post) {
+    if (!$scope.user || !$scope.user._id) return alertify.error('Please log in first!');
+    
     apiService.likePost(post)
     .then(function (response) {
       $scope.likedPost = response.data.isLiked;
