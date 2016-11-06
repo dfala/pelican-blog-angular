@@ -181,24 +181,23 @@ section.lists {
       display: none;
     }
 
-    &.discover, &.user {
-      .list {
-        @local-padding: 15px 15px 5px;
+    // REUSABLE CLASS
+    .under-wrap {
+      @local-padding: 15px 15px 5px;
+      padding: @local-padding;
+      &.active-list {
         padding: @local-padding;
-        &.active-list {
-          padding: @local-padding;
-        }
       }
     }
 
-    &.extension {
+    &.user {
       .list {
-        @local-padding: 10px;
-        padding: @local-padding;
-        &.active-list {
-          padding: @local-padding;
-        }
+        .under-wrap;
       }
+    }
+
+    &.discover {
+      .under-wrap;
     }
 
     &.user {

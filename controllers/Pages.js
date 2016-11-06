@@ -21,7 +21,7 @@ Routes.discover = function (req, res) {
     Post.find({isPrivate: false})
     .sort('-created_date')
     .limit(20)
-    .populate({ path: 'owner', select: 'displayName _id image' })
+    .populate({ path: 'owner', select: 'displayName givenName _id image' })
     .populate({ path: 'parentList', select: 'title _id' })
     .exec(function (err, posts) {
       if (err) return reject(err);
@@ -55,7 +55,7 @@ Routes.trending = function (req, res) {
     .sort('-ownerClick')
     .limit(100)
     .populate({ path: 'post'})
-    .populate({ path: 'owner', select: 'displayName _id image' })
+    .populate({ path: 'owner', select: 'displayName givenName _id image' })
     .populate({ path: 'parentList', select: 'title _id' })
     .exec(function (err, posts) {
       if (err) return reject(err);

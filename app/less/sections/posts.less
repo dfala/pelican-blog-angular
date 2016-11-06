@@ -32,7 +32,7 @@ section.post {
       width: 100%;
     }
 
-    .post-content.with-img {
+    .with-img {
       width: calc(~"100% - "@post-img-width + 10);
     }
 
@@ -57,6 +57,9 @@ section.post {
     display: flex;
     justify-content: space-between;
     align-items: center;
+
+    .mobile { display: none; }
+    .desktop { display: inherit; }
 
     a {
       color: #464646;
@@ -162,6 +165,15 @@ section.post {
       .post-img {
         padding-bottom: 0;
       }
+
+      .with-img {
+        width: 100%;
+      }
+    }
+
+    .author {
+      .mobile { display: inherit; }
+      .desktop { display: none; }
     }
 
     .post-title {

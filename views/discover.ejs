@@ -34,7 +34,8 @@
       <div class="author">
         <a href="/user/{{post.owner._id}}">
           <img ng-src="{{post.owner.image}}" />
-          {{post.owner.displayName}}
+          <span class="desktop">{{post.owner.displayName}}</span>
+          <span class="mobile">{{post.owner.givenName}}</span>
         </a>
 
 
