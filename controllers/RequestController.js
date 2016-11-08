@@ -64,7 +64,7 @@ Exports.getImage = function (uri) {
         })
 
       } else {
-        return reject(err);
+        return reject(error);
       }
     })
   });
