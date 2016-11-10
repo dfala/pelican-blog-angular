@@ -10,6 +10,7 @@ Exports.create = function (req, res) {
 
   newComment.save()
   .then(function (comment) {
+    // CREATE POST OWNER NOTIFICATION
     NotificationCtrl.create({
       user: req.body.postOwner,
       created_by: req.user._id,
@@ -20,6 +21,34 @@ Exports.create = function (req, res) {
     .catch(function (err) {
       console.error(err);
     });
+
+    // CREATE PREVIOUS COMMENTERS NOTIFICATION(S)
+    Comment.find({post: req.body.post}, function (err, comments) {
+      if (err) return console.log('Error finding post for comment notification.');
+      var notifiedUsers = [];
+
+      comments.forEach(function (comment) {
+        // YOU ARE THE POST OWNER
+        if (comment.creator == req.body.creator) return;
+        // DON'T NOTIFY IF LAST PREVIOUS COMMENTER WAS THE POST OWNER (DUPLICATE NOTIFICATION)
+        if (comment.creator == req.body.postOwner) return;
+        // YOU ALREADY GOT NOTIFIED ABOUT THIS?
+        if (notifiedUsers.indexOf(comment.creator) > -1) return;
+        notifiedUsers.push(comment.creator);
+
+        NotificationCtrl.create({
+          user: comment.creator,
+          created_by: req.body.creator,
+          message: req.user.displayName + ' replied to your comment',
+          action: '/user/' + req.body.postOwner + '?post=' + req.body.post,
+          type: 'comment'
+        }, req.user._id)
+        .catch(function (err) {
+          console.error(err);
+        });
+
+      })
+    })
 
     res.json(comment);
   })
