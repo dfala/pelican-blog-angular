@@ -1,0 +1,81 @@
+<section class="lists user" ng-init="init()" ng-cloak>
+  <div class="nothing-here" ng-if="owner && user && (!lists || !lists.length) && (user._id !== owner._id)">
+    <h1>{{owner.givenName}} doesn't have <br>any posts yet.</h1>
+  </div>
+  <div class="list" id="list-{{list._id}}"
+       ng-repeat="list in lists" ng-if="lists"
+       ng-class="{ 'private-list': list.isPrivate }">
+    <h2>
+      <span>
+        <span class="locked-info ion-ios-locked"
+              ng-if="user && user._id && (list.owner == user._id) && list.isPrivate"
+              ng-click="toggleListLock(list)"></span>
+
+        <span class="pointer" ng-if="!owner._id" send-to="/list/{{list._id}}/{{user._id}}">{{list.title}}</span>
+        <span class="pointer" ng-if="owner._id" send-to="/list/{{list._id}}/{{owner._id}}">{{list.title}}</span>
+      </span>
+
+      <span class="right-icons" ng-if="user && user._id && (list.owner == user._id)">
+        <div class="icon"
+              ng-class="list.isOpenSettings ? 'ion-ios-settings-strong' : 'ion-ios-settings'"
+              ng-click="openListSettings(list)" loose-focus>
+
+          <div class="list-settings" ng-show="list.isOpenSettings" ng-click="$event.stopPropagation();">
+            <div class="arrow-up"></div>
+
+            <div class="setting privacy" ng-show="list.isPrivate" ng-click="toggleListLock(list)">
+              Make list public
+              <span class="icon ion-ios-unlocked-outline"></span>
+            </div>
+
+            <div class="setting privacy" ng-show="!list.isPrivate" ng-click="toggleListLock(list)">
+              Make list private
+              <span class="icon ion-ios-locked"></span>
+            </div>
+
+            <div class="setting edit-list" ng-click="openRenameListModal(list)">
+              Edit list's name
+              <span class="icon ion-ios-compose-outline"></span>
+            </div>
+
+            <div class="setting delete-list" ng-click="deleteList(list, $index)">
+              Delete this list
+              <span class="icon ion-ios-trash-outline"></span>
+            </div>
+          </div>
+        </div>
+
+        <div class="icon ion-ios-plus-empty"
+             ng-click="openComposeModal(list)"></div>
+        <div>
+      </span>
+
+    </h2>
+
+    <section class="post" ng-click="openPost(post, $index, $parent.$index)" ng-repeat="post in list.posts" search-post>
+      <div class="body">
+        <div class="post-img" ng-if="post.img" >
+          <img ng-src="{{post.img}}" alt="{{post.title}}" />
+        </div>
+        <div class="post-content" ng-class="{'with-img': post.img}">
+          <p class="post-title">{{post.title}}</p>
+          <div class="space" ng-if="!post.link && !post.text"></div>
+          <a class="a" open-link="{{post}}"
+             ng-click="$event.stopPropagation();"
+             ng-if="post.link">{{post.link}}</a>
+          <div class="text" ng-if="post.text" ng-bind-html="post.text | markdown">{{post.text}}</div>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <button class="compose" ng-click="openComposeModal()"
+          ng-if="user && user._id && (owner? owner._id == user._id : true)">
+    <img src="/css/arrow.png" ng-if="!deactivateWelcome" />
+    <span class="icon ion-android-add"></span>
+  </button>
+  <% include ./partials/post-modal.ejs %>
+  <% include ./partials/list-modal.ejs %>
+  <% include ./partials/edit-list-modal.ejs %>
+</section>

@@ -1,0 +1,31 @@
+<% include ./partials/head-light.ejs %>
+<% include ./partials/header.ejs %>
+
+<script type="text/javascript">
+  var p = {
+    user: <%- JSON.stringify(user) %>,
+    lists: <%- JSON.stringify(lists) %>,
+    owner: <%- JSON.stringify(owner) %>,
+    ownerLists: <%- JSON.stringify(ownerLists) %>,
+    training: <%- JSON.stringify(training) %>
+  };
+  if (p.user) {
+    calq.user.identify(p.user._id);
+    calq.user.profile(
+      { "_id": p.user._id, "$email": p.user.email, "$full_name": p.user.displayName }
+    );
+  }
+</script>
+
+<body class="with-menu">
+  <% include ./partials/tag-manager.ejs %>
+
+  <% if (training && !training.newUser) { %>
+    <% include ./partials/new-user-onboarding.ejs %>
+  <% } %>
+
+  <% include ./partials/menu.ejs %>
+
+  <div ui-view></div>
+
+<% include ./partials/footer.ejs %>
