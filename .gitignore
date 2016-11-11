@@ -3,3 +3,4 @@ node_modules/
 config/keys.js
 config/server.enc.key
 config/server.crt
+config/bundle.crt
