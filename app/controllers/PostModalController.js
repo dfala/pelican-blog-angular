@@ -36,6 +36,7 @@ function ($scope, $rootScope, apiService, trackingService, validator, $timeout) 
   $scope.closePostModal = function () {
     $scope.activePost = null;
     $scope.editingPost = false;
+    $scope.comments = [];
     $scope.newComment = '';
     $('body').css({
       'overflow': 'inherit',
