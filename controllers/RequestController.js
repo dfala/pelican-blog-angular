@@ -11,10 +11,22 @@ Exports.getHeader = function (req, res) {
 
   request(uri, function (error, response, body) {
     if (!error && response.statusCode == 200) {
-      var title = body.match(/<title[^>]*>([^<]+)<\/title>/)[1];
+      try {
+        var tempArr = body.match(/<title[^>]*>([^<]+)<\/title>/);
+        if (tempArr) {
+          var title = body.match(/<title[^>]*>([^<]+)<\/title>/)[1];
+        } else {
+          var title = "";
+        }
+        console.log(title);
+      } catch (e) {
+        console.log(e);
+        var title = "";
+      }
+
       res.json(title);
     } else {
-      res.status(400).send('Not found');
+      res.status(response.statusCode || 404).send("Not found");
     }
   })
 };
@@ -53,6 +65,7 @@ Exports.getImage = function (uri) {
         } catch (err) {
           return reject(err);
         }
+
 
         // UPLOAD IMAGE TO AMAZON
         ImgCtrl.downloadMetaImage(facebookImage, extension)

@@ -21,13 +21,22 @@ Exports.create = function (req, res) {
       }
     );
 
-    RequestCtrl.getImage(post.link)
-    .then(function (imgUrl) {
-      post.img = imgUrl;
-      post.save(function (err, result) {
+    try {
+      RequestCtrl.getImage(post.link)
+      .then(function (imgUrl) {
+        post.img = imgUrl;
+        post.save(function (err, result) {
+          res.json(post);
+        });
+      })
+      .catch(function (err) {
+        console.log('Error retrieving image: ', err);
         res.json(post);
-      });
-    })
+      })
+    } catch (e) {
+      console.log('Error getting image: ', e);
+      res.json(post);
+    }
   })
   .catch(function (err) {
     res.status(500).send(err);
