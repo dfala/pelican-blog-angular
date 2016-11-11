@@ -82,7 +82,7 @@ function ($scope, $rootScope, apiService, trackingService, validator, $timeout) 
   // LIKE POST
   $scope.likePost = function (post) {
     if (!$scope.user || !$scope.user._id) return alertify.error('Please log in first!');
-    
+
     apiService.likePost(post)
     .then(function (response) {
       $scope.likedPost = response.data.isLiked;
@@ -100,6 +100,11 @@ function ($scope, $rootScope, apiService, trackingService, validator, $timeout) 
     apiService.sendComment(newComment, $scope.user, $scope.activePost)
     .then(function (response) {
       $scope.newComment = '';
+
+      calq.action.track(
+        "comment created",
+        { "commentId": response.data._id }
+      );
 
       var data = response.data;
       data.creator = {

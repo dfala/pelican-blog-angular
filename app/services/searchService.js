@@ -13,6 +13,13 @@ angular.module('Pelican')
 
     service.globalSearch(query)
     .then(function (response) {
+      calq.action.track(
+        "global search",
+        {
+          "query": query,
+          "resultCount": response.data.length
+        }
+      );
 
       var suggestions = [];
       for (var key in response.data) {
