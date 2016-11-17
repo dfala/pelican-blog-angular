@@ -26,7 +26,7 @@ Exports.getHeader = function (req, res) {
 
       res.json(title);
     } else {
-      res.status(response.statusCode || 404).send("Not found");
+      res.status(response && response.statusCode || 404).send("Not found");
     }
   })
 };
