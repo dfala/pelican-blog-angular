@@ -74,12 +74,18 @@ section.post {
     .desktop { display: inherit; }
 
     a {
-      color: @green;//#464646;
+      color: #464646;
+      @local-weight: 500;
+      font-weight: @local-weight;
+      & span {
+        font-weight: @local-weight;
+      }
       font-size: @local-font-size;
       line-height: 18px;
 
       &:hover {
-        color: darken(@green, 10%);
+        // color: darken(@green, 10%);
+        color: @green;
       }
     }
 
@@ -90,6 +96,7 @@ section.post {
     }
 
     .list-name {
+      // color: @green;
       max-width: 150px;
       overflow: hidden;
       text-overflow: ellipsis;
