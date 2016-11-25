@@ -19,29 +19,40 @@
 
   <section class="lists discover" ng-controller="DiscoverController" ng-init="init()" lazy-load>
 
-    <section class="post" ng-repeat="post in posts" ng-cloak>
+    <section class="post with-author" ng-repeat="post in posts" ng-cloak>
       <div class="body" ng-click="openPost(post)" search-post>
-        <div class="post-img" ng-if="post.img" >
-          <img ng-src="{{post.img}}" alt="{{post.title}}" />
-        </div>
-        <div class="post-content" ng-class="{'with-img': post.img}">
-          <p class="post-title">{{post.title}}</p>
-          <div class="space" ng-if="!post.link && !post.text"></div>
-          <a class="a" ng-if="post.link" ng-click="$event.stopPropagation();" open-link="{{post}}">{{post.link}}</a>
-          <div class="text" ng-if="post.text" ng-bind-html="post.text | markdown">{{post.text}}</div>
-        </div>
-      </div>
-      <div class="author">
-        <a href="/user/{{post.owner._id}}">
+        <div class="background-info">
           <img ng-src="{{post.owner.image}}" />
-          <span class="desktop">{{post.owner.displayName}}</span>
-          <span class="mobile">{{post.owner.givenName}}</span>
-        </a>
+          <div class="details-wrapper">
 
+            <div class="details">
+              <a href="/user/{{post.owner._id}}">
+                <span class="desktop">{{post.owner.displayName}}</span>
+                <span class="mobile">{{post.owner.givenName}}</span>
+              </a>
+              <span>in</span>
+              <a class="list-name"
+                ng-if="post.parentList && post.parentList._id"
+                href='/list/{{post.parentList._id}}/{{post.owner._id}}'>{{post.parentList.title}}
+              </a>
+            </div>
 
-        <a class="list-name"
-          ng-if="post.parentList && post.parentList._id"
-          href='/list/{{post.parentList._id}}/{{post.owner._id}}'># {{post.parentList.title}}</a>
+            <div class="created-date">
+              <span>{{post.created_date | moment}}</span>
+            </div>
+          </div>
+        </div>
+        <div class="content">
+          <div class="post-img" ng-if="post.img" >
+            <img ng-src="{{post.img}}" alt="{{post.title}}" />
+          </div>
+          <div class="post-content" ng-class="{'with-img': post.img}">
+            <p class="post-title">{{post.title}}</p>
+            <div class="space" ng-if="!post.link && !post.text"></div>
+            <a class="a" ng-if="post.link" ng-click="$event.stopPropagation();" open-link="{{post}}">{{post.link}}</a>
+            <div class="text" ng-if="post.text" ng-bind-html="post.text | markdown">{{post.text}}</div>
+          </div>
+        </div>
       </div>
     </section>
 

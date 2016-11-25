@@ -5,6 +5,16 @@ section.post {
   max-width: 100%;
   margin-bottom: 25px;
 
+  &.with-author {
+    .body {
+      display: inherit;
+    }
+
+    .content {
+      display: flex;
+    }
+  }
+
   .body {
     border-radius: @br;
     border: 1px solid @border-gray;
@@ -53,39 +63,48 @@ section.post {
     }
   }
 
-  .author {
-    margin: 10px 15px 20px;
+  .background-info {
+    @local-font-size: 14px;
+    margin: 10px 10px 0 10px;
+    font-size: @local-font-size;
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    align-items: flex-start;
 
     .mobile { display: none; }
     .desktop { display: inherit; }
 
     a {
-      color: #464646;
-      display: flex;
-      align-items: center;
-      font-size: 14px;
+      color: @green;//#464646;
+      font-size: @local-font-size;
+      line-height: 18px;
 
       &:hover {
-        color: @blue;
+        color: darken(@green, 10%);
       }
     }
 
     img {
       border-radius: 100px;
-      max-width: 30px;
+      max-width: 36px;
       margin-right: 10px;
     }
 
     .list-name {
       max-width: 150px;
-      color: lighten(@dark-gray, 40%);
       overflow: hidden;
       text-overflow: ellipsis;
-      display: inline-block;
       white-space: nowrap;
+    }
+
+    .created-date {
+      color: lighten(@dark-gray, 40%);
+      font-size: @local-font-size;
+      line-height: 18px;
+    }
+
+    .details-wrapper {
+      display: flex;
+      flex-direction: column;
     }
   }
 
