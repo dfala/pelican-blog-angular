@@ -26,12 +26,12 @@
           <div class="details-wrapper">
 
             <div class="details">
-              <a href="/user/{{post.owner._id}}">
+              <a href="/user/{{post.owner._id}}" ng-click="$event.stopPropagation();">
                 <span class="desktop">{{post.owner.displayName}}</span>
                 <span class="mobile">{{post.owner.givenName}}</span>
               </a>
               <span>in</span>
-              <a class="list-name"
+              <a class="list-name" ng-click="$event.stopPropagation();"
                 ng-if="post.parentList && post.parentList._id"
                 href='/list/{{post.parentList._id}}/{{post.owner._id}}'>{{post.parentList.title}}
               </a>
