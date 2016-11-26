@@ -18,6 +18,7 @@ angular.module('Pelican')
       if ($scope.owner && ($scope.owner.id !== $scoe.user._id)) return;
       if (window.location.href.indexOf('/discover') > -1) return;
       if (window.location.href.indexOf('/trending') > -1) return;
+      if (window.location.href.indexOf('/recent') > -1) return;
 
       $scope.lists = $scope.lists.map(function (list) {
         list.displayPosts = false;
