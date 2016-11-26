@@ -27,12 +27,14 @@
       </div>
     <% } %>
 
-    <div class="list menu-list alternative" identify-location="/recent" ng-if="user && user._id" ng-cloak>
+    <% if (user) { %>
+    <div class="list menu-list alternative" identify-location="/recent">
       <div class="p-wrapper" send-to="/recent">
         <span class="icon-recent ion-ios-clock-outline hashtag menu-icon"></span>
         <p class="p-title">my recent</p>
       </div>
     </div>
+    <% } %>
 
     <div class="list menu-list alternative" identify-location="/discover">
       <div class="p-wrapper" send-to="/discover">
