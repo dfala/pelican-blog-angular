@@ -6,8 +6,8 @@ angular.module('Pelican')
   $scope.init = function () {
     if (p.user) $scope.user = p.user || null;
     if (p.lists) $scope.lists = p.lists;
-    if (window.location.href.indexOf('/discover') > -1 && p.posts) $scope.posts = p.posts || [];
-    else $scope.posts = sortPopularPosts();
+    if (window.location.href.indexOf('/trending') > -1 && p.posts) $scope.posts = sortPopularPosts();
+    else $scope.posts = p.posts || [];
   };
 
   function sortPopularPosts () {

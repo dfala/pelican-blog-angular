@@ -7,7 +7,7 @@ module.exports = function (app, passport) {
   app.get('/home', Pages.home);
   app.get('/discover', Pages.discover);
   app.get('/trending', Pages.trending);
-  app.get('/discovers', Pages.discover);
+  app.get('/recent', Pages.recent);
   app.get('/user/:userId?', UserCtrl.userView);
   app.get('/list/:listId/:userId', Pages.listView);
   app.get('/bookmark', Pages.bookmark);

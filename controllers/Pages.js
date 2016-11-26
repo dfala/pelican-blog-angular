@@ -97,6 +97,40 @@ Routes.trending = function (req, res) {
 
 };
 
+Routes.recent = function (req, res) {
+  if (!req.user || !req.user._id) return res.redirect('/');
+
+  var userInfoPromise = UserCtrl.getUserInfo(req);
+  var feedPromise = new Promise(function (resolve, reject) {
+    Post.find({owner: req.user._id})
+    .sort('-created_date')
+    // .limit(20)
+    .populate({ path: 'owner', select: 'displayName givenName _id image' })
+    .populate({ path: 'parentList', select: 'title _id' })
+    .exec(function (err, posts) {
+      if (err) return reject(err);
+      return resolve(posts);
+    })
+  })
+
+  Promise.all([userInfoPromise, feedPromise])
+  .then(function (results) {
+    res.render('discover', {
+      user:       req.user || null,
+      owner:      null,
+      ownerLists: null,
+      lists:      results[0]? results[0].lists  : [],
+      posts:      results[1] || []
+    })
+  })
+  .catch(function (err) {
+    console.log('Error loading discover feed: ', err);
+    if (req.user && req.user._id) return res.redirect('/user/' + req.user._id);
+    return res.redirect('/home');
+  })
+
+};
+
 Routes.bookmark = function (req, res) {
   if (!req.user || !req.user._id)
     return res.render('extension', {

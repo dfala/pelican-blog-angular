@@ -27,18 +27,23 @@
       </div>
     <% } %>
 
-
+    <div class="list menu-list alternative" identify-location="/recent" ng-if="user && user._id" ng-cloak>
+      <div class="p-wrapper" send-to="/recent">
+        <span class="icon-recent ion-ios-clock-outline hashtag menu-icon"></span>
+        <p class="p-title">my recent</p>
+      </div>
+    </div>
 
     <div class="list menu-list alternative" identify-location="/discover">
       <div class="p-wrapper" send-to="/discover">
-        <span class="icon-discover ion-ios-navigate-outline hashtag"></span>
+        <span class="icon-discover ion-ios-navigate-outline hashtag menu-icon"></span>
         <p class="p-title">discover</p>
       </div>
     </div>
 
     <div class="list menu-list alternative trending" identify-location="/trending">
       <div class="p-wrapper" send-to="/trending">
-        <span class="icon-trending ion-ios-pulse hashtag"></span>
+        <span class="icon-trending ion-ios-pulse hashtag menu-icon"></span>
         <p class="p-title">trending</p>
       </div>
     </div>
@@ -56,7 +61,7 @@
       </div>
 
       <hr ng-show="query || list.displayPosts" identify-location="/list/{{list._id}}"/>
-      
+
       <div class="posts" ng-show="query || list.displayPosts">
         <div class="post animated-fast fadeInLeft"
             ng-repeat="post in list.posts" search-post close-side-menu
@@ -71,7 +76,7 @@
         ng-click="openComposeModal()" close-side-menu
         ng-class="{ 'no-border': !lists }" ng-cloak>
       <div class="p-wrapper">
-        <span class="icon-new hashtag ion-ios-plus-outline"></span>
+        <span class="icon-new hashtag ion-ios-plus-outline menu-icon"></span>
         <p>
           add new list
         </p>

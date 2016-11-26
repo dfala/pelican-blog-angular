@@ -97,7 +97,7 @@ section.menu {
       width: 100%;
       cursor: pointer;
 
-      &> * { padding: @local-padding/2 @local-padding; }
+      &> * { padding: 8px @local-padding; }
 
       hr {
         border: none;
@@ -111,10 +111,6 @@ section.menu {
         width: 100%;
         overflow: hidden;
         display: flex;
-
-        .icon-discover, .icon-new {
-          margin-top: 3px;
-        }
       }
 
       p {
@@ -153,6 +149,10 @@ section.menu {
         border-bottom: 1px solid lighten(@dim-blue, 5%);
       }
 
+      .menu-icon {
+                line-height: 1.7;
+              }
+
       &.alternative {
 
         .p-wrapper {
@@ -160,7 +160,10 @@ section.menu {
             color: @blue-green;
           }
           .icon-trending {
-            color: #98CE00;
+            color: @blue-green;//#E4FF1A;//#0CF574;
+          }
+          .icon-recent {
+            color: @blue-green;//#CBBAED;//#F3B61F;
           }
         }
 
