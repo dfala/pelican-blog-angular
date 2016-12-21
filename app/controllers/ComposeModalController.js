@@ -1,7 +1,7 @@
 angular.module('Pelican')
 
-.controller('ComposeModalController', ['$scope', '$rootScope', 'apiService', 'validator',
-  function ($scope, $rootScope, apiService, validator) {
+.controller('ComposeModalController', ['$scope', '$rootScope', 'apiService', 'validator', '$timeout',
+  function ($scope, $rootScope, apiService, validator, $timeout) {
 
   $scope.isListModalOpen = false;
   $scope.modalLists = p.lists || [];
@@ -15,6 +15,7 @@ angular.module('Pelican')
       preventEmit = false;
     }
     if (data.activeList) $scope.activeList = data.activeList;
+    $('#search-list').focus();
   });
 
   $rootScope.$on('repin post', function (e, newPost) {
