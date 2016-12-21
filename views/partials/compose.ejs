@@ -8,7 +8,7 @@
 
   <div class="list-search relative" ng-show="!activeList">
     <span class="search-icon ion-ios-search-strong" ng-if="!query"></span>
-    <input type="text" id="search-list" placeholder="Search list..." ng-model="query" escape-search focus-id create-list/>
+    <input type="text" id="search-list" placeholder="Search list..." ng-model="query" escape-search focus-id create-list autofocus/>
     <div class="clear-search ion-android-close" ng-if="query" ng-click="$parent.query = ''"></div>
   </div>
 
